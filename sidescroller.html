@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Multi-Scroll Demo</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script type="text/javascript" src="jquery.js"></script>
+
+    <style>
+    html,body{
+        font-family: 'Helvetica Neue', Helvetica, arial, sans-serif;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    #wrap{
+      width: 100%;
+      height: 100%;
+      overflow-x: hidden;
+      position: absolute;
+    }
+    section{
+      width: 100%;
+      height: 500%;
+      min-height: 500%;
+      color: white;
+      position: absolute;
+      transition: .5s all ease;
+    }
+    section h1{
+        text-align: center;
+        color: white;
+        position: fixed;
+        top: 30px;
+        width: 100%;
+    }
+
+
+    .s1{ background-color: #a09f9d; }
+    .s2{ background-color: #888784; margin-left: 100%;}
+    .s3{ background-color: #706f6e; margin-left: 200%;}
+    .s4{ background-color: #646361; margin-left: 300%;}
+    .s5{ background-color: #817a6c; margin-left: 400%;}
+    .s6{ background-color: #6d6452; margin-left: 500%;}
+    .s7{ background-color: #8c887f; margin-left: 600%;}
+
+    .step-1 .s1{margin-left: -100%;}
+    .step-1 .s2{margin-left: 0;}
+    .step-1 .s3{margin-left: 100%;}
+    .step-1 .s4{margin-left: 200%;}
+    .step-1 .s5{margin-left: 300%;}
+    .step-1 .s6{margin-left: 400%;}
+    .step-1 .s7{margin-left: 500%;}
+
+    .step-2 .s1{margin-left: -200%;}
+    .step-2 .s2{margin-left: -100%;}
+    .step-2 .s3{margin-left: 0;}
+    .step-2 .s4{margin-left: 100%;}
+    .step-2 .s5{margin-left: 200%;}
+    .step-2 .s6{margin-left: 300%;}
+    .step-2 .s7{margin-left: 400%;}
+
+    .step-3 .s1{margin-left: -300%;}
+    .step-3 .s2{margin-left: -200%;}
+    .step-3 .s3{margin-left: -100%;}
+    .step-3 .s4{margin-left: 0;}
+    .step-3 .s5{margin-left: 100%;}
+    .step-3 .s6{margin-left: 200%;}
+    .step-3 .s7{margin-left: 300%;}
+
+    .step-4 .s1{margin-left: -400%;}
+    .step-4 .s2{margin-left: -300%;}
+    .step-4 .s3{margin-left: -200%;}
+    .step-4 .s4{margin-left: -100%;}
+    .step-4 .s5{margin-left: 0;}
+    .step-4 .s6{margin-left: 100%;}
+    .step-4 .s7{margin-left: 200%;}
+
+    .step-5 .s1{margin-left: -500%;}
+    .step-5 .s2{margin-left: -400%;}
+    .step-5 .s3{margin-left: -300%;}
+    .step-5 .s4{margin-left: -200%;}
+    .step-5 .s5{margin-left: -100%;}
+    .step-5 .s6{margin-left: 0;}
+    .step-5 .s7{margin-left: 100%;}
+
+    .step-6 .s1{margin-left: -600%;}
+    .step-6 .s2{margin-left: -500%;}
+    .step-6 .s3{margin-left: -400%;}
+    .step-6 .s4{margin-left: -300%;}
+    .step-6 .s5{margin-left: -200%;}
+    .step-6 .s6{margin-left: -100%;}
+    .step-6 .s7{margin-left: 0;}
+
+
+    #logo, #logo2{
+        position: fixed;
+        top: 50px;
+        width: 200px;
+        height: 75px;
+        z-index: 10;
+        color: white;
+        font-size: 20px;
+    }
+    #logo{ left: 50px;}
+    #logo2{ right: 50px; text-align: right;}
+    #year{
+        position:fixed;
+        bottom: 50px;
+        width: 120px;
+        left: 45%;
+        text-align: center;
+        color: white;
+        z-index: 10;
+    }
+    #prev,#next{
+        display: block;
+        position: absolute;
+        font-size: 90px;
+        font-weight: bold;
+        color: white;
+        top: 49%;
+        text-decoration: none;
+    }
+    #prev{ left: 10px;}
+    #next{ right: 26px;}
+    </style>
+</head>
+<body>
+
+    <div id='logo'>Jerome FDN</div>
+    <div id="logo2">50 years</div>
+    <div id="year">1965</div>
+
+    <div id="wrap">
+        <section class="s1"></section>
+        <section class="s2"><h1>Overall</h1></section>
+        <section class="s3"><h1>Organizations</h1></section>
+        <section class="s4"><h1>Travel &amp; Study</h1></section>
+        <section class="s5"><h1>Film &amp; Video</h1></section>
+        <section class="s6"><h1>General Program</h1></section>       
+        <section class="s7"><h1>People</h1></section>
+    </div>
+
+    <a id='prev' href='#'>&lsaquo;</a>
+    <a id='next' href='#'>&rsaquo;</a>
+
+    <script type="text/javascript">
+
+    var step = 0;
+
+    $('#prev').on('click', function(){
+        step--;
+        //console.log(step);
+        if (step < 0) { step = 0 };
+        $('#wrap').removeClass().addClass('step-'+step);
+
+        //$.scrollTo( $('.s5'), 800 );
+        return false;
+    });
+     $('#next').on('click', function(){
+        step++;
+        //console.log(step);
+        if (step > 6) { step = 6 };
+        $('#wrap').removeClass().addClass('step-'+step);
+
+        //$.scrollTo( $('.s1'), 800 );
+        return false;
+    });
+
+
+    var start = 1965
+    var end = 2013;
+    var numyears = end-start;
+    var $sec = $('section');
+    var yeartick = ( $sec.height() - $(window).height() ) / numyears;
+    var $sec_offset = $sec.offset().top;
+    var year = 1965;
+
+    $('#wrap').on('scroll touchmove', function(){
+        pos_in_window = $(this).scrollTop() - $sec_offset;
+        //console.log(pos_in_window);
+        if (pos_in_window > 0){
+
+            // console.log('more than 0');
+            year_supplement = Math.floor(pos_in_window/yeartick);
+            //console.log(year_supplement);
+            year = 1965 + year_supplement;
+
+            $('#year').text( year );
+        }
+    });
+       
+
+    </script>
+
+
+
+
+</body>
+</html>

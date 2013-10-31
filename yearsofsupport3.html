@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+	<title>Scroll test</title>
+	<style type="text/css">
+	html{
+		height: 200%;
+	}
+	body{ height: 100%;}
+	section, header{
+		width: 95%;
+		border: 1px dotted #ccc;
+		margin: 10px auto;
+	}
+	section{
+		height: 200%;
+	}
+  /*	svg{
+		posit
+	}*/
+
+	</style>
+  </head>
+  <body>
+	<header>
+		<p>Years of support from the jerome foundation</p>
+	</header>
+	<section>
+		<h1>1965</h1>
+	</section>
+
+	<script type="text/javascript" src='jquery.js'></script>
+	<script type="text/javascript" src='jquery.sticky.js'></script>
+	<script type="text/javascript" src="d3.v3.min.js"></script>
+
+	<script type="text/javascript">
+
+	var start = 1965
+	var end = 2013;
+	var numyears = end-start;
+	var $sec = $('section');
+	var yeartick = ( $sec.height() - $(window).height() ) / numyears;
+
+	var $sec_offset = $sec.offset().top ;
+
+	var year = start; 
+
+	//d3 specific stuff
+	var colorScale = d3.scale.category10();
+
+
+	$(document).ready(function(){
+		$('h1').sticky({topSpacing:0});
+
+		//$sec = $('section');
+
+	});
+
+	//$(document).scroll(function(){
+	$(document).on('scroll touchmove', function(){
+		pos_in_window = $(this).scrollTop() - $sec_offset;
+		//console.log(pos_in_window);
+		if (pos_in_window > 0){
+			year_supplement = Math.floor(pos_in_window/yeartick);
+
+			year = 1965 + year_supplement;
+			//console.log('year', year);
+
+			$('h1').text( year );
+
+
+			d3.selectAll("circle").transition()
+				.duration(200)
+				//.ease('elastic')
+			    //.delay(function(d, i) { return i * 10; })
+			    .attr("r", function(d, i ){
+			    	//console.log(d);
+			    	var map = d3.map(d.supportYears);
+			    	//console.log(map.has(year));
+			    	var support = map.get(year);
+			    	if (isNaN(support)){
+			    		support = 0;
+			    	}
+			    	//console.log(support * 3);
+			    	//console.log(map.value(year));
+			    	//var support = d.supportYears[year.toString()];
+			    	//console.log(support);
+			    	return (support * 3 );
+			    } );
+
+
+			 // displayYear(1965 + year_supplement);
+
+		}
+
+		
+	});
+	
+	// Chart dimensions.
+	var margin = {top: 19.5, right: 19.5, bottom: 19.5, left: 39.5},
+
+	width = $('section').width(),
+	height = 700 - margin.top - margin.bottom;
+
+
+	var svg = d3.select("section").append("svg")
+		.attr("width", width + margin.left + margin.right)
+		.attr("height", height + margin.top + margin.bottom);
+
+		// 
+	$('svg').sticky({topSpacing: 0});
+	//svg.append("circle").attr('id','test').attr("cx", 225).attr("cy", 225).attr("r", 25).style("fill", "purple");
+
+
+
+
+
+
+	d3.json("orgs2.json", function(error,data) {
+
+		if (error) return console.warn(error);
+
+		//console.log(data);
+
+
+		var circles = svg.selectAll("circle")
+			.data(data)
+			.enter()
+			.append("circle");
+
+
+		var circleAttributes = circles
+			.attr('cx', function(d,i){
+				console.log(d,i);
+				return (i+1) * 10 + 50;
+			})
+			.attr('cy',function(d,i){
+				// if (i % 2 == 0){
+				rand = Math.random();
+				if ( rand < 0.3){
+					return (100 * Math.random()) + 100;
+				} else if (rand > 0.7) {
+					return (100 * Math.random()) + 500;
+
+				} else {
+					return (100 * Math.random()) + 300;
+				}
+				//return i * 1.5 + 50;
+			})
+			.attr("r", 0 )
+			.style("fill", function(d, i) { return colorScale( i); });
+
+		// var fauxwhat = svg.selectAll("circle")
+  //     		.data(data)
+  //   		// .enter().append("circle")
+  //    		.style("fill", function(d, i) { return colorScale( i); })
+  //    		// .attr('cx', 200)
+  //    		// .attr('cy',99)
+  //    		// .attr('r',19);
+  //    		.attr('cx', function(d,i){
+  //    			console.log(d,i);
+  //    			return i * 20 + 100;
+  //    		})
+  //    		.attr('cy',function(d,i){
+  //    			return i * 20 + 100;
+  //    		})
+  //    		.attr('r',function(d, i){
+		// 		return i * 20 + 10;
+  //    		})
+  //    		.append('circle');
+		
+  //     	console.log(fauxwhat);	
+
+
+
+	});
+
+
+
+
+
+
+
+
+
+	</script>
+  </body>
+</html>

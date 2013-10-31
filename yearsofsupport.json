@@ -1,0 +1,615 @@
+{
+ "name": "flare",
+ "children": [
+	{
+		"year": "1990",
+		"name": "Headwaters Music",
+		"size": 10
+	},
+	{
+		"year": "1994",
+		"name": "Margolis Brown Theater Company",
+		"size": 10
+	},
+	{
+		"year": "1999",
+		"name": "Mizna",
+		"size": 10
+	},
+	{
+		"year": "1982",
+		"name": "New Dance Laboratory",
+		"size": 10
+	},
+	{
+		"year": "1981",
+		"name": "Saint Louis County Heritage and Arts Center",
+		"size": 10
+	},
+	{
+		"year": "1993",
+		"name": "Children_s Theatre Company, The",
+		"size": 10
+	},
+	{
+		"year": "1990",
+		"name": "Bronx Council on the Arts",
+		"size": 11
+	},
+	{
+		"year": "1979",
+		"name": "Chen Dance Center / H.T. Chen & Dancers",
+		"size": 11
+	},
+	{
+		"year": "2002",
+		"name": "Highpoint Center for Printmaking",
+		"size": 11
+	},
+	{
+		"year": "1974",
+		"name": "Minnesota Opera",
+		"size": 11
+	},
+	{
+		"year": "1996",
+		"name": "Pangea World Theater",
+		"size": 11
+	},
+	{
+		"year": "2001",
+		"name": "Rhizome.org",
+		"size": 11
+	},
+	{
+		"year": "1994",
+		"name": "Asian American Writers' Workshop",
+		"size": 12
+	},
+	{
+		"year": "1991",
+		"name": "Bang on a Can",
+		"size": 12
+	},
+	{
+		"year": "1982",
+		"name": "Duluth Art Institute",
+		"size": 12
+	},
+	{
+		"year": "1999",
+		"name": "Franklin Art Works / New Franklin Cultural Center, Inc., The",
+		"size": 12
+	},
+	{
+		"year": "1994",
+		"name": "Repertorio Espa¤ol",
+		"size": 12
+	},
+	{
+		"year": "1991",
+		"name": "White Columns",
+		"size": 12
+	},
+	{
+		"year": "1986",
+		"name": "Alternative Museum",
+		"size": 13
+	},
+	{
+		"year": "1982",
+		"name": "Composers' Forum",
+		"size": 13
+	},
+	{
+		"year": "1966",
+		"name": "Iowa, University of ",
+		"size": 13
+	},
+	{
+		"year": "1999",
+		"name": "New Georges",
+		"size": 13
+	},
+	{
+		"year": "2000",
+		"name": "Soho Repertory Theatre, Inc.",
+		"size": 13
+	},
+	{
+		"year": "1999",
+		"name": "Anderson Center for Interdisciplinary Studies",
+		"size": 14
+	},
+	{
+		"year": "1996",
+		"name": "Blacklock Nature Sanctuary",
+		"size": 14
+	},
+	{
+		"year": "1996",
+		"name": "Heart of the Beast Puppet and Mask Theatre, In The",
+		"size": 14
+	},
+	{
+		"year": "1992",
+		"name": "Jungle Theater, The",
+		"size": 14
+	},
+	{
+		"year": "1977",
+		"name": "Minnesota Dance Theatre and School",
+		"size": 14
+	},
+	{
+		"year": "1993",
+		"name": "New York Mills Arts Retreat and Regional Cultural Center",
+		"size": 14
+	},
+	{
+		"year": "1974",
+		"name": "Saint Paul Chamber Orchestra, The",
+		"size": 14
+	},
+	{
+		"year": "1980",
+		"name": "Studio Museum in Harlem, The",
+		"size": 14
+	},
+	{
+		"year": "1996",
+		"name": "Voice & Vision",
+		"size": 14
+	},
+	{
+		"year": "1998",
+		"name": "Cave Canem Foundation, Inc",
+		"size": 15
+	},
+	{
+		"year": "1983",
+		"name": "Creative Time",
+		"size": 15
+	},
+	{
+		"year": "1974",
+		"name": "Cricket Theatre",
+		"size": 15
+	},
+	{
+		"year": "1997",
+		"name": "Foundry Theatre Inc., The",
+		"size": 15
+	},
+	{
+		"year": "1997",
+		"name": "Momenta Art",
+		"size": 15
+	},
+	{
+		"year": "1999",
+		"name": "Smack Mellon Studios",
+		"size": 15
+	},
+	{
+		"year": "1986",
+		"name": "Southern Theater Foundation, The",
+		"size": 15
+	},
+	{
+		"year": "1988",
+		"name": "Theater for the New City",
+		"size": 15
+	},
+	{
+		"year": "1984",
+		"name": "Center for Arts Criticism",
+		"size": 16
+	},
+	{
+		"year": "1977",
+		"name": "Circle Repertory Company",
+		"size": 16
+	},
+	{
+		"year": "1997",
+		"name": "Franconia Sculpture Park",
+		"size": 16
+	},
+	{
+		"year": "1998",
+		"name": "HERE Arts Center / Home for Contemporary Theatre and Art",
+		"size": 16
+	},
+	{
+		"year": "1998",
+		"name": "Lower East Side Printshop, Inc.",
+		"size": 16
+	},
+	{
+		"year": "1994",
+		"name": "Minnesota Center for Photography",
+		"size": 16
+	},
+	{
+		"year": "1994",
+		"name": "Movement Research, Inc.",
+		"size": 16
+	},
+	{
+		"year": "1987",
+		"name": "Nautilus Music-Theater, The",
+		"size": 16
+	},
+	{
+		"year": "1994",
+		"name": "Patrick's Cabaret",
+		"size": 16
+	},
+	{
+		"year": "1994",
+		"name": "S.A.S.E.:  The Write Place",
+		"size": 16
+	},
+	{
+		"year": "1987",
+		"name": "Warland Singers, The Dale",
+		"size": 16
+	},
+	{
+		"year": "1996",
+		"name": "New York Theatre Workshop",
+		"size": 17
+	},
+	{
+		"year": "1996",
+		"name": "Socrates Sculpture Park",
+		"size": 17
+	},
+	{
+		"year": "1977",
+		"name": "American Dance Festival",
+		"size": 18
+	},
+	{
+		"year": "1996",
+		"name": "IFP Minnesota",
+		"size": 18
+	},
+	{
+		"year": "1993",
+		"name": "Mu Performing Arts",
+		"size": 18
+	},
+	{
+		"year": "1971",
+		"name": "Schubert Club, The",
+		"size": 18
+	},
+	{
+		"year": "1994",
+		"name": "Sewell Ballet, James, The / Ballet Works, Inc.",
+		"size": 18
+	},
+	{
+		"year": "1996",
+		"name": "Danspace Project",
+		"size": 19
+	},
+	{
+		"year": "1991",
+		"name": "Exit Art / The First World",
+		"size": 19
+	},
+	{
+		"year": "1971",
+		"name": "Film in the Cities",
+		"size": 19
+	},
+	{
+		"year": "1993",
+		"name": "Harlem Stage at the Gatehouse / Aaron Davis Hall, Inc.",
+		"size": 19
+	},
+	{
+		"year": "1979",
+		"name": "Kitchen, The / Haeakala, Inc.",
+		"size": 19
+	},
+	{
+		"year": "1974",
+		"name": "National Charities Information Bureau",
+		"size": 19
+	},
+	{
+		"year": "1993",
+		"name": "Soap Factory, The",
+		"size": 19
+	},
+	{
+		"year": "1994",
+		"name": "VSA Minnesota",
+		"size": 19
+	},
+	{
+		"year": "1978",
+		"name": "American Composers Orchestra",
+		"size": 20
+	},
+	{
+		"year": "1985",
+		"name": "Bronx Museum of the Arts",
+		"size": 20
+	},
+	{
+		"year": "1980",
+		"name": "Independent Sector",
+		"size": 20
+	},
+	{
+		"year": "1964",
+		"name": "Minnesota, University of (varied programs)",
+		"size": 20
+	},
+	{
+		"year": "1976",
+		"name": "Museum of Modern Art, The",
+		"size": 20
+	},
+	{
+		"year": "1995",
+		"name": "Textile Center of Minnesota",
+		"size": 20
+	},
+	{
+		"year": "1981",
+		"name": "Dance Today (formerly Minnesota Dance Alliance)",
+		"size": 21
+	},
+	{
+		"year": "1977",
+		"name": "Drawing Center, The",
+		"size": 21
+	},
+	{
+		"year": "1984",
+		"name": "Penumbra Theatre Company, Inc. ",
+		"size": 21
+	},
+	{
+		"year": "1966",
+		"name": "Anthology Film Archives / Film Arts Fund, Inc.",
+		"size": 22
+	},
+	{
+		"year": "1977",
+		"name": "Illusion Theater",
+		"size": 22
+	},
+	{
+		"year": "1978",
+		"name": "New Museum of Contemporary Art, The",
+		"size": 22
+	},
+	{
+		"year": "1989",
+		"name": "New Radio and Performing Arts, Inc.",
+		"size": 22
+	},
+	{
+		"year": "1988",
+		"name": "Theatre Communications Group",
+		"size": 22
+	},
+	{
+		"year": "1977",
+		"name": "Women_s Art Registry of Minnesota",
+		"size": 22
+	},
+	{
+		"year": "1970",
+		"name": "Saint John's University",
+		"size": 23
+	},
+	{
+		"year": "1980",
+		"name": "VocalEssence",
+		"size": 23
+	},
+	{
+		"year": "1990",
+		"name": "Dixon Place / Open Channels",
+		"size": 24
+	},
+	{
+		"year": "1986",
+		"name": "Grantmakers in the Arts",
+		"size": 24
+	},
+	{
+		"year": "1985",
+		"name": "Graywolf Press",
+		"size": 24
+	},
+	{
+		"year": "1983",
+		"name": "INTAR / International Arts Relations, Inc.",
+		"size": 24
+	},
+	{
+		"year": "1987",
+		"name": "Lower Manhattan Cultural Council",
+		"size": 24
+	},
+	{
+		"year": "1982",
+		"name": "Mabou Mines Development Foundation",
+		"size": 24
+	},
+	{
+		"year": "1979",
+		"name": "Milkweed Editions",
+		"size": 24
+	},
+	{
+		"year": "1980",
+		"name": "New Rivers Press",
+		"size": 24
+	},
+	{
+		"year": "1990",
+		"name": "Northern Clay Center",
+		"size": 24
+	},
+	{
+		"year": "1979",
+		"name": "Artists Space",
+		"size": 25
+	},
+	{
+		"year": "1980",
+		"name": "Minnesota Alliance for Arts in Education",
+		"size": 25
+	},
+	{
+		"year": "1984",
+		"name": "Harvestworks Digital Media Arts Center",
+		"size": 26
+	},
+	{
+		"year": "1991",
+		"name": "Art in General",
+		"size": 27
+	},
+	{
+		"year": "1987",
+		"name": "Coffee House Press",
+		"size": 27
+	},
+	{
+		"year": "1976",
+		"name": "Minneapolis Institute of Arts, The",
+		"size": 27
+	},
+	{
+		"year": "1978",
+		"name": "O_Neill Theater Center, The Eugene",
+		"size": 27
+	},
+	{
+		"year": "1986",
+		"name": "Springboard for the Arts",
+		"size": 27
+	},
+	{
+		"year": "1986",
+		"name": "Performance Space 122",
+		"size": 28
+	},
+	{
+		"year": "1984",
+		"name": "Red Eye Theater",
+		"size": 29
+	},
+	{
+		"year": "1966",
+		"name": "Twin Cities Public Television",
+		"size": 29
+	},
+	{
+		"year": "1984",
+		"name": "Intermedia Arts",
+		"size": 30
+	},
+	{
+		"year": "1979",
+		"name": "Meet The Composer",
+		"size": 30
+	},
+	{
+		"year": "1974",
+		"name": "Foundation Center",
+		"size": 31
+	},
+	{
+		"year": "1976",
+		"name": "Mixed Blood Theatre Company",
+		"size": 31
+	},
+	{
+		"year": "1974",
+		"name": "New Dramatists",
+		"size": 31
+	},
+	{
+		"year": "1981",
+		"name": "Forecast Public Artworks",
+		"size": 32
+	},
+	{
+		"year": "1982",
+		"name": "Franklin Furnace Archive Inc.",
+		"size": 32
+	},
+	{
+		"year": "1975",
+		"name": "Ensemble Studio Theatre",
+		"size": 32.5
+	},
+	{
+		"year": "1980",
+		"name": "New York Live Arts (formerly Dance Theater Workshop)",
+		"size": 33
+	},
+	{
+		"year": "1982",
+		"name": "Roulette Intermedium, Inc.",
+		"size": 33
+	},
+	{
+		"year": "1979",
+		"name": "Loft Literary Center, The",
+		"size": 35
+	},
+	{
+		"year": "1978",
+		"name": "Playwrights Horizons",
+		"size": 35
+	},
+	{
+		"year": "1977",
+		"name": "Zenon Dance Company and School, Inc.",
+		"size": 35
+	},
+	{
+		"year": "1977",
+		"name": "Walker Art Center",
+		"size": 36
+	},
+	{
+		"year": "1977",
+		"name": "American Composers Forum",
+		"size": 37
+	},
+	{
+		"year": "1975",
+		"name": "Council on Foundations",
+		"size": 37
+	},
+	{
+		"year": "1971",
+		"name": "Minneapolis College of Art and Design",
+		"size": 37
+	},
+	{
+		"year": "1976",
+		"name": "Minnesota Council on Foundations",
+		"size": 37
+	},
+	{
+		"year": "1976",
+		"name": "Playwrights' Center, The",
+		"size": 37
+	}
+ ]
+}

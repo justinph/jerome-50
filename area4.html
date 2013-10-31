@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+body {
+  font: 10px sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+.areaApplications {
+  fill: #d9d9d9;
+}
+.areaGranted {
+  fill: #638a5a;
+}
+.areaApplications2 {
+  fill: #d9d9d9;
+}
+.areaGranted2 {
+  fill: #8a6e56;
+}
+
+svg{
+  width: 100%;
+  height: auto;
+}
+</style>
+<body>
+<script type="text/javascript" src="d3.v3.min.js"></script>
+<script>
+
+var margin = {top: 0, right: 0, bottom: 0, left: 0},
+
+    width = document.width-15;
+    height = 5000 - margin.top - margin.bottom;
+
+var maxHeight = 300;
+
+var parseDate = d3.time.format("%Y").parse;
+
+var x = d3.time.scale()
+    .range([0, width]);
+
+var y = d3.scale.linear()
+    .range([maxHeight, 0]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
+
+var areaApplications = d3.svg.area()
+    .x(function(d) { return x(d.year); })
+    .y0(maxHeight)
+    .y1(function(d) { return y(d.applications); });
+
+var areaGranted = d3.svg.area()
+    .x(function(d) { return x(d.year); })
+    .y0(maxHeight)
+    .y1(function(d) { return y(d.granted); });    
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom).
+    attr('viewBox', '0 0 widthOfContainer heightOfContainer')
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+d3.csv("grants_fakedata.csv", function(error, data) {
+  data.forEach(function(d) {
+    d.year = parseDate(d.year);
+    d.applications = parseInt(d.applications) ;
+    d.granted =  parseInt(d.granted);
+  });
+
+  x.domain(d3.extent(data, function(d) { return d.year; }));
+  y.domain([0, d3.max(data, function(d) { return d.applications; })]);
+
+
+
+  svg.append("path")
+      .datum(data)
+      .attr("class", "areaApplications")
+      .attr("d", areaApplications)
+      .attr("transform", "rotate(90), translate(0,-"+maxHeight+"), scale(5,1)");
+
+  svg.append("path")
+    .datum(data)
+    .attr("class", "areaGranted")
+    .attr("d", areaGranted)
+    .attr("transform", "rotate(90), translate(0,-"+maxHeight+"), scale(5,1)");
+
+  var offset = width - maxHeight;
+  svg.append("path")
+      .datum(data)
+      .attr("class", "areaApplications2")
+      .attr("d", areaApplications)
+      .attr("transform", "rotate(90), translate(0,-"+offset+"), scale(5,-1)");
+
+  svg.append("path")
+    .datum(data)
+    .attr("class", "areaGranted2")
+    .attr("d", areaGranted)
+    .attr("transform", "rotate(90), translate(0,-"+offset+"), scale(5,-1)");
+
+
+ 
+});
+
+</script>
