@@ -1,0 +1,22 @@
+{
+  "name": "Jerome 50th",
+  "version": "0.1",
+  "dependencies": {
+    "d3": "*",
+    "jquery": "1.10.2"
+  },
+  "homepage": "",
+  "authors": [
+    "Justin Heideman <justin@fiddlyio.com>"
+  ],
+  "description": "Jerome Foundation 50th year minisite",
+  "license": "none",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
