@@ -109,7 +109,7 @@ module.exports = function (grunt) {
 
         watch: {
             less: {
-                files: ['app/less/**/*.less'],
+                files: ['css/**/*.less'],
                 tasks: 'less:dev'
             },
             js: {

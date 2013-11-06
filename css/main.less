@@ -1,0 +1,84 @@
+// Make sure the charset is set appropriately
+@charset "UTF-8";
+
+//import font from google
+ @import url(http://fonts.googleapis.com/css?family=Oswald:400,300,700);
+
+// Bring in normalize css from vendor package
+@import "../vendor/preboot/less/normalize"; 
+
+// make sure we're using border-box everywhere, which normalize doesn't seem to include
+*, *:before, *:after { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+
+html,body{
+    font-family: 'Oswald', 'Helvetica Neue', Helvetica, arial, sans-serif;
+}
+h1,h2,h3,h4,h5{ font-weight: 400;}
+body {
+  margin: 0;
+  padding: 0;
+}
+
+@import 'sections';
+
+#wrap{
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  position: absolute;
+}
+
+section h1{
+    text-align: center;
+    color: white;
+    position: fixed;
+    top: 30px;
+    width: 100%;
+}
+
+
+#logo, #logo2{
+    position: fixed;
+    top: 50px;
+    width: 200px;
+    height: 50px;
+    z-index: 10;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center left;
+
+}
+#logo{ 
+    left: 50px;
+    background-image: url(/img/jerome_logo.svg);
+
+}
+#logo2{ 
+    right: 50px; 
+    background-image: url(/img/50_logo.svg);
+    background-position: center right;
+
+
+}
+#year{
+    position:fixed;
+    bottom: 50px;
+    width: 120px;
+    left: 45%;
+    text-align: center;
+    color: white;
+    z-index: 10;
+    font-size: 2em;
+}
+#prev,#next{
+    display: block;
+    position: absolute;
+    font-size: 90px;
+    font-weight: bold;
+    color: white;
+    top: 49%;
+    text-decoration: none;
+}
+#prev{ left: 10px;}
+#next{ right: 26px;}
+

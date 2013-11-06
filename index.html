@@ -1,147 +1,13 @@
 <!DOCTYPE html>
-<html>
+<!--[if lte 9]>   <html class="no-js lt-ie10"><![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
     <meta charset="utf-8" />
-    <title>Multi-Scroll Demo</title>
+    <title>50 years of the Jerome Foundation</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <script type="text/javascript" src="vendor/jquery/jquery.js"></script>
-
-    <style>
-    @import url(http://fonts.googleapis.com/css?family=Oswald:400,300,700);
-
-    html,body{
-        font-family: 'Oswald', 'Helvetica Neue', Helvetica, arial, sans-serif;
-    }
-    h1,h2,h3,h4,h5{ font-weight: 400;}
-    body {
-      margin: 0;
-      padding: 0;
-    }
-    #wrap{
-      width: 100%;
-      height: 100%;
-      overflow-x: hidden;
-      position: absolute;
-    }
-    section{
-      width: 100%;
-      height: 700%;
-      min-height: 700%;
-      color: white;
-      position: absolute;
-      transition: .35s all ease;
-    }
-    section h1{
-        text-align: center;
-        color: white;
-        position: fixed;
-        top: 30px;
-        width: 100%;
-    }
-
-
-    .s1{ background-color: #a09f9d; }
-    .s2{ background-color: #888784; margin-left: 100%;}
-    .s3{ background-color: #706f6e; margin-left: 200%;}
-    .s4{ background-color: #646361; margin-left: 300%;}
-    .s5{ background-color: #817a6c; margin-left: 400%;}
-    .s6{ background-color: #6d6452; margin-left: 500%;}
-    .s7{ background-color: #8c887f; margin-left: 600%;}
-
-    .step-1 .s1{margin-left: -100%;}
-    .step-1 .s2{margin-left: 0;}
-    .step-1 .s3{margin-left: 100%;}
-    .step-1 .s4{margin-left: 200%;}
-    .step-1 .s5{margin-left: 300%;}
-    .step-1 .s6{margin-left: 400%;}
-    .step-1 .s7{margin-left: 500%;}
-
-    .step-2 .s1{margin-left: -200%;}
-    .step-2 .s2{margin-left: -100%;}
-    .step-2 .s3{margin-left: 0;}
-    .step-2 .s4{margin-left: 100%;}
-    .step-2 .s5{margin-left: 200%;}
-    .step-2 .s6{margin-left: 300%;}
-    .step-2 .s7{margin-left: 400%;}
-
-    .step-3 .s1{margin-left: -300%;}
-    .step-3 .s2{margin-left: -200%;}
-    .step-3 .s3{margin-left: -100%;}
-    .step-3 .s4{margin-left: 0;}
-    .step-3 .s5{margin-left: 100%;}
-    .step-3 .s6{margin-left: 200%;}
-    .step-3 .s7{margin-left: 300%;}
-
-    .step-4 .s1{margin-left: -400%;}
-    .step-4 .s2{margin-left: -300%;}
-    .step-4 .s3{margin-left: -200%;}
-    .step-4 .s4{margin-left: -100%;}
-    .step-4 .s5{margin-left: 0;}
-    .step-4 .s6{margin-left: 100%;}
-    .step-4 .s7{margin-left: 200%;}
-
-    .step-5 .s1{margin-left: -500%;}
-    .step-5 .s2{margin-left: -400%;}
-    .step-5 .s3{margin-left: -300%;}
-    .step-5 .s4{margin-left: -200%;}
-    .step-5 .s5{margin-left: -100%;}
-    .step-5 .s6{margin-left: 0;}
-    .step-5 .s7{margin-left: 100%;}
-
-    .step-6 .s1{margin-left: -600%;}
-    .step-6 .s2{margin-left: -500%;}
-    .step-6 .s3{margin-left: -400%;}
-    .step-6 .s4{margin-left: -300%;}
-    .step-6 .s5{margin-left: -200%;}
-    .step-6 .s6{margin-left: -100%;}
-    .step-6 .s7{margin-left: 0;}
-
-
-    #logo, #logo2{
-        position: fixed;
-        top: 50px;
-        width: 200px;
-        height: 50px;
-        z-index: 10;
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center left;
-
-    }
-    #logo{ 
-        left: 50px;
-        background-image: url(/img/jerome_logo.svg);
-
-    }
-    #logo2{ 
-        right: 50px; 
-        background-image: url(/img/50_logo.svg);
-        background-position: center right;
-
-
-    }
-    #year{
-        position:fixed;
-        bottom: 50px;
-        width: 120px;
-        left: 45%;
-        text-align: center;
-        color: white;
-        z-index: 10;
-        font-size: 2em;
-    }
-    #prev,#next{
-        display: block;
-        position: absolute;
-        font-size: 90px;
-        font-weight: bold;
-        color: white;
-        top: 49%;
-        text-decoration: none;
-    }
-    #prev{ left: 10px;}
-    #next{ right: 26px;}
-    </style>
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
 </head>
 <body>
 
@@ -162,61 +28,7 @@
     <a id='prev' href='#'>&lsaquo;</a>
     <a id='next' href='#'>&rsaquo;</a>
 
-    <script type="text/javascript">
-
-    var step = 0;
-
-    $('#prev').on('click', function(){
-        step--;
-        //console.log(step);
-        if (step < 0) { step = 0 };
-        $('#wrap').removeClass().addClass('step-'+step);
-
-        //$.scrollTo( $('.s5'), 800 );
-        return false;
-    });
-     $('#next').on('click', function(){
-        step++;
-        //console.log(step);
-        if (step > 6) { step = 6 };
-        $('#wrap').removeClass().addClass('step-'+step);
-
-        //$.scrollTo( $('.s1'), 800 );
-        return false;
-    });
-
-
-    var start = 1965;
-    var end = 2013;
-    var numyears = end-start;
-    var $sec = $('section');
-    var yeartick = ( $sec.height() - $(window).height() ) / numyears;
-    var $sec_offset = $sec.offset().top;
-    var year = 1965;
-
-    var scrollTimer;
-    $('#wrap').on('scroll touchmove', function(){
-        var self = this;
-        calcYears(this);
-        //timer for callling scroll after scroll stops
-        clearTimeout(scrollTimer);
-        scrollTimer = setTimeout( function(){ calcYears(self) } , 100 );
-    });
-
-
-    var calcYears = function (el){
-        pos_in_window = $(el).scrollTop() - $sec_offset;
-        year_supplement = Math.round(pos_in_window/yeartick);
-        year = start + year_supplement;
-        //console.log(year);
-        $('#year').text( year );
-    }
-       
-
-    </script>
-
-
-
+    <script type="text/javascript" src='js/50.js'></script>
 
 </body>
 </html>
