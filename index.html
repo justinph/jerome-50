@@ -98,13 +98,25 @@
         position: fixed;
         top: 50px;
         width: 200px;
-        height: 75px;
+        height: 50px;
         z-index: 10;
-        color: white;
-        font-size: 20px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center left;
+
     }
-    #logo{ left: 50px;}
-    #logo2{ right: 50px; text-align: right;}
+    #logo{ 
+        left: 50px;
+        background-image: url(/img/jerome_logo.svg);
+
+    }
+    #logo2{ 
+        right: 50px; 
+        background-image: url(/img/50_logo.svg);
+        background-position: center right;
+
+
+    }
     #year{
         position:fixed;
         bottom: 50px;
@@ -129,8 +141,8 @@
 </head>
 <body>
 
-    <div id='logo'>Jerome FDN</div>
-    <div id="logo2">50 years</div>
+    <div id='logo'></div>
+    <div id="logo2"></div>
     <div id="year">1965</div>
 
     <div id="wrap">
