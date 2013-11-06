@@ -23,7 +23,7 @@ body {
 
 </style>
 <body>
-<script type="text/javascript" src="d3.v3.js"></script>
+<script type="text/javascript" src="/js/d3.v3.js"></script>
 <script>
 
 
@@ -82,7 +82,7 @@ var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom);
 
-d3.csv("generalprogram.csv", function(error, data) {
+d3.csv("/data/generalprogram.csv", function(error, data) {
   data.forEach(function(d) {
     d.year = parseDate(d.year);
     d.number = parseInt(d.number);
