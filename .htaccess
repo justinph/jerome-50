@@ -1,2 +1,9 @@
+RewriteEngine On
+RewriteBase /
+
+# prevent access to git
+RewriteRule ^(.*/)?\.git+ - [F,L]
+RewriteRule /?\deployhq.log$ - [F,L]
+
 
 AddType text/csv .csv
