@@ -25,8 +25,8 @@
     }
     section{
       width: 100%;
-      height: 500%;
-      min-height: 500%;
+      height: 700%;
+      min-height: 700%;
       color: white;
       position: absolute;
       transition: .35s all ease;
@@ -186,7 +186,7 @@
     });
 
 
-    var start = 1965
+    var start = 1965;
     var end = 2013;
     var numyears = end-start;
     var $sec = $('section');
@@ -194,19 +194,23 @@
     var $sec_offset = $sec.offset().top;
     var year = 1965;
 
+    var scrollTimer;
     $('#wrap').on('scroll touchmove', function(){
-        pos_in_window = $(this).scrollTop() - $sec_offset;
-        //console.log(pos_in_window);
-        if (pos_in_window > 0){
-
-            // console.log('more than 0');
-            year_supplement = Math.floor(pos_in_window/yeartick);
-            //console.log(year_supplement);
-            year = 1965 + year_supplement;
-
-            $('#year').text( year );
-        }
+        var self = this;
+        calcYears(this);
+        //timer for callling scroll after scroll stops
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout( function(){ calcYears(self) } , 100 );
     });
+
+
+    var calcYears = function (el){
+        pos_in_window = $(el).scrollTop() - $sec_offset;
+        year_supplement = Math.round(pos_in_window/yeartick);
+        year = start + year_supplement;
+        //console.log(year);
+        $('#year').text( year );
+    }
        
 
     </script>
