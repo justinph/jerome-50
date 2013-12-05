@@ -52,24 +52,23 @@ module.exports = function (grunt) {
         //     },
         // },
 
-        // Build modernizr
-        // modernizr: {
-        //     devFile: 'public_html/vendor/modernizr/modernizr.js',
-        //     outputFile : 'public_html/js/modernizr.min.js',
+        //Build modernizr
+        modernizr: {
+            devFile: 'vendor/modernizr/modernizr.js',
+            outputFile : 'js/modernizr.min.js',
 
-        //     extra: {
-        //         shiv: true,
-        //         mq: true,
-        //         history: true,
-        //         svg: true
-        //     },
+            extra: {
+                shiv: true,
+                mq: true,
+                svg: true
+            },
 
-        //     // Minify
-        //     uglify: true,
+            // Minify
+            uglify: true,
 
-        //     // Files
-        //     files: ['public_html/js/init.js', 'public_html/js/app/*.js', 'app/less/**/*.less']
-        // },
+            // Files
+            files: ['js/init.js', 'js/app/*.js', 'app/less/**/*.less']
+        },
 
         // jshint: {
         //     all: [
