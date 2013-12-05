@@ -5,6 +5,8 @@
     "d3": "*",
     "jquery": "1.10.2",
     "preboot": "*",
+    "modernizr": "*",
+    "requirejs": "*"
   },
   "homepage": "",
   "authors": [
