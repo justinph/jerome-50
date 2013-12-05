@@ -1,0 +1,85 @@
+{
+	"IcoMoonType": "selection",
+	"icons": [
+		{
+			"icon": {
+				"paths": [
+					"M511.996 2.478l112.136 112.132-397.022 397.028 397.028 397.026-112.138 112.142-509.164-509.168z"
+				],
+				"width": 624,
+				"tags": [
+					"carat-left"
+				],
+				"defaultCode": 57345,
+				"grid": 0
+			},
+			"properties": {
+				"order": 1,
+				"id": 3,
+				"prevSize": 32,
+				"code": 57345,
+				"name": "carat-left",
+				"ligatures": ""
+			}
+		},
+		{
+			"icon": {
+				"paths": [
+					"M114.978 1020.806l-112.138-112.132 397.022-397.028-397.026-397.030 112.138-112.138 509.164 509.168z"
+				],
+				"width": 624,
+				"tags": [
+					"carat-right"
+				],
+				"defaultCode": 57347,
+				"grid": 0
+			},
+			"properties": {
+				"order": 2,
+				"id": 5,
+				"prevSize": 32,
+				"code": 57347,
+				"name": "carat-right",
+				"ligatures": ""
+			}
+		}
+	],
+	"height": 1024,
+	"metadata": {
+		"name": "jerome50"
+	},
+	"preferences": {
+		"fontPref": {
+			"prefix": "icon-",
+			"metadata": {
+				"fontFamily": "jerome50"
+			},
+			"showGlyphs": true,
+			"metrics": {
+				"emSize": 1024,
+				"baseline": 6.25,
+				"whitespace": 50
+			},
+			"resetPoint": 58880,
+			"showQuickUse": true,
+			"quickUsageToken": false,
+			"showMetrics": true,
+			"showMetadata": false
+		},
+		"imagePref": {
+			"color": 0,
+			"height": 32,
+			"columns": 16,
+			"margin": 16,
+			"png": false,
+			"sprites": true
+		},
+		"historySize": 100,
+		"showCodes": true,
+		"gridSize": 16,
+		"showLiga": false,
+		"showGrid": true,
+		"showGlyphs": true,
+		"showQuickUse": true
+	}
+}

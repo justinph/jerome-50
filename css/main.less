@@ -7,6 +7,8 @@
 // Bring in normalize css from vendor package
 @import "../vendor/preboot/less/normalize"; 
 
+@import 'icon-font';
+
 // make sure we're using border-box everywhere, which normalize doesn't seem to include
 *, *:before, *:after { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 
@@ -17,6 +19,7 @@ h1,h2,h3,h4,h5{ font-weight: 400;}
 body {
   margin: 0;
   padding: 0;
+  min-width: 768px;
 }
 
 @import 'sections';
@@ -79,6 +82,17 @@ section h1{
     top: 49%;
     text-decoration: none;
 }
-#prev{ left: 10px;}
-#next{ right: 26px;}
 
+#prev{ 
+    left: 10px;
+    &:before{
+        .iconfont;
+        content: "\e001";
+    }
+}
+#next{ right: 26px;
+    &:after{
+       .iconfont;
+       content: "\e003";
+    }
+}
