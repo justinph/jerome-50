@@ -9,7 +9,7 @@ define(["jquery", 'd3'], function navWeatherCheck($, d3) {
 		 */
 
 		var margin = {top: 0, right: 0, bottom: 0, left: 0},
-		    width =  document.body.clientWidth-15,
+		    width =  document.body.clientWidth,
 		    height = $('section.s1').height(),
 		    ratio = height/$(window).height();  //get the ratio we should use for svg transformation
 

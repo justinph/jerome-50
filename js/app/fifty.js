@@ -27,7 +27,7 @@ define(["jquery"], function navWeatherCheck($) {
                 //console.log(step);
                 if (self.step < 0) { self.step = 0; }
                 $('#wrap').removeClass().addClass('step-'+self.step);
-
+                self.updateSteps();
                 //$.scrollTo( $('.s5'), 800 );
                 return false;
             });
@@ -36,7 +36,7 @@ define(["jquery"], function navWeatherCheck($) {
                 //console.log(step);
                 if (self.step > 6) { self.step = 6; }
                 $('#wrap').removeClass().addClass('step-'+self.step);
-
+                self.updateSteps();
                 //$.scrollTo( $('.s1'), 800 );
                 return false;
             });
@@ -51,12 +51,25 @@ define(["jquery"], function navWeatherCheck($) {
 
 
         },
+
+        updateSteps: function(){
+            //var self = this;
+            if (this.step === 0){
+                $('#prev').addClass('inactive');
+            } else if (this.step === 6){
+                $('#next').addClass('inactive');
+            } else {
+                $('#next, #prev').removeClass('inactive');
+            }
+        },
+
         calcYears: function (el){
             var pos_in_window = $(el).scrollTop() - this.$sec_offset;
             var year_supplement = Math.round(pos_in_window/this.yeartick);
             this.year = this.start + year_supplement;
             //console.log(year);
             $('#year').text( this.year );
+            console.log(this.step);
         }
 
 

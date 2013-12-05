@@ -6,7 +6,8 @@
     "jquery": "1.10.2",
     "preboot": "*",
     "modernizr": "*",
-    "requirejs": "*"
+    "requirejs": "*",
+    "hammerjs": "~1.0.5"
   },
   "homepage": "",
   "authors": [

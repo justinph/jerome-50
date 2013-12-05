@@ -4,7 +4,8 @@ requirejs.config({
     "paths": {
         "app": "app",
         "jquery": "../vendor/jquery/jquery",
-        "d3": "../vendor/d3/d3"
+        "d3": "../vendor/d3/d3",
+        "hammer": "../vendor/dist/hammer"
         //,
         //"jquery-pjax": "../vendor/jquery-pjax/jquery.pjax",
     },
