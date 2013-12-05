@@ -69,7 +69,7 @@ define(["jquery"], function navWeatherCheck($) {
             this.year = this.start + year_supplement;
             //console.log(year);
             $('#year').text( this.year );
-            console.log(this.step);
+            //console.log(this.step);
         }
 
 

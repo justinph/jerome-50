@@ -24,4 +24,13 @@ requirejs(["app/fifty"], function (fifty) {
     fifty.init();
 });
 
-requirejs(["app/generalProgram"]);
+requirejs(["app/generalProgram"], function(generalProgram){
+    generalProgram.init('section.s1');
+    generalProgram.init('section.s2');
+    generalProgram.init('section.s3');
+    generalProgram.init('section.s4');
+    generalProgram.init('section.s5');
+    generalProgram.init('section.s6');
+    generalProgram.init('section.s7');
+
+});
