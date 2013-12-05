@@ -22,3 +22,5 @@ requirejs.config({
 requirejs(["app/fifty"], function (fifty) {
     fifty.init();
 });
+
+requirejs(["app/generalProgram"]);
