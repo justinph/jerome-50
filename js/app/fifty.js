@@ -56,7 +56,7 @@ define(["jquery"], function navWeatherCheck($) {
             //var self = this;
             if (this.step === 0){
                 $('#prev').addClass('inactive');
-            } else if (this.step === 6){
+            } else if (this.step === 5){
                 $('#next').addClass('inactive');
             } else {
                 $('#next, #prev').removeClass('inactive');

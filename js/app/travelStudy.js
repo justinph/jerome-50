@@ -33,6 +33,7 @@ require(["jquery", "async!http://maps.google.com/maps/api/js?sensor=false!callba
 		// mapTypeControlOptions: {
 		//   mapTypeIds: [google.maps.MapTypeId.ROADMAP, MY_MAPTYPE_ID]
 		// },
+	    scrollwheel: false,
 		disableDefaultUI: true,
 		zoomControl: true,
 		panControl: false,
@@ -63,8 +64,5 @@ require(["jquery", "async!http://maps.google.com/maps/api/js?sensor=false!callba
 		    styleId: 2,
 		    templateId: 2
 		});
-
-
-	
 
 });
