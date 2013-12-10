@@ -7,7 +7,9 @@
     "preboot": "*",
     "modernizr": "*",
     "requirejs": "*",
-    "hammerjs": "~1.0.5"
+    "hammerjs": "~1.0.5",
+    "requirejs-domready": "~2.0.1",
+    "requirejs-plugins": "~1.0.2"
   },
   "homepage": "",
   "authors": [

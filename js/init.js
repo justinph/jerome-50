@@ -5,9 +5,10 @@ requirejs.config({
         "app": "app",
         "jquery": "../vendor/jquery/jquery",
         "d3": "../vendor/d3/d3",
-        "hammer": "../vendor/dist/hammer"
-        //,
-        //"jquery-pjax": "../vendor/jquery-pjax/jquery.pjax",
+        "hammer": "../vendor/dist/hammer",
+        "async": "../vendor/requirejs-plugins/src/async",
+        "goog":  "../vendor/requirejs-plugins/src/async" //,
+        //"propertyParser":  "../vendor/requirejs-plugins/src/propertyParser"
     },
     "shim": {
         "d3": {
@@ -24,13 +25,11 @@ requirejs(["app/fifty"], function (fifty) {
     fifty.init();
 });
 
-requirejs(["app/generalProgram"], function(generalProgram){
+requirejs(["app/generalProgram","app/travelStudy"], function(generalProgram, travelStudy){
     generalProgram.init('section.s1');
     generalProgram.init('section.s2');
     generalProgram.init('section.s3');
-    generalProgram.init('section.s4');
+
     generalProgram.init('section.s5');
     generalProgram.init('section.s6');
-    generalProgram.init('section.s7');
-
 });

@@ -34,7 +34,7 @@ define(["jquery"], function navWeatherCheck($) {
             $('#next').on('click', function(){
                 self.step++;
                 //console.log(step);
-                if (self.step > 6) { self.step = 6; }
+                if (self.step > 5) { self.step = 5; }
                 $('#wrap').removeClass().addClass('step-'+self.step);
                 self.updateSteps();
                 //$.scrollTo( $('.s1'), 800 );
