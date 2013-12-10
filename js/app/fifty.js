@@ -22,6 +22,7 @@ define(["jquery"], function navWeatherCheck($) {
             this.$sec_offset = this.$sec.offset().top;
 
             window.year = this.year;
+            window.step = this.step;
 
             $('#prev').on('click', function(){
                 self.step--;
@@ -80,6 +81,17 @@ define(["jquery"], function navWeatherCheck($) {
                 $('#next').addClass('inactive');
             } else {
                 $('#next, #prev').removeClass('inactive');
+            }
+            window.step = this.step;
+
+
+             //try dealing with being previously on the map...
+            if (this.step === 2 || this.step === 4){
+                console.log('i may have been previously on the map');
+                /*
+                TODO: Recalculate new scroll position and scroll the new pane to where it should be here
+                use $.scrollTo?
+                 */
             }
         },
 
