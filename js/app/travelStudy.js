@@ -33,14 +33,14 @@ require(["jquery", "async!http://maps.google.com/maps/api/js?sensor=false!callba
 		// mapTypeControlOptions: {
 		//   mapTypeIds: [google.maps.MapTypeId.ROADMAP, MY_MAPTYPE_ID]
 		// },
-	    scrollwheel: false,
+	    //scrollwheel: false,
 		disableDefaultUI: true,
 		zoomControl: true,
 		panControl: false,
 		streetViewControl: false,
 		zoomControlOptions: {
-		    style: google.maps.ZoomControlStyle.LARGE,
-		    position: google.maps.ControlPosition.LEFT_CENTER
+		    style: google.maps.ZoomControlStyle.DEFAULT,
+		    position: google.maps.ControlPosition.LEFT_BOTTOM
 		},
 		mapTypeId: MY_MAPTYPE_ID
 	};

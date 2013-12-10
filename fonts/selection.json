@@ -42,18 +42,56 @@
 				"name": "carat-right",
 				"ligatures": ""
 			}
+		},
+		{
+			"icon": {
+				"paths": [
+					"M1028.806 709.022l-112.132 112.138-397.028-397.022-397.030 397.026-112.138-112.138 509.168-509.164z"
+				],
+				"width": 1040,
+				"tags": [
+					"carat-up"
+				],
+				"defaultCode": 57347,
+				"grid": 0
+			},
+			"properties": {
+				"order": 3,
+				"id": 5,
+				"prevSize": 32,
+				"name": "carat-right",
+				"ligatures": "",
+				"code": 57349
+			}
+		},
+		{
+			"icon": {
+				"paths": [
+					"M11.194 314.978l112.132-112.138 397.028 397.022 397.030-397.026 112.138 112.138-509.168 509.164z"
+				],
+				"width": 1040,
+				"tags": [
+					"carat-down"
+				],
+				"defaultCode": 57347,
+				"grid": 0
+			},
+			"properties": {
+				"order": 4,
+				"id": 8,
+				"prevSize": 32,
+				"code": 57348,
+				"name": "carat-down",
+				"ligatures": ""
+			}
 		}
 	],
 	"height": 1024,
-	"metadata": {
-		"name": "jerome50"
-	},
+	"metadata": {},
 	"preferences": {
 		"fontPref": {
 			"prefix": "icon-",
-			"metadata": {
-				"fontFamily": "jerome50"
-			},
+			"metadata": {},
 			"showGlyphs": true,
 			"metrics": {
 				"emSize": 1024,

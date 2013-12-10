@@ -21,6 +21,7 @@ define(["jquery"], function navWeatherCheck($) {
             this.yeartick = ( this.$sec.height() - $(window).height() ) / this.numyears;
             this.$sec_offset = this.$sec.offset().top;
 
+            window.year = this.year;
 
             $('#prev').on('click', function(){
                 self.step--;
@@ -50,6 +51,25 @@ define(["jquery"], function navWeatherCheck($) {
             });
 
 
+            $('#year-down').on('click', function(){
+                self.year = self.year-1;
+                if (self.year < self.start){
+                    self.year = self.start;
+                }
+                self.updateYear();
+                return false;
+            });
+            $('#year-up').on('click', function(){
+                self.year = self.year+1;
+                if (self.year > self.end){
+                    self.year = self.end;
+                }
+                self.updateYear();
+                return false;
+            });
+
+
+
         },
 
         updateSteps: function(){
@@ -68,8 +88,13 @@ define(["jquery"], function navWeatherCheck($) {
             var year_supplement = Math.round(pos_in_window/this.yeartick);
             this.year = this.start + year_supplement;
             //console.log(year);
-            $('#year').text( this.year );
+            this.updateYear();
             //console.log(this.step);
+        },
+        updateYear: function(){
+            $('#year').text( this.year );
+            window.year = this.year;
+            $('window').trigger('updateYear');
         }
 
 

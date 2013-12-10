@@ -67,13 +67,12 @@ section h1{
     z-index: 10;
     font-size: 2em;
 }
-#prev,#next{
+#prev, #next, #year-down, #year-up{
     display: block;
     position: absolute;
     font-size: 50px;
     font-weight: bold;
     color: white;
-    top: 49%;
     text-decoration: none;
     &.inactive{
         display: none;
@@ -81,16 +80,53 @@ section h1{
 }
 
 #prev{ 
+    top: 49%;
     left: 10px;
     &:before{
         .iconfont;
         content: "\e001";
     }
 }
-#next{ right: 26px;
+#next{ 
+    top: 49%;
+    right: 26px;
     &:after{
        .iconfont;
        content: "\e003";
+    }
+}
+
+#year-down, #year-up{
+    width: 120px;
+    text-align: center;
+    left: 45%;
+    position: fixed;
+    &:before{
+        .iconfont;
+    }
+}
+#year-down{
+    bottom: 78px;
+    &:before{
+       content: "\e005";
+    }
+}
+
+#year-up{
+    bottom: -8px;
+    &:before{
+        content: "\e004";
+    }
+}
+
+//turns the year up/down clickers on/off depending on what section we're in
+#year-down, #year-up{
+    display: none;
+}
+
+.step-3{
+    #year-down, #year-up{
+        display: block;
     }
 }
 
