@@ -26,10 +26,11 @@ requirejs(["app/fifty"], function (fifty) {
 });
 
 requirejs(["app/generalProgram","app/travelStudy"], function(generalProgram, travelStudy){
-    generalProgram.init('section.s1');
+    //generalProgram.init('section.s1');
     generalProgram.init('section.s2');
     generalProgram.init('section.s3');
 
     generalProgram.init('section.s5');
     generalProgram.init('section.s6');
+    //travelStudy();
 });

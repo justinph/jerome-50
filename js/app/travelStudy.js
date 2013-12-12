@@ -7,10 +7,10 @@ require(["jquery", "async!http://maps.google.com/maps/api/js?sensor=false!callba
 	var featureOpts = [
 	{
 	  stylers: [
-	    { hue: '#343434' },
-	    { visibility: 'simplified' },
-	    { gamma: 1.0 },
-	    { weight: 1.0 }
+		{ hue: '#343434' },
+		{ visibility: 'simplified' },
+		{ gamma: 1.0 },
+		{ weight: 1.0 }
 	  ]
 	},
 	// {
@@ -22,7 +22,7 @@ require(["jquery", "async!http://maps.google.com/maps/api/js?sensor=false!callba
 	{
 	  featureType: 'water',
 	  stylers: [
-	    { color: '#343434' }
+		{ color: '#343434' }
 	  ]
 	}
 	];
@@ -33,14 +33,14 @@ require(["jquery", "async!http://maps.google.com/maps/api/js?sensor=false!callba
 		// mapTypeControlOptions: {
 		//   mapTypeIds: [google.maps.MapTypeId.ROADMAP, MY_MAPTYPE_ID]
 		// },
-	    //scrollwheel: false,
+		//scrollwheel: false,
 		disableDefaultUI: true,
 		zoomControl: true,
 		panControl: false,
 		streetViewControl: false,
 		zoomControlOptions: {
-		    style: google.maps.ZoomControlStyle.DEFAULT,
-		    position: google.maps.ControlPosition.LEFT_BOTTOM
+			style: google.maps.ZoomControlStyle.DEFAULT,
+			position: google.maps.ControlPosition.LEFT_BOTTOM
 		},
 		mapTypeId: MY_MAPTYPE_ID
 	};
@@ -55,14 +55,58 @@ require(["jquery", "async!http://maps.google.com/maps/api/js?sensor=false!callba
 
 	map.mapTypes.set(MY_MAPTYPE_ID, customMapType);
 
+	console.log(window.year);
+
 	mapData = new google.maps.FusionTablesLayer({
-		    query: {
-		      select: "col4",
-		      from: "1JtXOo6Fbfkrd_rY00pcAOg90dH92vqNaACqM5_A"
-		    },
-		    map: map,
-		    styleId: 2,
-		    templateId: 2
+			query: {
+			  select: "Destination",
+			  from: "1a7YOSOAitTcB9K6nyK2mI4d8qhSbkZE3WHc2hTY", //old demo data: "1JtXOo6Fbfkrd_rY00pcAOg90dH92vqNaACqM5_A",
+			  where: "year <= "+window.year
+			},
+			map: map,
+			styleId: 2,
+			templateId: 2 /*,
+			styles: [{
+				where: 'discipline = Dance',
+				markerOptions: {
+					iconName: 'small_yellow'
+				}
+			},{
+				where: 'discipline = "Film and Video"',
+				markerOptions: {
+					iconName: 'small_green'
+				}
+			},{
+				where: 'discipline = Literature',
+				markerOptions: {
+					iconName: 'small_blue'
+				}
+			},{
+				where: 'discipline = Music',
+				markerOptions: {
+					iconName: 'small_purple'
+				}
+			},{
+				where: 'discipline = Theater',
+				markerOptions: {
+					iconName: 'measle_grey'
+				}
+			}] */
 		});
+
+
+	$(window).on('updateYear',function(){
+		if ($('#wrap').hasClass("step-3")){
+			mapData.setOptions({
+				query: {
+				  select: "Destination",
+				  from: "1a7YOSOAitTcB9K6nyK2mI4d8qhSbkZE3WHc2hTY",
+				  where: "year <= "+window.year
+				}
+			  });
+			console.log("attempting to update map to year", window.year);
+		}
+	});
+
 
 });
