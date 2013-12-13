@@ -87,12 +87,15 @@ define(["jquery"], function navWeatherCheck($) {
 
              //try dealing with being previously on the map...
             if (this.step === 2 || this.step === 4){
-                console.log('i may have been previously on the map');
+                //console.log('i may have been previously on the map');
                 /*
                 TODO: Recalculate new scroll position and scroll the new pane to where it should be here
                 use $.scrollTo?
                  */
             }
+
+            console.log(this.step);
+            $(window).trigger('updateYear:'+this.step);
         },
 
         calcYears: function (el){
@@ -106,7 +109,7 @@ define(["jquery"], function navWeatherCheck($) {
         updateYear: function(){
             $('#year').text( this.year );
             window.year = this.year;
-            $(window).trigger('updateYear');
+
         }
 
 

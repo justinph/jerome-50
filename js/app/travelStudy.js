@@ -4,6 +4,7 @@ require(["jquery", "async!http://maps.google.com/maps/api/js?sensor=false!callba
 	var map, mapData;
 	var mn = new google.maps.LatLng(46.4, -93.790039);
 	var MY_MAPTYPE_ID = 'custom_style';
+	var tableId = '1ZG7LLuMPO3NDMpwOZZ9WBV3613MpM2gDzvDeQog';
 	var featureOpts = [
 	{
 	  stylers: [
@@ -60,53 +61,34 @@ require(["jquery", "async!http://maps.google.com/maps/api/js?sensor=false!callba
 	mapData = new google.maps.FusionTablesLayer({
 			query: {
 			  select: "Destination",
-			  from: "1a7YOSOAitTcB9K6nyK2mI4d8qhSbkZE3WHc2hTY", //old demo data: "1JtXOo6Fbfkrd_rY00pcAOg90dH92vqNaACqM5_A",
+			  from: tableId, //old demo data: "1JtXOo6Fbfkrd_rY00pcAOg90dH92vqNaACqM5_A",
 			  where: "year <= "+window.year
 			},
 			map: map,
 			styleId: 2,
-			templateId: 2 /*,
-			styles: [{
-				where: 'discipline = Dance',
-				markerOptions: {
-					iconName: 'small_yellow'
-				}
-			},{
-				where: 'discipline = "Film and Video"',
-				markerOptions: {
-					iconName: 'small_green'
-				}
-			},{
-				where: 'discipline = Literature',
-				markerOptions: {
-					iconName: 'small_blue'
-				}
-			},{
-				where: 'discipline = Music',
-				markerOptions: {
-					iconName: 'small_purple'
-				}
-			},{
-				where: 'discipline = Theater',
-				markerOptions: {
-					iconName: 'measle_grey'
-				}
-			}] */
+			templateId: 2
 		});
 
 
 	$(window).on('updateYear',function(){
 		if ($('#wrap').hasClass("step-3")){
-			mapData.setOptions({
-				query: {
-				  select: "Destination",
-				  from: "1a7YOSOAitTcB9K6nyK2mI4d8qhSbkZE3WHc2hTY",
-				  where: "year <= "+window.year
-				}
-			  });
-			console.log("attempting to update map to year", window.year);
+			updateYear();
 		}
 	});
 
+	$(window).on("updateYear:3", function(){
+		updateYear();
+	});
+
+	var updateYear = function updateYear(){
+		mapData.setOptions({
+			query: {
+			  select: "Destination",
+			  from: tableId,
+			  where: "year <= "+window.year
+			}
+		  });
+		console.log("attempting to update map to year", window.year);
+	}
 
 });
