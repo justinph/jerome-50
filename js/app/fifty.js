@@ -109,6 +109,7 @@ define(["jquery"], function navWeatherCheck($) {
         updateYear: function(){
             $('#year').text( this.year );
             window.year = this.year;
+            $(window).trigger('updateYear:'+this.step);
 
         }
 

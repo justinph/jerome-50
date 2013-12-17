@@ -70,13 +70,14 @@ require(["jquery", "async!http://maps.google.com/maps/api/js?sensor=false!callba
 		});
 
 
-	$(window).on('updateYear',function(){
-		if ($('#wrap').hasClass("step-3")){
-			updateYear();
-		}
-	});
+	// $(window).on('updateYear:3',function(){
+	// 	//if ($('#wrap').hasClass("step-3")){
+	// 		updateYear();
+	// 	//}
+	// });
 
 	$(window).on("updateYear:3", function(){
+		console.log('receiving update 3');
 		updateYear();
 	});
 
