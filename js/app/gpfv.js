@@ -18,14 +18,18 @@ define(["jquery", 'd3'], function generalProgram($, d3) {
 			this.selector = selector;
 			this.setupSVG();
 			this.doApprovedDenied(path);
-
+			this.doGenres(path);
+			//console.log(path);
 		},
 
 		setupSVG: function(){
 
-			this.width =  document.body.clientWidth;
+			this.width =  document.body.clientWidth; //24;
 			this.height = $(this.selector).height();
-			this.ratio = this.height/$(window).height();  //get the ratio we should use for svg transformation
+			this.ratio =  this.height/this.width;  //get the ratio we should use for svg transformation
+			this.offset = this.width - this.maxHeight;
+
+			console.log(this.ratio, this.height);
 
 			this.x = d3.time.scale().range([0, this.width]);
 			this.y = d3.scale.linear().range([this.maxHeight, 0]);
@@ -72,6 +76,32 @@ define(["jquery", 'd3'], function generalProgram($, d3) {
 					.attr("class", function(d){ /*console.log(d);*/ return 'layer-'+d.key;})
 					.attr("d", function(d) { return self.area(d.values); })
 					.attr("transform", "rotate(90), translate(0,-"+self.maxHeight+"), scale("+self.ratio+",1)");
+
+
+			});
+		},
+
+		doGenres: function(path){
+			var self = this;
+
+			d3.csv("/data/"+path+"/genres.csv", function(error, data) {
+				data.forEach(function(d) {
+					d.year = parseDate(d.year);
+					d.number = parseInt(d.number,10);
+				});
+				//console.log(data);
+
+				var layers = self.stack(nest.entries(data));
+
+				self.x.domain(d3.extent(data, function(d) { return d.year; }));
+				self.y.domain([0, d3.max(data, function(d) { return d.y0 + d.y; })]);
+
+				self.svg.selectAll(".layer")
+					.data(layers)
+					.enter().append("path")
+					.attr("class", function(d){ /*console.log(d);*/ return 'layer-'+d.key;})
+					.attr("d", function(d) { return self.area(d.values); })
+					.attr("transform", "rotate(90), translate(0,-"+self.offset+"), scale("+self.ratio+",-1)");
 
 
 			});

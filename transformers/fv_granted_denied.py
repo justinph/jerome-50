@@ -21,6 +21,4 @@ with open('../data/fv/base_data.csv', 'rU') as csvfile:
 		denied =  int(row['applications']) - int(row['approved']) 
 		print 'granted,%s,%s' % (row['year'], row['approved'])
 		print 'denied,%s,%i' % (row['year'], denied  )
-
-
 		
