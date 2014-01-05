@@ -7,12 +7,12 @@ define(["jquery", 'd3'], function generalProgram($, d3) {
 		 */
 
 	return {
-		init: function(selector){
+		init: function(selector,path){
 			this.selector = selector;
-			this.doWork();
+			this.doWork(path);
 
 		},
-		doWork: function(){
+		doWork: function(path){
 			var margin = {top: 0, right: 0, bottom: 0, left: 0},
 				width =  document.body.clientWidth,
 				height = $(this.selector).height(),
@@ -50,7 +50,7 @@ define(["jquery", 'd3'], function generalProgram($, d3) {
 				.attr("width", width + margin.left + margin.right)
 				.attr("height", height + margin.top + margin.bottom);
 
-			d3.csv("/data/generalprogram.csv", function(error, data) {
+			d3.csv("/data/"+path+"/granted_denied.csv", function(error, data) {
 				data.forEach(function(d) {
 					d.year = parseDate(d.year);
 					d.number = parseInt(d.number,10);

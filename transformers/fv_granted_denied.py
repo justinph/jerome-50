@@ -15,7 +15,7 @@ and turns it into better data.
 dataOut = []
 
 print 'key,year,number'
-with open('../data/fv.csv', 'rU') as csvfile:
+with open('../data/fv/base_data.csv', 'rU') as csvfile:
 	csvreader = csv.DictReader(csvfile, delimiter=',', quotechar='"')
 	for row in csvreader:
 		denied =  int(row['applications']) - int(row['approved']) 

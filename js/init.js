@@ -30,7 +30,7 @@ requirejs(["app/gpfv","app/travelStudy"], function(gpfv, travelStudy){
     // gpfv.init('section.s2');  // overall
     // gpfv.init('section.s3');  // organizations
 
-    gpfv.init('section.s5');
+    gpfv.init('section.s1','fv');
     //gpfv.init('section.s6');
     //travelStudy();
 });
