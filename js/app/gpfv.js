@@ -20,6 +20,8 @@ define(["jquery", 'd3'], function generalProgram($, d3) {
 			this.doApprovedDenied(path);
 			this.doGenres(path);
 			//console.log(path);
+		
+			this.initDisplay(selector,path);
 		},
 
 		setupSVG: function(){
@@ -105,6 +107,44 @@ define(["jquery", 'd3'], function generalProgram($, d3) {
 
 
 			});
+		},
+
+		initDisplay: function(selector,path){
+
+
+			d3.csv("/data/"+path+"/base_data.csv")
+				.row(function(d) {
+					d.year = +d.year;  //convert year into int
+					return d;
+				})
+				.get(function(error, rows) {
+					var nested_data = d3.nest()
+						.key(function(d) {return d.year;})
+						.map(rows, d3.map);
+					console.log(nested_data);
+					console.log(nested_data.get(2011));
+
+				});
+
+
+
+			// d3.csv("/data/"+path+"/base_data.csv", function(d) {
+						
+			// 	// var nested_data = d3.nest()
+			// 	// 	.key(function(d) {return d.year;})
+			// 	// 	//.key(function(d) {return d.Animation;})
+			// 	// 	//.sortKeys(d3.ascending)
+			// 	// 	.entries(data);
+			// 	// 	//.map(year, d3.map);
+			// 	// console.log(nested_data);
+			// 	// console.log(nested_data.key(1965));
+
+			// }, function(error, rows) {
+			//   console.log(rows);
+			// });
+			
+			
+
 		}
 
 	};
