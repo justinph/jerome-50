@@ -5,13 +5,26 @@ define(["jquery", 'd3'], function generalProgram($, d3) {
 		the data is somewhat pre-calculated using general_program.py so that
 		we have to keys of data for all grants 
 		 */
+		
+	var parseDate = d3.time.format("%Y").parse;
+
+	var nest = d3.nest()
+		.key(function(d) { return d.key; });
 
 	return {
 		init: function(selector,path){
 			this.selector = selector;
+
+			this.setupSVG();
+
 			this.doWork(path);
 
 		},
+
+		setupSVG: function(){
+
+		}, 
+
 		doWork: function(path){
 			var margin = {top: 0, right: 0, bottom: 0, left: 0},
 				width =  document.body.clientWidth,
@@ -23,7 +36,6 @@ define(["jquery", 'd3'], function generalProgram($, d3) {
 
 			var maxHeight = 300;
 
-			var parseDate = d3.time.format("%Y").parse;
 
 			var x = d3.time.scale()
 				.range([0, width]);
@@ -37,8 +49,6 @@ define(["jquery", 'd3'], function generalProgram($, d3) {
 				.x(function(d) { return d.date; })
 				.y(function(d) { return d.number; });
 
-			var nest = d3.nest()
-				.key(function(d) { return d.key; });
 			 
 			var area = d3.svg.area()
 				.interpolate("cardinal")
