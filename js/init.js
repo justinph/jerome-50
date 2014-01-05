@@ -25,12 +25,12 @@ requirejs(["app/fifty"], function (fifty) {
     fifty.init();
 });
 
-requirejs(["app/generalProgram","app/travelStudy"], function(generalProgram, travelStudy){
+requirejs(["app/gpfv","app/travelStudy"], function(gpfv, travelStudy){
     //generalProgram.init('section.s1');
-    generalProgram.init('section.s2');
-    generalProgram.init('section.s3');
+    // gpfv.init('section.s2');  // overall
+    // gpfv.init('section.s3');  // organizations
 
-    generalProgram.init('section.s5');
-    generalProgram.init('section.s6');
+    gpfv.init('section.s5');
+    //gpfv.init('section.s6');
     //travelStudy();
 });
