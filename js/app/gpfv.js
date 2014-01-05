@@ -29,10 +29,9 @@ define(["jquery", 'd3'], function generalProgram($, d3) {
 			this.height = $(this.selector).height(),
 			this.ratio = this.height/$(window).height();  //get the ratio we should use for svg transformation
 
+			this.x = d3.time.scale().range([0, this.width]);
 
-			// console.log(height, width);
-
-			//this.maxHeight = 300;
+			this.y = d3.scale.linear().range([this.maxHeight, 0]);
 
 
 		}, 
@@ -50,11 +49,11 @@ define(["jquery", 'd3'], function generalProgram($, d3) {
 			// var maxHeight = 300;
 
 
-			var x = d3.time.scale()
-				.range([0, this.width]);
+			// var x = d3.time.scale()
+			// 	.range([0, this.width]);
 
-			var y = d3.scale.linear()
-				.range([this.maxHeight, 0]);
+			// var y = d3.scale.linear()
+			// 	.range([this.maxHeight, 0]);
 
 			var stack = d3.layout.stack()
 				.offset("zero")
@@ -65,9 +64,9 @@ define(["jquery", 'd3'], function generalProgram($, d3) {
 			 
 			var area = d3.svg.area()
 				.interpolate("cardinal")
-				.x(function(d) { return x(d.year); })
-				.y0(function(d) { return y(d.y0); })
-				.y1(function(d) { return y(d.y0 + d.y); });
+				.x(function(d) { return self.x(d.year); })
+				.y0(function(d) { return self.y(d.y0); })
+				.y1(function(d) { return self.y(d.y0 + d.y); });
 
 			var svg = d3.select(this.selector).append("svg")
 				.attr("width", this.width )
@@ -82,8 +81,8 @@ define(["jquery", 'd3'], function generalProgram($, d3) {
 
 				var layers = stack(nest.entries(data));
 
-				x.domain(d3.extent(data, function(d) { return d.year; }));
-				y.domain([0, d3.max(data, function(d) { return d.y0 + d.y; })]);
+				self.x.domain(d3.extent(data, function(d) { return d.year; }));
+				self.y.domain([0, d3.max(data, function(d) { return d.y0 + d.y; })]);
 
 				svg.selectAll(".layer")
 					.data(layers)
