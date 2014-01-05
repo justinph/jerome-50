@@ -12,6 +12,8 @@ define(["jquery", 'd3'], function generalProgram($, d3) {
 		.key(function(d) { return d.key; });
 
 	return {
+		maxHeight: 300,
+
 		init: function(selector,path){
 			this.selector = selector;
 
@@ -23,25 +25,36 @@ define(["jquery", 'd3'], function generalProgram($, d3) {
 
 		setupSVG: function(){
 
-		}, 
-
-		doWork: function(path){
-			var margin = {top: 0, right: 0, bottom: 0, left: 0},
-				width =  document.body.clientWidth,
-				height = $(this.selector).height(),
-				ratio = height/$(window).height();  //get the ratio we should use for svg transformation
+			this.width =  document.body.clientWidth,
+			this.height = $(this.selector).height(),
+			this.ratio = this.height/$(window).height();  //get the ratio we should use for svg transformation
 
 
 			// console.log(height, width);
 
-			var maxHeight = 300;
+			//this.maxHeight = 300;
+
+
+		}, 
+
+		doWork: function(path){
+			var self = this;
+			// var margin = {top: 0, right: 0, bottom: 0, left: 0},
+			// 	width =  document.body.clientWidth,
+			// 	height = $(this.selector).height(),
+			// 	ratio = height/$(window).height();  //get the ratio we should use for svg transformation
+
+
+			// console.log(height, width);
+
+			// var maxHeight = 300;
 
 
 			var x = d3.time.scale()
-				.range([0, width]);
+				.range([0, this.width]);
 
 			var y = d3.scale.linear()
-				.range([maxHeight, 0]);
+				.range([this.maxHeight, 0]);
 
 			var stack = d3.layout.stack()
 				.offset("zero")
@@ -57,8 +70,8 @@ define(["jquery", 'd3'], function generalProgram($, d3) {
 				.y1(function(d) { return y(d.y0 + d.y); });
 
 			var svg = d3.select(this.selector).append("svg")
-				.attr("width", width + margin.left + margin.right)
-				.attr("height", height + margin.top + margin.bottom);
+				.attr("width", this.width )
+				.attr("height", this.height);
 
 			d3.csv("/data/"+path+"/granted_denied.csv", function(error, data) {
 				data.forEach(function(d) {
@@ -77,7 +90,7 @@ define(["jquery", 'd3'], function generalProgram($, d3) {
 					.enter().append("path")
 					.attr("class", function(d){ /*console.log(d);*/ return 'layer-'+d.key;})
 					.attr("d", function(d) { return area(d.values); })
-					.attr("transform", "rotate(90), translate(0,-"+maxHeight+"), scale("+ratio+",1)");
+					.attr("transform", "rotate(90), translate(0,-"+self.maxHeight+"), scale("+self.ratio+",1)");
 
 
 			});
