@@ -1,4 +1,4 @@
-define(["jquery", 'd3'], function generalProgram($, d3) {
+define(["jquery", 'd3', 'handlebars'], function generalProgram($, d3, Handlebars) {
     "use strict";
     /*
 		This makes an area graph out of general program grants and applications
@@ -16,6 +16,7 @@ define(["jquery", 'd3'], function generalProgram($, d3) {
     return {
         maxHeight: 300,
         nested_data: null,
+        //hbar: handlebars.compile($('#fv-template').html()),
 
         init: function(selector, path) {
             this.selector = selector;
@@ -165,7 +166,13 @@ define(["jquery", 'd3'], function generalProgram($, d3) {
             var self = this;
             $(window).on('updateYear:0', function() {
                 if (typeof self.nested_data === 'object') {
-                    console.log(self.nested_data.get(window.year));
+                    var thisYearData = self.nested_data.get(window.year);
+                    var source = $('#fv-template').html();
+                    var template = Handlebars.compile(source);
+                    //console.log(self.selector, template(thisYearData[0]));
+                    //push rendered contents to dom
+                    //$(self.selector).html(template(thisYearData[0]));
+
                 } else {
                     console.error('nested data not loaded or not correct object');
                 }

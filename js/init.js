@@ -7,14 +7,16 @@ requirejs.config({
         "d3": "../vendor/d3/d3",
         "hammer": "../vendor/dist/hammer",
         "async": "../vendor/requirejs-plugins/src/async",
-        "goog": "../vendor/requirejs-plugins/src/async" //,
+        "goog": "../vendor/requirejs-plugins/src/async", //,
+        "handlebars": "../vendor/handlebars/handlebars"
+        //"handlebars": "../vendor/handlebars/handlebars.amd"
         //"propertyParser":  "../vendor/requirejs-plugins/src/propertyParser"
-    } //,
-    //"shim": {
-    //    "d3": {
-    //        exports: 'd3'
-    //   },
-    //}
+    },
+    'shim': {
+        'handlebars': {
+            'exports': 'Handlebars'
+        }
+    }
 });
 
 /* --------------------------
@@ -25,12 +27,14 @@ requirejs(["app/fifty"], function(fifty) {
     fifty.init();
 });
 
-requirejs(["app/gpfv", "app/travelStudy"], function(gpfv, travelStudy) {
+requirejs(["app/gpfv"], function(gpfv) {
     //generalProgram.init('section.s1');
     // gpfv.init('section.s2');  // overall
     // gpfv.init('section.s3');  // organizations
 
     gpfv.init('section.s1', 'fv');
     //gpfv.init('section.s6');
-    //travelStudy();
 });
+
+//at some point this should be updated to not automatically draw the map until it gets on screen
+requirejs(["app/travelStudy"], function(travelStudy) {});
