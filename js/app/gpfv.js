@@ -172,6 +172,7 @@ define(["jquery", 'd3', 'handlebars'], function generalProgram($, d3, Handlebars
                     //console.log(self.selector, template(thisYearData[0]));
                     //push rendered contents to dom
                     //$(self.selector).html(template(thisYearData[0]));
+                    $(self.selector + " .textDisplay").html(template(thisYearData[0]));
 
                 } else {
                     console.error('nested data not loaded or not correct object');
