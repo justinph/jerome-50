@@ -23,11 +23,7 @@ define(["jquery", 'd3', 'handlebars'], function generalProgram($, d3, Handlebars
             this.setupSVG();
             this.initData(selector, path);
 
-            //this.doApprovedDenied(path);
-            //this.doGenres(path);
-            //console.log(path);
-
-            //this.addWatchers();
+            this.addWatchers();
 
         },
 
@@ -125,38 +121,52 @@ define(["jquery", 'd3', 'handlebars'], function generalProgram($, d3, Handlebars
 
         },
 
-        doGenres: function(path) {
+        doGenresClean: function() {
             var self = this;
 
-            d3.csv("/data/" + path + "/genres.csv", function(error, data) {
-                data.forEach(function(d) {
-                    d.year = parseDate(d.year);
-                    d.number = parseInt(d.number, 10);
+            var genres = [];
+
+            self.nested_data.forEach(function(key, value) {
+                //console.log(key, value[0].genres);
+                var year = parseDate(key);
+
+                value[0].genres.forEach(function(d) {
+                    //console.log(d);
+                    genres.push({
+                        'key': d.name,
+                        'year': year,
+                        'number': d.value
+                    });
                 });
-                //console.log(data);
-                var layers = self.stack(nest.entries(data));
-
-                self.x.domain(d3.extent(data, function(d) {
-                    return d.year;
-                }));
-                self.y.domain([0, d3.max(data, function(d) {
-                    return d.y0 + d.y;
-                })]);
-
-                self.svg.selectAll(".layer")
-                    .data(layers)
-                    .enter().append("path")
-                    .attr("class", function(d) { /*console.log(d);*/
-                        return 'layer-' + d.key;
-                    })
-                    .attr("d", function(d) {
-                        return self.area(d.values);
-                    })
-                    .attr("transform", "rotate(90), translate(0,-" + self.offset + "), scale(" + self.ratio + ",-1)");
 
 
             });
+
+            console.log(genres);
+
+            var layers = self.stack(nest.entries(genres));
+
+            self.x.domain(d3.extent(genres, function(d) {
+                return d.year;
+            }));
+            self.y.domain([0, d3.max(genres, function(d) {
+                return d.y0 + d.y;
+            })]);
+
+            self.svg.selectAll(".layer")
+                .data(layers)
+                .enter().append("path")
+                .attr("class", function(d) { /*console.log(d);*/
+                    return 'layer-' + d.key;
+                })
+                .attr("d", function(d) {
+                    return self.area(d.values);
+                })
+                .attr("transform", "rotate(90), translate(0,-" + self.offset + "), scale(" + self.ratio + ",-1)");
+
+
         },
+
 
         initData: function(selector, path) {
             var self = this;
@@ -199,6 +209,8 @@ define(["jquery", 'd3', 'handlebars'], function generalProgram($, d3, Handlebars
                     console.log('n1', self.nested_data);
 
                     self.doApprovedDeniedClean();
+                    self.doGenresClean();
+
                 });
         },
         addWatchers: function() {
