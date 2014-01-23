@@ -148,7 +148,28 @@ define(["jquery", 'd3', 'handlebars'], function generalProgram($, d3, Handlebars
 
             d3.csv("/data/" + path + "/base_data.csv")
                 .row(function(d) {
-                    d.year = +d.year; //convert year into int
+                    //goes through all the properties on the object and converts them to ints
+                    for (var prop in d) {
+                        if (!isNaN(d[prop])) {
+                            d[prop] = +d[prop];
+                        }
+                    }
+
+                    d.genres = [];
+                    //loop through again and convert 'genre-Someting' into the genre sub-object
+                    for (var prop in d) {
+                        //console.log(prop.substr(0, 6));
+                        if (prop.substr(0, 6) === 'genre-') {
+                            d.genres.push({
+                                name: prop.substr(6, 1000),
+                                value: d[prop]
+                            });
+                            //console.log(prop.substr(6, 1000));
+                        }
+                    }
+
+                    //calculate total dollars
+                    d['total dollars'] = d['dollars mn'] + d['dollars nyc'] + +d['dollars other'];
                     return d;
                 })
                 .get(function(error, rows) {
@@ -167,6 +188,7 @@ define(["jquery", 'd3', 'handlebars'], function generalProgram($, d3, Handlebars
             $(window).on('updateYear:0', function() {
                 if (typeof self.nested_data === 'object') {
                     var thisYearData = self.nested_data.get(window.year);
+                    //console.log(thisYearData);
                     var source = $('#fv-template').html();
                     var template = Handlebars.compile(source);
                     //console.log(self.selector, template(thisYearData[0]));

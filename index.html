@@ -18,7 +18,15 @@
     <div id="wrap">
         <section class="s1">
             <div class='textDisplay'>
-                i am thing
+                <h2>FILM AND VIDEO PRODUCTION SUPPORT FOR INDIVIDUAL ARTISTS
+                856 GRANTS IN 50 YEARS</h2>
+
+<p>In its early years, the Foundation made grants to individual filmmakers and to film organizations that Jerome Hill wanted to support. In 1978, the Foundation structured its program of production grants for film and video directors in the form of the New York City Film and Video Program. In 1993, it did the same with the Minnesota Film and Video Program. From 1978 to 1993, grants to Minnesota film and video directors were made through a program operated by Film in the Cities.</p>
+
+<p>Over 50 years, 347 grants totaling $2,9978,700 were made to film and video directors in Minnesota and the four surrounding states. In the same 50 years, 509 grants totaling $6,027,273 were made to film and video directors in New York City.</p>
+
+<p>These productions speak to the value the Foundation places on the individual creative voice.</p>
+
             </div>
         </section>
         <section class="s2"><h1>Overall</h1></section>
@@ -38,8 +46,43 @@
     <script data-main='/js/init' src="/vendor/requirejs/require.js"></script> 
 
     <script id="fv-template" type="text/x-handlebars-template">
-        <h4>Approved: {{approved}}</h4> 
-        <h4>Applications: {{applications}}</h4>
+        {{#if [total dollars]}}
+            ${{[total dollars]}}
+        {{/if}}
+
+        {{#if approved}}
+            {{approved}} grants
+        {{/if}}
+        
+        {{#if applications}}
+            {{applications}} applications
+        {{/if}}
+        
+        {{#if [dollars mn]}}
+            ${{[dollars mn]}} MN
+        {{/if}}
+
+        {{#if [dollars nyc]}}
+            ${{[dollars nyc]}} NYC
+        {{/if}}
+
+        {{#if [dollars other]}}
+            ${{[dollars other]}} Other
+        {{/if}}
+        
+        {{#if approved}}
+            <a href="#" id="view">View grantees</a>
+        {{/if}}
+
+        <br />
+
+        {{#each genres}}
+            {{#if value}}
+                {{value}} {{name}}
+            {{/if}}
+        {{/each}}
+
+
     </script>
 
 </body>
