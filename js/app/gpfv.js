@@ -118,7 +118,6 @@ define(["jquery", 'd3', 'handlebars'], function generalProgram($, d3, Handlebars
                     d.number = parseInt(d.number, 10);
                 });
                 //console.log(data);
-
                 var layers = self.stack(nest.entries(data));
 
                 self.x.domain(d3.extent(data, function(d) {

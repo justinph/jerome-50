@@ -21,7 +21,7 @@ with open('yearsofsupport.csv', 'rb') as csvfile:
 		#print startyear, endyear, name, numyears
 
 		supportYears = {}
-		for i in range(1965,2014):
+		for i in range(196,2014):
 			if i > startyear and i <= endyear:
 				supportYears[i] = i - startyear 
 				#print i - startyear
