@@ -16,8 +16,17 @@
     <div id="year">1964</div>
 
     <div id="wrap">
-        <section class="s1">
-            <div class='textDisplay'>
+        <section class="s0"></section>
+        <section class="s1"><h1>Overall</h1></section>
+        <section class="s2"><h1>Organizations</h1></section>
+        <section class="s3"><h1>Travel &amp; Study</h1>
+            <div id="map-canvas"></div>
+            <a href="#" id='year-down'></a>
+            <a href="#" id='year-up'></a>
+        </section>
+        <section class="s4"><h1>Film &amp; Video</h1>
+
+              <div class='textDisplay'>
                 <h2>FILM AND VIDEO PRODUCTION SUPPORT FOR INDIVIDUAL ARTISTS
                 856 GRANTS IN 50 YEARS</h2>
 
@@ -29,15 +38,12 @@
 
             </div>
         </section>
-        <section class="s2"><h1>Overall</h1></section>
-        <section class="s3"><h1>Organizations</h1></section>
-        <section class="s4"><h1>Travel &amp; Study</h1>
-            <div id="map-canvas"></div>
-            <a href="#" id='year-down'></a>
-            <a href="#" id='year-up'></a>
-        </section>
-        <section class="s5"><h1>Film &amp; Video</h1></section>
-        <section class="s6"><h1>General Program</h1></section>       
+        <section class="s5"><h1>General Program</h1>
+
+            <div class='textDisplay'>
+
+            </div>
+        </section>       
     </div>
 
     <a id='prev' href='#' class="inactive"></a>
@@ -45,7 +51,7 @@
 
     <script data-main='/js/init' src="/vendor/requirejs/require.js"></script> 
 
-    <script id="fv-template" type="text/x-handlebars-template">
+    <script id="gpfv-template" type="text/x-handlebars-template">
         {{#if [total dollars]}}
             ${{[total dollars]}}
         {{/if}}

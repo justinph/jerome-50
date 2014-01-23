@@ -27,12 +27,24 @@ requirejs(["app/fifty"], function(fifty) {
     fifty.init();
 });
 
-requirejs(["app/gpfv"], function(gpfv) {
+requirejs(["app/gpfv", "app/gpfv"], function(fv, gp) {
     //generalProgram.init('section.s1');
     // gpfv.init('section.s2');  // overall
     // gpfv.init('section.s3');  // organizations
 
-    gpfv.init('section.s1', 'fv');
+    /*
+TODO:
+This needs to be reworked to create new instances of the gpfv module
+see: http://stackoverflow.com/questions/18317569/requirejs-load-multiple-instances-of-module
+
+ */
+
+    fv.init(4, 'fv');
+
+    gp.init(5, 'gp');
+
+    console.log(fv, gp);
+
     //gpfv.init('section.s6');
 });
 

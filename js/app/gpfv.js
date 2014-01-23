@@ -18,10 +18,12 @@ define(["jquery", 'd3', 'handlebars'], function generalProgram($, d3, Handlebars
         nested_data: null,
         //hbar: handlebars.compile($('#fv-template').html()),
 
-        init: function(selector, path) {
-            this.selector = selector;
+        init: function(idx, path) {
+            this.idx = idx;
+
+            this.selector = 'section.s' + idx;
             this.setupSVG();
-            this.initData(selector, path);
+            this.initData(this.selector, path);
 
             this.addWatchers();
 
@@ -142,7 +144,7 @@ define(["jquery", 'd3', 'handlebars'], function generalProgram($, d3, Handlebars
 
             });
 
-            console.log(genres);
+            //console.log(genres);
 
             var layers = self.stack(nest.entries(genres));
 
@@ -206,8 +208,6 @@ define(["jquery", 'd3', 'handlebars'], function generalProgram($, d3, Handlebars
                     //console.log(self.nested_data);
                     //console.log(self.nested_data.get(2011));
 
-                    console.log('n1', self.nested_data);
-
                     self.doApprovedDeniedClean();
                     self.doGenresClean();
 
@@ -215,19 +215,21 @@ define(["jquery", 'd3', 'handlebars'], function generalProgram($, d3, Handlebars
         },
         addWatchers: function() {
             var self = this;
-            $(window).on('updateYear:0', function() {
-                if (typeof self.nested_data === 'object') {
-                    var thisYearData = self.nested_data.get(window.year);
-                    //console.log(thisYearData);
-                    var source = $('#fv-template').html();
-                    var template = Handlebars.compile(source);
-                    //console.log(self.selector, template(thisYearData[0]));
-                    //push rendered contents to dom
-                    //$(self.selector).html(template(thisYearData[0]));
-                    $(self.selector + " .textDisplay").html(template(thisYearData[0]));
+            $(window).on('updateYear:' + self.idx, function() {
+                if (window.year > 1964) {
+                    if (typeof self.nested_data === 'object') {
+                        var thisYearData = self.nested_data.get(window.year);
+                        //console.log(thisYearData);
+                        var source = $('#gpfv-template').html();
+                        var template = Handlebars.compile(source);
+                        //console.log(self.selector, template(thisYearData[0]));
+                        //push rendered contents to dom
+                        //$(self.selector).html(template(thisYearData[0]));
+                        $(self.selector + " .textDisplay").html(template(thisYearData[0]));
 
-                } else {
-                    console.error('nested data not loaded or not correct object');
+                    } else {
+                        console.error('nested data not loaded or not correct object');
+                    }
                 }
             });
         }
