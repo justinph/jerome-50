@@ -21,12 +21,13 @@ define(["jquery", 'd3', 'handlebars'], function generalProgram($, d3, Handlebars
         init: function(selector, path) {
             this.selector = selector;
             this.setupSVG();
-            this.doApprovedDenied(path);
-            this.doGenres(path);
+            this.initData(selector, path);
+
+            //this.doApprovedDenied(path);
+            //this.doGenres(path);
             //console.log(path);
 
-            this.initData(selector, path);
-            this.addWatchers();
+            //this.addWatchers();
 
         },
 
@@ -75,38 +76,53 @@ define(["jquery", 'd3', 'handlebars'], function generalProgram($, d3, Handlebars
 
         },
 
-        doApprovedDenied: function(path) {
+        /**
+         * Takes the already generated nested_data and makes an array suitable for stacking out of it
+         * Previously, this had been from a seperate file, but this is no longer necessary
+         */
+        doApprovedDeniedClean: function() {
             var self = this;
 
-            d3.csv("/data/" + path + "/granted_denied.csv", function(error, data) {
-                data.forEach(function(d) {
-                    d.year = parseDate(d.year);
-                    d.number = parseInt(d.number, 10);
+            var approvedDenied = [];
+
+            self.nested_data.forEach(function(key, value) {
+                //console.log(key, value[0].approved);
+                var year = parseDate(key);
+                approvedDenied.push({
+                    'key': 'granted',
+                    'year': year,
+                    'number': value[0].approved
                 });
-                //console.log(data);
-
-                var layers = self.stack(nest.entries(data));
-
-                self.x.domain(d3.extent(data, function(d) {
-                    return d.year;
-                }));
-                self.y.domain([0, d3.max(data, function(d) {
-                    return d.y0 + d.y;
-                })]);
-
-                self.svg.selectAll(".layer")
-                    .data(layers)
-                    .enter().append("path")
-                    .attr("class", function(d) { /*console.log(d);*/
-                        return 'layer-' + d.key;
-                    })
-                    .attr("d", function(d) {
-                        return self.area(d.values);
-                    })
-                    .attr("transform", "rotate(90), translate(0,-" + self.maxHeight + "), scale(" + self.ratio + ",1)");
-
-
+                approvedDenied.push({
+                    'key': 'denied',
+                    'year': year,
+                    'number': value[0].applications - value[0].approved
+                });
             });
+
+            //console.log(approvedDenied);
+
+            var layers = self.stack(nest.entries(approvedDenied));
+
+            self.x.domain(d3.extent(approvedDenied, function(d) {
+                return d.year;
+            }));
+            self.y.domain([0, d3.max(approvedDenied, function(d) {
+                return d.y0 + d.y;
+            })]);
+
+
+            self.svg.selectAll(".layer")
+                .data(layers)
+                .enter().append("path")
+                .attr("class", function(d) { /*console.log(d);*/
+                    return 'layer-' + d.key;
+                })
+                .attr("d", function(d) {
+                    return self.area(d.values);
+                })
+                .attr("transform", "rotate(90), translate(0,-" + self.maxHeight + "), scale(" + self.ratio + ",1)");
+
         },
 
         doGenres: function(path) {
@@ -156,7 +172,7 @@ define(["jquery", 'd3', 'handlebars'], function generalProgram($, d3, Handlebars
 
                     d.genres = [];
                     //loop through again and convert 'genre-Someting' into the genre sub-object
-                    for (var prop in d) {
+                    for (prop in d) {
                         //console.log(prop.substr(0, 6));
                         if (prop.substr(0, 6) === 'genre-') {
                             d.genres.push({
@@ -168,7 +184,7 @@ define(["jquery", 'd3', 'handlebars'], function generalProgram($, d3, Handlebars
                     }
 
                     //calculate total dollars
-                    d['total dollars'] = d['dollars mn'] + d['dollars nyc'] + +d['dollars other'];
+                    d['total dollars'] = d['dollars mn'] + d['dollars nyc'] + d['dollars other'];
                     return d;
                 })
                 .get(function(error, rows) {
@@ -180,6 +196,9 @@ define(["jquery", 'd3', 'handlebars'], function generalProgram($, d3, Handlebars
                     //console.log(self.nested_data);
                     //console.log(self.nested_data.get(2011));
 
+                    console.log('n1', self.nested_data);
+
+                    self.doApprovedDeniedClean();
                 });
         },
         addWatchers: function() {
