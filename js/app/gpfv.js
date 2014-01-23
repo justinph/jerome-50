@@ -1,4 +1,4 @@
-define(["jquery", 'd3', 'handlebars'], function generalProgram($, d3, Handlebars) {
+define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
     "use strict";
     /*
 		This makes an area graph out of general program grants and applications
@@ -6,31 +6,22 @@ define(["jquery", 'd3', 'handlebars'], function generalProgram($, d3, Handlebars
 		we have to keys of data for all grants 
 		 */
 
-    var parseDate = d3.time.format("%Y").parse;
 
-    var nest = d3.nest()
-        .key(function(d) {
-            return d.key;
-        });
 
-    return {
-        maxHeight: 300,
-        nested_data: null,
-        //hbar: handlebars.compile($('#fv-template').html()),
+    return function GpFv(idx, path) {
+        this.idx = idx;
+        this.selector = 'section.s' + idx;
+        //console.log(this);
 
-        init: function(idx, path) {
-            this.idx = idx;
+        var parseDate = d3.time.format("%Y").parse;
 
-            this.selector = 'section.s' + idx;
-            this.setupSVG();
-            this.initData(this.selector, path);
+        var nest = d3.nest()
+            .key(function(d) {
+                return d.key;
+            });
 
-            this.addWatchers();
-
-        },
-
-        setupSVG: function() {
-
+        this.setupSVG = function() {
+            console.log('intthis', this);
             this.width = document.body.clientWidth; //24;
             this.height = $(this.selector).height();
             this.ratio = this.height / this.width; //get the ratio we should use for svg transformation
@@ -71,17 +62,17 @@ define(["jquery", 'd3', 'handlebars'], function generalProgram($, d3, Handlebars
                 .attr("width", this.width)
                 .attr("height", this.height);
 
-
-        },
+        };
 
         /**
          * Takes the already generated nested_data and makes an array suitable for stacking out of it
          * Previously, this had been from a seperate file, but this is no longer necessary
          */
-        doApprovedDeniedClean: function() {
+        this.doApprovedDeniedClean = function() {
             var self = this;
 
             var approvedDenied = [];
+
 
             self.nested_data.forEach(function(key, value) {
                 //console.log(key, value[0].approved);
@@ -102,6 +93,8 @@ define(["jquery", 'd3', 'handlebars'], function generalProgram($, d3, Handlebars
 
             var layers = self.stack(nest.entries(approvedDenied));
 
+            //console.log(layers);
+
             self.x.domain(d3.extent(approvedDenied, function(d) {
                 return d.year;
             }));
@@ -109,21 +102,27 @@ define(["jquery", 'd3', 'handlebars'], function generalProgram($, d3, Handlebars
                 return d.y0 + d.y;
             })]);
 
+            //console.log(self.y, self.x);
+
+            //console.log('area', self.area, this.area);
 
             self.svg.selectAll(".layer")
                 .data(layers)
                 .enter().append("path")
-                .attr("class", function(d) { /*console.log(d);*/
+                .attr("class", function(d) {
+                    console.log(d);
                     return 'layer-' + d.key;
                 })
                 .attr("d", function(d) {
+                    console.log(d);
                     return self.area(d.values);
                 })
                 .attr("transform", "rotate(90), translate(0,-" + self.maxHeight + "), scale(" + self.ratio + ",1)");
 
-        },
+        };
 
-        doGenresClean: function() {
+
+        this.doGenresClean = function() {
             var self = this;
 
             var genres = [];
@@ -167,10 +166,10 @@ define(["jquery", 'd3', 'handlebars'], function generalProgram($, d3, Handlebars
                 .attr("transform", "rotate(90), translate(0,-" + self.offset + "), scale(" + self.ratio + ",-1)");
 
 
-        },
+        };
 
 
-        initData: function(selector, path) {
+        this.initData = function(selector, path) {
             var self = this;
 
             d3.csv("/data/" + path + "/base_data.csv")
@@ -209,11 +208,12 @@ define(["jquery", 'd3', 'handlebars'], function generalProgram($, d3, Handlebars
                     //console.log(self.nested_data.get(2011));
 
                     self.doApprovedDeniedClean();
-                    self.doGenresClean();
+                    //self.doGenresClean();
 
                 });
-        },
-        addWatchers: function() {
+        };
+
+        this.addWatchers = function() {
             var self = this;
             $(window).on('updateYear:' + self.idx, function() {
                 if (window.year > 1964) {
@@ -232,7 +232,15 @@ define(["jquery", 'd3', 'handlebars'], function generalProgram($, d3, Handlebars
                     }
                 }
             });
-        }
+        };
+
+
+        this.setupSVG();
+        this.initData(this.selector, path);
+
+        this.addWatchers();
+
 
     };
+
 });

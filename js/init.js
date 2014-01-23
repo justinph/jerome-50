@@ -27,7 +27,7 @@ requirejs(["app/fifty"], function(fifty) {
     fifty.init();
 });
 
-requirejs(["app/gpfv", "app/gpfv"], function(fv, gp) {
+requirejs(["app/gpfv"], function(GpFv) {
     //generalProgram.init('section.s1');
     // gpfv.init('section.s2');  // overall
     // gpfv.init('section.s3');  // organizations
@@ -39,11 +39,11 @@ see: http://stackoverflow.com/questions/18317569/requirejs-load-multiple-instanc
 
  */
 
-    fv.init(4, 'fv');
+    var fv = new GpFv(4, 'fv');
 
-    gp.init(5, 'gp');
+    var gp = new GpFv(5, 'gp');
 
-    console.log(fv, gp);
+    console.log(fv);
 
     //gpfv.init('section.s6');
 });
