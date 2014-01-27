@@ -698,15 +698,32 @@ section h1 {
 .layer-granted {
   fill: #8a6e56;
 }
-.layer-Animation {
-  fill: #d9d9d9;
+.layer-visual-arts,
+.layer-documentary {
+  fill: #99ffff;
 }
-.layer-Animation {
+.layer-theater,
+.layer-animation {
+  fill: #ff6666;
+}
+.layer-dance,
+.layer-narrative {
+  fill: #ffff99;
+}
+.layer-media-artsfilm-and-video {
+  fill: #cc9966;
+}
+.layer-literature,
+.layer-experimental {
   fill: #8a6e56;
 }
-.layer-Narrative {
-  fill: #d9d9d9;
+.layer-music {
+  fill: #cccccc;
 }
-.layer-Experimental {
-  fill: #8a6e56;
+.layer-arts-criticism {
+  fill: #99ff99;
+}
+.layer-other-disciplines,
+.layer-multidisciplinary {
+  fill: #9999ff;
 }

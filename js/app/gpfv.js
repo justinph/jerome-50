@@ -109,7 +109,8 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
                 .data(layers)
                 .enter().append("path")
                 .attr("class", function(d) {
-                    return 'layer-' + d.key;
+                    var layerName = makeSafeForCSS(d.key); //give us cleaner css names
+                    return 'layer-' + layerName;
                 })
                 .attr("d", function(d) {
                     console.log(d.values);
@@ -155,7 +156,8 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
                 .data(layers)
                 .enter().append("path")
                 .attr("class", function(d) { /*console.log(d);*/
-                    return 'layer-' + d.key;
+                    var layerName = makeSafeForCSS(d.key); //give us cleaner css names
+                    return 'layer-' + layerName;
                 })
                 .attr("d", function(d) {
                     return self.area(d.values);
@@ -229,6 +231,17 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
                 }
             });
         };
+
+        function makeSafeForCSS(name) {
+            return name.replace(/[^a-z0-9]/g, function(s) {
+                var c = s.charCodeAt(0);
+                if (c == 32) return '-';
+                if (c >= 65 && c <= 90) return '' + s.toLowerCase();
+                return '';
+                return '__' + ('000' + c.toString(16)).slice(-4);
+            });
+        }
+
 
 
         this.setupSVG();
