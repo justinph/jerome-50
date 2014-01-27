@@ -43,7 +43,7 @@ see: http://stackoverflow.com/questions/18317569/requirejs-load-multiple-instanc
 
     var gp = new GpFv(5, 'gp');
 
-    console.log(fv);
+    //console.log(fv, gp);
 
     //gpfv.init('section.s6');
 });

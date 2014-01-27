@@ -11,7 +11,8 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
     return function GpFv(idx, path) {
         this.idx = idx;
         this.selector = 'section.s' + idx;
-        //console.log(this);
+        this.path = path;
+        this.maxHeight = 300;
 
         var parseDate = d3.time.format("%Y").parse;
 
@@ -21,13 +22,11 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
             });
 
         this.setupSVG = function() {
-            console.log('intthis', this);
             this.width = document.body.clientWidth; //24;
             this.height = $(this.selector).height();
             this.ratio = this.height / this.width; //get the ratio we should use for svg transformation
             this.offset = this.width - this.maxHeight;
 
-            console.log(this.ratio, this.height);
 
             this.x = d3.time.scale().range([0, this.width]);
             this.y = d3.scale.linear().range([this.maxHeight, 0]);
@@ -48,14 +47,21 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
             this.area = d3.svg.area()
                 .interpolate("cardinal")
                 .x(function(d) {
-                    return this.x(d.year);
+                    var self = this;
+                    return self.x(d.year);
                 })
                 .y0(function(d) {
-                    return this.y(d.y0);
+                    var self = this;
+                    return self.y(d.y0);
                 })
                 .y1(function(d) {
-                    return this.y(d.y0 + d.y);
+                    var self = this;
+                    //console.log(d.y0, d.y);
+
+                    return self.y(d.y0 + d.y);
                 });
+
+
 
 
             this.svg = d3.select(this.selector).append("svg")
@@ -89,32 +95,24 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
                 });
             });
 
-            //console.log(approvedDenied);
 
             var layers = self.stack(nest.entries(approvedDenied));
 
-            //console.log(layers);
-
-            self.x.domain(d3.extent(approvedDenied, function(d) {
+            this.x.domain(d3.extent(approvedDenied, function(d) {
                 return d.year;
             }));
-            self.y.domain([0, d3.max(approvedDenied, function(d) {
+            this.y.domain([0, d3.max(approvedDenied, function(d) {
                 return d.y0 + d.y;
             })]);
-
-            //console.log(self.y, self.x);
-
-            //console.log('area', self.area, this.area);
 
             self.svg.selectAll(".layer")
                 .data(layers)
                 .enter().append("path")
                 .attr("class", function(d) {
-                    console.log(d);
                     return 'layer-' + d.key;
                 })
                 .attr("d", function(d) {
-                    console.log(d);
+                    console.log(d.values);
                     return self.area(d.values);
                 })
                 .attr("transform", "rotate(90), translate(0,-" + self.maxHeight + "), scale(" + self.ratio + ",1)");
@@ -143,7 +141,6 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
 
             });
 
-            //console.log(genres);
 
             var layers = self.stack(nest.entries(genres));
 
@@ -169,10 +166,10 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
         };
 
 
-        this.initData = function(selector, path) {
+        this.initData = function() {
             var self = this;
 
-            d3.csv("/data/" + path + "/base_data.csv")
+            d3.csv("/data/" + this.path + "/base_data.csv")
                 .row(function(d) {
                     //goes through all the properties on the object and converts them to ints
                     for (var prop in d) {
@@ -204,11 +201,10 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
                             return d.year;
                         })
                         .map(rows, d3.map);
-                    //console.log(self.nested_data);
-                    //console.log(self.nested_data.get(2011));
+
 
                     self.doApprovedDeniedClean();
-                    //self.doGenresClean();
+                    self.doGenresClean();
 
                 });
         };
@@ -236,7 +232,7 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
 
 
         this.setupSVG();
-        this.initData(this.selector, path);
+        this.initData();
 
         this.addWatchers();
 
