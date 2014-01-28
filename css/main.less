@@ -16,6 +16,21 @@ html,body{
     font-family: 'Oswald', 'Helvetica Neue', Helvetica, arial, sans-serif;
 }
 h1,h2,h3,h4,h5{ font-weight: 400;}
+
+h2,h3,h4,h5{
+    margin: .15em 0 .4em;
+}
+h3{
+    font-weight: 100;
+}
+
+
+a{
+    color: white;
+    text-decoration: none;
+    border-bottom: 1px solid #970202;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -24,6 +39,7 @@ body {
 
 @import 'sections';
 @import 'maps';
+@import 'gpfv';
 
 section .textDisplay{
     position: fixed;
@@ -83,6 +99,7 @@ section h1{
     font-size: 50px;
     font-weight: bold;
     color: white;
+    border-bottom: 0;
     text-decoration: none;
     &.inactive{
         display: none;

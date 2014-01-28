@@ -1,7 +1,7 @@
 /**
  * Checks if the browser is capabile of doing geolocation, and if so loads up nav geolocation code
  */
-define(["jquery"], function navWeatherCheck($) {
+define(["jquery"], function fifty($) {
     "use strict";
     return {
         step: 0,
@@ -75,6 +75,12 @@ define(["jquery"], function navWeatherCheck($) {
                 return false;
             });
 
+
+            //to force a particular section to load...
+            this.step = 4;
+            this.updateSteps();
+            this.calcYears();
+            $('#wrap').removeClass().addClass('step-' + this.step);
 
 
         },

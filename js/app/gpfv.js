@@ -8,11 +8,12 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
 
 
 
-    return function GpFv(idx, path) {
+    return function GpFv(idx, path, showGranteeLinks) {
         this.idx = idx;
         this.selector = 'section.s' + idx;
         this.path = path;
         this.maxHeight = 300;
+        this.showGranteeLinks = showGranteeLinks;
 
         var parseDate = d3.time.format("%Y").parse;
 
@@ -113,7 +114,7 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
                     return 'layer-' + layerName;
                 })
                 .attr("d", function(d) {
-                    console.log(d.values);
+                    //console.log(d.values);
                     return self.area(d.values);
                 })
                 .attr("transform", "rotate(90), translate(0,-" + self.maxHeight + "), scale(" + self.ratio + ",1)");
@@ -194,7 +195,13 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
                     }
 
                     //calculate total dollars
-                    d['total dollars'] = d['dollars mn'] + d['dollars nyc'] + d['dollars other'];
+                    d['total dollars'] = commaSeparateNumber(d['dollars mn'] + d['dollars nyc'] + d['dollars other']);
+
+                    d['dollars mn'] = makeK(d['dollars mn']);
+                    d['dollars other'] = makeK(d['dollars other']);
+                    d['dollars nyc'] = makeK(d['dollars nyc']);
+
+
                     return d;
                 })
                 .get(function(error, rows) {
@@ -217,7 +224,8 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
                 if (window.year > 1964) {
                     if (typeof self.nested_data === 'object') {
                         var thisYearData = self.nested_data.get(window.year);
-                        //console.log(thisYearData);
+                        thisYearData[0].showGranteeLinks = self.showGranteeLinks;
+                        console.log(thisYearData[0]);
                         var source = $('#gpfv-template').html();
                         var template = Handlebars.compile(source);
                         //console.log(self.selector, template(thisYearData[0]));
@@ -242,6 +250,20 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
             });
         }
 
+        function commaSeparateNumber(val) {
+            while (/(\d+)(\d{3})/.test(val.toString())) {
+                val = val.toString().replace(/(\d+)(\d{3})/, '$1' + ',' + '$2');
+            }
+            return val;
+        }
+
+        function makeK(val) {
+            var num = Math.round(val / 1000);
+            if (num > 0) {
+                return num + "k";
+            }
+            return false;
+        }
 
 
         this.setupSVG();

@@ -28,24 +28,13 @@ requirejs(["app/fifty"], function(fifty) {
 });
 
 requirejs(["app/gpfv"], function(GpFv) {
-    //generalProgram.init('section.s1');
-    // gpfv.init('section.s2');  // overall
-    // gpfv.init('section.s3');  // organizations
 
-    /*
-TODO:
-This needs to be reworked to create new instances of the gpfv module
-see: http://stackoverflow.com/questions/18317569/requirejs-load-multiple-instances-of-module
+    var fv = new GpFv(4, 'fv', true);
 
- */
-
-    var fv = new GpFv(4, 'fv');
-
-    var gp = new GpFv(5, 'gp');
+    var gp = new GpFv(5, 'gp', false);
 
     //console.log(fv, gp);
 
-    //gpfv.init('section.s6');
 });
 
 //at some point this should be updated to not automatically draw the map until it gets on screen
