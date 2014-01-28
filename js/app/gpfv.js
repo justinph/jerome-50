@@ -14,6 +14,7 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
         this.path = path;
         this.maxHeight = 300;
         this.showGranteeLinks = showGranteeLinks;
+        this.grantees = null;
 
         var parseDate = d3.time.format("%Y").parse;
 
@@ -216,6 +217,26 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
                     self.doGenresClean();
 
                 });
+
+            //load grantees from the combined csv and turn them into a nice nest
+            if (this.showGranteeLinks) {
+                d3.csv("/data/" + this.path + "/combined.csv")
+                    .row(function(d) {
+                        d.year = +d.year;
+                        return d;
+                    })
+                    .get(function(error, rows) {
+                        self.grantees = d3.nest()
+                            .key(function(d) {
+                                return d.year;
+                            })
+                            .key(function(d) {
+                                return d.location;
+                            })
+                            .map(rows, d3.map);
+                    });
+
+            }
         };
 
         this.addWatchers = function() {
