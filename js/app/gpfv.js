@@ -228,12 +228,13 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
                     .get(function(error, rows) {
                         self.grantees = d3.nest()
                             .key(function(d) {
-                                return d.year;
-                            })
-                            .key(function(d) {
                                 return d.location;
                             })
+                            .key(function(d) {
+                                return d.year;
+                            })
                             .map(rows, d3.map);
+
                     });
 
             }
@@ -246,13 +247,35 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
                     if (typeof self.nested_data === 'object') {
                         var thisYearData = self.nested_data.get(window.year);
                         thisYearData[0].showGranteeLinks = self.showGranteeLinks;
-                        console.log(thisYearData[0]);
+                        //console.log(thisYearData[0]);
                         var source = $('#gpfv-template').html();
                         var template = Handlebars.compile(source);
                         //console.log(self.selector, template(thisYearData[0]));
                         //push rendered contents to dom
-                        //$(self.selector).html(template(thisYearData[0]));
                         $(self.selector + " .textDisplay").html(template(thisYearData[0]));
+
+                        //probably not the correct spot
+                        $('.view-grantees').on('click', function(e) {
+                            e.preventDefault();
+                            var location = $(this).data('location');
+                            var grantees = self.grantees.get(location).get(window.year);
+                            if (grantees) {
+                                console.log(grantees);
+                                var data = {
+                                    grantees: grantees,
+                                    location: location,
+                                };
+                                var source = $('#grantees-list').html();
+                                var template = Handlebars.compile(source);
+                                $(self.selector + " .textDisplay").addClass('blurred');
+                                $(self.selector + " .granteesDisplay").html(template(data));
+                                $('.granteesDisplay .close-grantees').click(function() {
+                                    $(self.selector + " .granteesDisplay").empty();
+                                    $(self.selector + " .textDisplay").removeClass('blurred');
+                                });
+                            }
+
+                        });
 
                     } else {
                         console.error('nested data not loaded or not correct object');

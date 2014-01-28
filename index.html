@@ -37,6 +37,8 @@
                 <p>These productions speak to the value the Foundation places on the individual creative voice.</p>
 
             </div>
+            <div class='granteesDisplay'>
+            </div>
         </section>
         <section class="s5"><h1>General Program</h1>
             <div class='textDisplay'>
@@ -78,8 +80,8 @@
             
             {{#if showGranteeLinks}}
                 {{#if approved}}
-                    <br /><a href="#" id="view">View MN grantees</a>
-                    <br /><a href="#" id="view">View NYC grantees</a>
+                    <br /><a href="#" class="view-grantees" data-location='Minnesota'>View MN grantees</a>
+                    <br /><a href="#" class="view-grantees" data-location="New York City">View NYC grantees</a>
                 {{/if}}
             {{/if}}
             </div>
@@ -92,6 +94,27 @@
             </div>
         </div>
 
+    </script>
+
+    <script id="grantees-list" type="text/x-handlebars-template">
+        <div class="grantees-wrapper">
+        <ul>
+            <h2>{{location}}</h2>
+            <h3><a href="#" class='close-grantees'>Hide grantees</a></h3>
+            {{#each grantees}}
+            <li>
+                {{[Artist name]}}
+                {{#if [Co-applicant name]}}
+                    <br />{{[Co-applicant name]}}
+                {{/if}}
+
+                {{#if link}}<a href="{{link}}">{{/if}}
+                    <br /><em>{{[Film title]}}</em>
+                {{#if link}}</a>{{/if}}
+            </li>
+            {{/each}}
+        </ul>
+        </div>
     </script>
 
 </body>
