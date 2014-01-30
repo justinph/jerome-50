@@ -27,6 +27,11 @@ requirejs(["app/fifty"], function(fifty) {
     fifty.init();
 });
 
+
+requirejs(['app/yearsofsupport'], function(YearsOfSupport) {
+    new YearsOfSupport(2);
+});
+
 requirejs(["app/gpfv"], function(GpFv) {
 
     var fv = new GpFv(4, 'fv', true);
@@ -38,4 +43,4 @@ requirejs(["app/gpfv"], function(GpFv) {
 });
 
 //at some point this should be updated to not automatically draw the map until it gets on screen
-requirejs(["app/travelStudy"], function(travelStudy) {});
+requirejs(["app/travelStudy"]);

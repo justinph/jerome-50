@@ -77,10 +77,10 @@ define(["jquery"], function fifty($) {
 
 
             //to force a particular section to load...
-            this.step = 4;
-            this.updateSteps();
-            this.calcYears();
-            $('#wrap').removeClass().addClass('step-' + this.step);
+            // this.step = 4;
+            // this.updateSteps();
+            // this.calcYears();
+            // $('#wrap').removeClass().addClass('step-' + this.step);
 
 
         },
