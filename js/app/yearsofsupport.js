@@ -12,6 +12,9 @@ define(["jquery", 'd3'], function($, d3) {
 
         var parseDate = d3.time.format("%Y").parse;
 
+        var colorScale = d3.scale.category10();
+
+
         var nest = d3.nest()
             .key(function(d) {
                 return d.key;
@@ -23,52 +26,24 @@ define(["jquery", 'd3'], function($, d3) {
             this.ratio = this.height / this.width; //get the ratio we should use for svg transformation
             this.offset = this.width - this.maxHeight;
 
-
-            // this.x = d3.time.scale().range([0, this.width]);
-            // this.y = d3.scale.linear().range([this.maxHeight, 0]);
-
-            // this.stack = d3.layout.stack()
-            //     .offset("zero")
-            //     .values(function(d) {
-            //         return d.values;
-            //     })
-            //     .x(function(d) {
-            //         return d.date;
-            //     })
-            //     .y(function(d) {
-            //         return d.number;
-            //     });
-
-
-            // this.area = d3.svg.area()
-            //     .interpolate("cardinal")
-            //     .x(function(d) {
-            //         var self = this;
-            //         return self.x(d.year);
-            //     })
-            //     .y0(function(d) {
-            //         var self = this;
-            //         return self.y(d.y0);
-            //     })
-            //     .y1(function(d) {
-            //         var self = this;
-            //         //console.log(d.y0, d.y);
-
-            //         return self.y(d.y0 + d.y);
-            //     });
-
-
-
-
             this.svg = d3.select(this.selector).append("svg")
                 .attr("width", this.width)
                 .attr("height", this.height);
 
         };
 
+        //create an object with props for each year with a value of 0
+        //we'll use this to clone to make our support years
+        var BaseYears = function() {
+            for (var i = 1964; i <= 2014; i++) {
+                this[i] = 0;
+            }
+        };
+
 
         this.initData = function() {
             var self = this;
+            console.log('doing init');
 
             d3.csv("/data/yearsofsupport.csv")
                 .row(function(d) {
@@ -79,36 +54,54 @@ define(["jquery", 'd3'], function($, d3) {
                         }
                     }
 
-                    d.genres = [];
-                    //loop through again and convert 'genre-Someting' into the genre sub-object
-                    for (prop in d) {
-                        //console.log(prop.substr(0, 6));
-                        if (prop.substr(0, 6) === 'genre-') {
-                            d.genres.push({
-                                name: prop.substr(6, 1000),
-                                value: d[prop]
-                            });
-                            //console.log(prop.substr(6, 1000));
-                        }
-                    }
+                    d.supportYears = new BaseYears();
 
-                    // //calculate total dollars
-                    // d['total dollars'] = commaSeparateNumber(d['dollars mn'] + d['dollars nyc'] + d['dollars other']);
-
-                    // d['dollars mn'] = makeK(d['dollars mn']);
-                    // d['dollars other'] = makeK(d['dollars other']);
-                    // d['dollars nyc'] = makeK(d['dollars nyc']);
+                    var yearcount = 0;
+                    for (var i = d.start; i <= d.end; i++) {
+                        d.supportYears[i] = yearcount;
+                        yearcount++;
+                    };
 
 
                     return d;
                 })
                 .get(function(error, rows) {
-                    self.nested_data = d3.nest()
-                        .key(function(d) {
-                            return d.year;
-                        })
-                        .map(rows, d3.map);
+                    console.log(rows);
+                    // self.nested_data = d3.nest()
+                    //     .key(function(d) {
+                    //         return d.year;
+                    //     })
+                    //     .map(rows, d3.map);
 
+
+
+                    var circles = self.svg.selectAll("circle")
+                        .data(rows)
+                        .enter()
+                        .append("circle");
+
+
+                    var circleAttributes = circles
+                        .attr('cx', function(d, i) {
+                            console.log(d, i);
+                            return (i + 1) * 10 + 50;
+                        })
+                        .attr('cy', function(d, i) {
+                            // rand = Math.random();
+                            // if (rand < 0.3) {
+                            //     return (100 * Math.random()) + 100;
+                            // } else if (rand > 0.7) {
+                            //     return (100 * Math.random()) + 500;
+
+                            // } else {
+                            //     return (100 * Math.random()) + 300;
+                            // }
+                            return i * 1.5 + 50;
+                        })
+                        .attr("r", 20)
+                        .style("fill", function(d, i) {
+                            return colorScale(i);
+                        });
 
 
 
@@ -137,12 +130,14 @@ define(["jquery", 'd3'], function($, d3) {
             // };
 
 
-            this.setupSVG();
-            this.initData();
-
 
 
         };
+
+
+        this.setupSVG();
+        this.initData();
+
 
     };
 
