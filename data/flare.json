@@ -1,4 +1,3 @@
-
 {
  "name": "flare",
  "children": [
@@ -17,7 +16,7 @@
     {
      "name": "graph",
      "children": [
-      {"name": "BetweennessCentrality", "size": }3534,
+      {"name": "BetweennessCentrality", "size": 3534},
       {"name": "LinkDistance", "size": 5731},
       {"name": "MaxFlowMinCut", "size": 7840},
       {"name": "ShortestPaths", "size": 5914},

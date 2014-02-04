@@ -1,19 +1,76 @@
 define(["jquery", 'd3'], function($, d3) {
     "use strict";
     /*
-	This makes an area graph out of general program grants and applications
-	the data is somewhat pre-calculated using general_program.py so that
-	we have to keys of data for all grants 
-	 */
+    This makes an area graph out of general program grants and applications
+    the data is somewhat pre-calculated using general_program.py so that
+    we have to keys of data for all grants 
+     */
+
+    /*
+    big thanks:
+    http://vallandingham.me/bubble_charts_in_d3.html
+    helped me figure out how to use gravity force
+     */
 
     return function yearsOfSupport(idx) {
         this.idx = idx;
         this.selector = 'section.s' + idx;
 
-        var colorScale = d3.scale.category10();
+        var force, node;
 
-        var bubble;
+        var damper = 0.3;
 
+        var genres = [];
+
+        var nodes = [];
+
+        //set up some target areas on screen
+        var targets = {
+            0: {
+                x: 50,
+                y: 50,
+            },
+            1: {
+                x: 150,
+                y: 600,
+            },
+            2: {
+                x: 400,
+                y: 400,
+            },
+            3: {
+                x: 450,
+                y: 600,
+            },
+            4: {
+                x: 580,
+                y: 300,
+            },
+            5: {
+                x: 630,
+                y: 600,
+            },
+            6: {
+                x: 800,
+                y: 300,
+            },
+            7: {
+                x: 100,
+                y: 200,
+            },
+            8: {
+                x: 800,
+                y: 800,
+            },
+            9: {
+                x: 250,
+                y: 250,
+            }
+        };
+
+        //create a mapped version of where targets will go,
+        //do mapping below once we load & know all the genres
+        var genreTargets = d3.map();
 
         this.setupSVG = function() {
             this.width = document.body.clientWidth; //24;
@@ -25,17 +82,12 @@ define(["jquery", 'd3'], function($, d3) {
                 .attr("width", this.width)
                 .attr("height", this.height);
 
-            bubble = d3.layout.pack()
-                .sort(null)
-                .size([this.width, this.height])
-                .padding(1.5);
-
-
 
             // the max margin that we let the svg element get set to
             // see bindWatchers method below
             this.scrollMax = $(this.selector).height() - this.height;
             console.log(this.scrollMax);
+
         };
 
         //create an object with props for each year with a value of 0
@@ -59,87 +111,85 @@ define(["jquery", 'd3'], function($, d3) {
                             d[prop] = +d[prop];
                         }
                     }
-
                     d.supportYears = new BaseYears();
-
+                    //d.supportYears = d3.map(d.supportYears); //hacky!
                     var yearcount = 0;
                     for (var i = d.start; i <= d.end; i++) {
                         d.supportYears[i] = yearcount;
                         yearcount++;
                     }
-
-
+                    d.radius = 0;
+                    genres.push(d.genre);
                     return d;
                 })
                 .get(function(error, rows) {
-                    //console.log(rows);
-                    // self.nested_data = d3.nest()
-                    //     .key(function(d) {
-                    //         return d.year;
-                    //     })
-                    //     .map(rows, d3.map);
 
-                    console.log(rows);
+                    nodes = rows; //need this to be available to ticks
 
-                    var circles = self.svg.selectAll("circle")
+                    //takes the genres array and condenses it down to unqiue values
+                    genres = d3.scale.ordinal().domain(genres).domain();
+                    //take the genres and map them to a target
+                    genres.forEach(function(g, i) {
+                        genreTargets.set(g, targets[i]);
+                    });
+
+
+                    force = d3.layout.force()
+                        .gravity(0.08)
+                        .friction(0.85)
+                        .charge(function(d) {
+                            //console.log(d);
+                            //console.log(-Math.pow(d.radius, 2.0) / 8);
+                            return -Math.pow(d.radius, 2.0) / 8;
+                            //return -30;
+                        })
+                        .nodes(nodes)
+                        .size([self.width, self.height])
+                        .on("tick", self.tick)
+                        .start();
+
+                    node = self.svg.selectAll(".node")
                         .data(rows)
-                        .enter()
-                        .append("circle");
-
-
-                    var circleAttributes = circles
-                        .attr('cx', function(d, i) {
-                            //console.log(d, i);
-                            return (i + 1) * 10 + 50;
+                        .enter().append("circle")
+                        .attr("cx", function(d) {
+                            return d.x;
                         })
-                        .attr('cy', function(d, i) {
-                            // rand = Math.random();
-                            // if (rand < 0.3) {
-                            //     return (100 * Math.random()) + 100;
-                            // } else if (rand > 0.7) {
-                            //     return (100 * Math.random()) + 500;
+                        .attr("cy", function(d) {
+                            return d.y;
+                        })
+                        .attr("r", function(d) {
+                            return d.radius;
+                        })
+                        .attr('class', function(d) {
+                            //console.log(d);
+                            var layerName = makeSafeForCSS(d.genre);
+                            return 'node layer-' + layerName + ' node-' + d.index;
+                        });
 
-                            // } else {
-                            //     return (100 * Math.random()) + 300;
-                            // }
-                            return i * 1.5 + 50;
-                        })
-                        .attr("class", function(d) { /*console.log(d);*/
-                            var layerName = makeSafeForCSS(d.genre); //give us cleaner css names
-                            return 'layer-' + layerName;
-                        })
-                        .attr("r", 0);
-                // .style("fill", function(d, i) {
-                //     return colorScale(i);
-                // });
 
 
                 });
 
-            //     //load grantees from the combined csv and turn them into a nice nest
-            //     if (this.showGranteeLinks) {
-            //         d3.csv("/data/" + this.path + "/combined.csv")
-            //             .row(function(d) {
-            //                 d.year = +d.year;
-            //                 return d;
-            //             })
-            //             .get(function(error, rows) {
-            //                 self.grantees = d3.nest()
-            //                     .key(function(d) {
-            //                         return d.location;
-            //                     })
-            //                     .key(function(d) {
-            //                         return d.year;
-            //                     })
-            //                     .map(rows, d3.map);
+        };
 
-            //             });
+        this.tick = function(e) {
+            //console.log(e)
 
-            //     }
-            // };
+            nodes.forEach(function(o, i) {
+                //from our targets list, figure out where these should move
+                var tgt = genreTargets.get(o.genre);
 
+                //var tgt = targets[o.index % 8];
+                o.x = o.x + (tgt.x - o.x) * (damper * 0.1) * e.alpha * 1.1;
+                o.y = o.y + (tgt.y - o.y) * (damper * 0.1) * e.alpha * 1.1;
+            });
 
-
+            node.attr("cx", function(d) {
+                return d.x;
+            })
+                .attr("cy", function(d) {
+                    return d.y;
+                });
 
         };
 
@@ -174,26 +224,25 @@ define(["jquery", 'd3'], function($, d3) {
                     'marginTop': correction
                 });
 
+                //console.log(nodes);
 
+                nodes.forEach(function(o, i) {
 
-                //adjust the size of the circles as the document changes
-                d3.selectAll("circle")
-                    .transition()
-                    .duration(200)
-                    .attr("r", function(d) {
-                        //console.log(d);
-                        var map = d3.map(d.supportYears);
-                        //console.log(map.has(year));
-                        var support = map.get(window.year);
-                        if (isNaN(support)) {
-                            support = 0;
-                        }
-                        //console.log(support * 3);
-                        //console.log(map.value(year));
-                        //var support = d.supportYears[year.toString()];
-                        //console.log(support);
-                        return (support * 3);
-                    });
+                    //this is crazy inefficient
+                    var map = d3.map(o.supportYears);
+
+                    var r = map.get(window.year);
+                    if (r) {
+                        r = r * 1.5;
+                        o.radius = r;
+                        self.svg.selectAll(".node-" + i)
+                            .attr('r', r);
+                    }
+
+                    map = null;
+
+                });
+                force.start();
 
             });
         };
