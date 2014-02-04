@@ -112,7 +112,6 @@ define(["jquery", 'd3'], function($, d3) {
                         }
                     }
                     d.supportYears = new BaseYears();
-                    //d.supportYears = d3.map(d.supportYears); //hacky!
                     var yearcount = 0;
                     for (var i = d.start; i <= d.end; i++) {
                         d.supportYears[i] = yearcount;
@@ -233,7 +232,7 @@ define(["jquery", 'd3'], function($, d3) {
 
                     var r = map.get(window.year);
                     if (r) {
-                        r = r * 1.5;
+                        r = r * 1.2;
                         o.radius = r;
                         self.svg.selectAll(".node-" + i)
                             .attr('r', r);

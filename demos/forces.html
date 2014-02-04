@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+.node {
+  stroke-width: 1.5px;
+}
+
+</style>
+<body>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+
+var width = 960,
+    height = 700;
+
+var fill = d3.scale.category10();
+
+var damper = 0.3;
+
+
+var targets = {
+  0: {
+    x: 50,
+    y: 50
+  },
+  1: {
+    x: 150,
+    y: 600
+  },
+  2: {
+    x: 400,
+    y: 400
+  },
+  3: {
+    x: 450,
+    y: 600
+  },
+  4: {
+    x: 580,
+    y: 300
+  },
+  5: {
+    x: 630,
+    y: 600
+  },
+  6: {
+    x: 800,
+    y: 300
+  }, 
+  7: {
+    x: 50,
+    y: 0
+  },
+   8: {
+    x: 800,
+    y: 800
+  }
+};
+
+
+
+var nodes = d3.range(100).map(function(i) {
+  return {index: i, radius: 30*Math.random()};
+});
+
+console.log(nodes);
+
+var force = d3.layout.force()
+    .gravity(0.08)
+    .friction(0.85)
+    .charge(function(d){
+      //console.log(d);
+      //console.log(-Math.pow(d.radius, 2.0) / 8);
+      return -Math.pow(d.radius, 2.0) / 8;
+      //return -30;
+    })
+    .nodes(nodes)
+    .size([width, height])
+    .on("tick", tick)
+    .start();
+    
+
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+var node = svg.selectAll(".node")
+    .data(nodes)
+    .enter().append("circle")
+      // .attr("class", "node")
+      .attr("cx", function(d) { return d.x; })
+      .attr("cy", function(d) { return d.y; })
+      .attr("r", function(d){
+          return d.radius;
+      })
+      .attr('class',function(d){
+        return 'node node-'+d.index;
+      })
+      .style("fill", function(d, i) { 
+        return fill(i % 8); 
+      })
+      .style("stroke", function(d, i) { return d3.rgb(fill(i % 8 )).darker(2); });
+   
+
+
+function tick(e) {
+  //console.log(e)
+  
+   nodes.forEach(function(o, i) {
+
+    var tgt = targets[ o.index % 8 ];
+
+    o.x = o.x + (tgt.x - o.x ) * (damper * 0.1) * e.alpha * 1.1;
+    o.y = o.y + (tgt.y - o.y ) * (damper * 0.1) * e.alpha * 1.1;
+  });
+
+  node.attr("cx", function(d) { return d.x; })
+      .attr("cy", function(d) { return d.y; });
+
+  //var mx = 
+
+}
+
+// force.start();
+// //for (var i = 0; i < n; ++i) force.tick();
+// force.stop();
+// 
+function updateSize(idx,r){
+  nodes[idx].radius = r;
+  d3.select(".node-"+idx)
+    .attr('r',r);
+}
+
+
+</script>
