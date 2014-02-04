@@ -79,7 +79,7 @@ define(["jquery", 'd3'], function($, d3) {
                     //     })
                     //     .map(rows, d3.map);
 
-
+                    console.log(rows);
 
                     var circles = self.svg.selectAll("circle")
                         .data(rows)
@@ -104,11 +104,14 @@ define(["jquery", 'd3'], function($, d3) {
                             // }
                             return i * 1.5 + 50;
                         })
-                        .attr("r", 0)
-                        .style("fill", function(d, i) {
-                            return colorScale(i);
-                        });
-
+                        .attr("class", function(d) { /*console.log(d);*/
+                            var layerName = makeSafeForCSS(d.genre); //give us cleaner css names
+                            return 'layer-' + layerName;
+                        })
+                        .attr("r", 0);
+                // .style("fill", function(d, i) {
+                //     return colorScale(i);
+                // });
 
 
                 });
@@ -198,6 +201,16 @@ define(["jquery", 'd3'], function($, d3) {
         this.setupSVG();
         this.initData();
         this.bindWatchers();
+
+        function makeSafeForCSS(name) {
+            return name.replace(/[^a-z0-9]/g, function(s) {
+                var c = s.charCodeAt(0);
+                if (c == 32) return '-';
+                if (c >= 65 && c <= 90) return '' + s.toLowerCase();
+                return '';
+                return '__' + ('000' + c.toString(16)).slice(-4);
+            });
+        }
 
     };
 
