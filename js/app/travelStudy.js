@@ -58,8 +58,6 @@ require(["jquery", "async!http://maps.google.com/maps/api/js?sensor=false!callba
 
     map.mapTypes.set(MY_MAPTYPE_ID, customMapType);
 
-    console.log(window.year);
-
     mapData = new google.maps.FusionTablesLayer({
         query: {
             select: "Destination",

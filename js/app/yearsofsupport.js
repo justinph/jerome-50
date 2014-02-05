@@ -14,7 +14,6 @@ define(["jquery", 'd3'], function($, d3) {
 
     return function yearsOfSupport(idx) {
         this.idx = idx;
-        console.log(this.idx);
         this.selector = 'section.s' + idx;
 
         var force, node;
@@ -76,9 +75,6 @@ define(["jquery", 'd3'], function($, d3) {
         this.setupSVG = function() {
             this.width = document.body.clientWidth; //24;
             this.height = $(window).height(); //$(this.selector).height();
-
-            console.log($(window).height());
-
             this.svg = d3.select(this.selector).append("svg")
                 .attr("width", this.width)
                 .attr("height", this.height);
@@ -87,8 +83,6 @@ define(["jquery", 'd3'], function($, d3) {
             // the max margin that we let the svg element get set to
             // see bindWatchers method below
             this.scrollMax = $(this.selector).height() - this.height;
-            console.log(this.scrollMax);
-
         };
 
         //create an object with props for each year with a value of 0
@@ -164,7 +158,9 @@ define(["jquery", 'd3'], function($, d3) {
                             //console.log(d);
                             var layerName = makeSafeForCSS(d.genre);
                             return 'node layer-' + layerName + ' node-' + d.index;
-                        });
+                        })
+                    //.on('mouseover', tip.show)
+                    //.on('mouseout', tip.hide);
 
 
 
