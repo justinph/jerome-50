@@ -1,4 +1,4 @@
-define(["jquery", 'd3'], function($, d3) {
+define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
     "use strict";
     /*
     This makes an area graph out of general program grants and applications
@@ -23,6 +23,8 @@ define(["jquery", 'd3'], function($, d3) {
         var genres = [];
 
         var nodes = [];
+
+        var correction = 0;
 
         //set up some target areas on screen
         var targets = {
@@ -159,8 +161,42 @@ define(["jquery", 'd3'], function($, d3) {
                             var layerName = makeSafeForCSS(d.genre);
                             return 'node layer-' + layerName + ' node-' + d.index;
                         })
-                    //.on('mouseover', tip.show)
-                    //.on('mouseout', tip.hide);
+                        .on("mouseover", function(d) {
+                            //this is very rudimentary
+                            /*
+                            TODO: Make it handle taps and touch events
+                            toggle on click/touchs
+                             */
+
+                            //Get this bar's x/y values, then augment for the tooltip
+                            var xPosition = parseFloat(d3.select(this).attr("cx"));
+                            var yPosition = parseFloat(d3.select(this).attr("cy")) + correction;
+                            var map = d3.map(d.supportYears);
+                            var data = {
+                                genre: d.genre,
+                                name: d.name,
+                                link: d.link,
+                                yearsOfSupport: map.get(window.year),
+                                start: d.start,
+                                end: d.end,
+                            };
+
+                            var source = $('#orgs-tooltip').html();
+                            var template = Handlebars.compile(source);
+                            $(self.selector + " .tooltip")
+                                .html(template(data))
+                                .css({
+                                    top: yPosition,
+                                    left: xPosition
+                                }).removeClass('hidden');
+
+
+                        }).on("mouseout", function() {
+
+                            //Hide the tooltip
+                            $(self.selector + " .tooltip").addClass('hidden');
+
+                        });
 
 
 
@@ -211,7 +247,7 @@ define(["jquery", 'd3'], function($, d3) {
             var svg = $(self.selector + ' svg');
             //read the existing margin offset css, strip 'px', convert to int
             var oldoffset = +svg.css('marginTop').replace(/[^-\d\.]/g, '');
-            var correction = (svg.offset().top * -1) + oldoffset;
+            correction = (svg.offset().top * -1) + oldoffset;
             //don't let the correction get taller than the height - svg element (set somwhere above)
             if (correction > self.scrollMax) {
                 correction = this.scrollMax;
