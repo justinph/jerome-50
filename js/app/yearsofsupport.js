@@ -14,6 +14,7 @@ define(["jquery", 'd3'], function($, d3) {
 
     return function yearsOfSupport(idx) {
         this.idx = idx;
+        console.log(this.idx);
         this.selector = 'section.s' + idx;
 
         var force, node;
@@ -195,60 +196,65 @@ define(["jquery", 'd3'], function($, d3) {
 
         this.bindWatchers = function() {
             var self = this;
+            //only update if the updateYear message has the correct window index
+            $(window).on('updateYear:' + self.idx, function() {
+                self.kickTicks();
+                self.updateSVGPos();
+            });
+        };
+
+        /**
+         * what is going on here?
+         * because of our fancy side-scrolly thingy, we can't just set the svg element to position fixed
+         *  scrolling up/down wont work if we do that
+         *  so instead, we have to constantly adjust the margin of the svg element relative to where it should be
+         *  this does that by taking the offset and adding it to (or subtracting it from) the margin
+         */
+        this.updateSVGPos = function() {
+            var self = this;
             var svg = $(self.selector + ' svg');
+            //read the existing margin offset css, strip 'px', convert to int
+            var oldoffset = +svg.css('marginTop').replace(/[^-\d\.]/g, '');
+            var correction = (svg.offset().top * -1) + oldoffset;
+            //don't let the correction get taller than the height - svg element (set somwhere above)
+            if (correction > self.scrollMax) {
+                correction = this.scrollMax;
+            }
+            //set the margin correction on the element
+            svg.css({
+                'marginTop': correction
+            });
+        };
+        /**
+         * Recalculates the size of every node, update thems, then kicks off the tick on the d3.force
+         * @return null
+         */
+        this.kickTicks = function() {
+            var self = this;
+            nodes.forEach(function(o, i) {
 
-            /*TODO:
-            make this only update when the thing is in the viewport or going to be in the viewport shortly
-            */
-            $('#wrap').on('scroll', function() {
+                //this is crazy inefficient
+                var map = d3.map(o.supportYears);
 
-                /*
-                what is going on here?
-                
-                because of our fancy side-scrolly thingy, we can't just set the svg element to position fixed
-                scrolling up/down wont work if we do that
-                so instead, we have to constantly adjust the margin of the svg element relative to where it should be
-                this does that by taking the offset and adding it to (or subtracting it from) the margin
-                */
-
-                //read the existing margin offset css, strip 'px', convert to int
-                var oldoffset = +svg.css('marginTop').replace(/[^-\d\.]/g, '');
-                var correction = (svg.offset().top * -1) + oldoffset;
-                //don't let the correction get taller than the height - svg element (set somwhere above)
-                if (correction > self.scrollMax) {
-                    correction = this.scrollMax;
+                var r = map.get(window.year);
+                if (!isNaN(r)) {
+                    r = r * 1.2;
+                    o.radius = r;
+                    self.svg.selectAll(".node-" + i)
+                        .attr('r', r);
                 }
-                //set the margin correction on the element
-                svg.css({
-                    'marginTop': correction
-                });
 
-                //console.log(nodes);
-
-                nodes.forEach(function(o, i) {
-
-                    //this is crazy inefficient
-                    var map = d3.map(o.supportYears);
-
-                    var r = map.get(window.year);
-                    if (r) {
-                        r = r * 1.2;
-                        o.radius = r;
-                        self.svg.selectAll(".node-" + i)
-                            .attr('r', r);
-                    }
-
-                    map = null;
-
-                });
-                force.start();
+                map = null;
 
             });
+            force.start();
         };
 
         this.setupSVG();
         this.initData();
         this.bindWatchers();
+
+
 
         function makeSafeForCSS(name) {
             return name.replace(/[^a-z0-9]/g, function(s) {
