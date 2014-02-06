@@ -26,6 +26,8 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
 
         var correction = 0;
 
+        var closeTooltipTimeout;
+
         //set up some target areas on screen
         var targets = {
             0: {
@@ -162,6 +164,8 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
                             return 'node layer-' + layerName + ' node-' + d.index;
                         })
                         .on("mouseover", function(d) {
+
+                            window.clearTimeout(closeTooltipTimeout);
                             //this is very rudimentary
                             /*
                             TODO: Make it handle taps and touch events
@@ -169,8 +173,8 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
                              */
 
                             //Get this bar's x/y values, then augment for the tooltip
-                            var xPosition = parseFloat(d3.select(this).attr("cx"));
-                            var yPosition = parseFloat(d3.select(this).attr("cy")) + correction;
+                            var xPosition = parseFloat(d3.select(this).attr("cx")) + 20;
+                            var yPosition = parseFloat(d3.select(this).attr("cy")) + correction - 60;
                             var map = d3.map(d.supportYears);
                             var data = {
                                 genre: d.genre,
@@ -194,7 +198,9 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
                         }).on("mouseout", function() {
 
                             //Hide the tooltip
-                            $(self.selector + " .tooltip").addClass('hidden');
+                            closeTooltipTimeout = setTimeout(function() {
+                                $(self.selector + " .tooltip").addClass('hidden');
+                            }, 500);
 
                         });
 
