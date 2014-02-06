@@ -174,7 +174,7 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
 
                             //Get this bar's x/y values, then augment for the tooltip
                             var xPosition = parseFloat(d3.select(this).attr("cx")) + 20;
-                            var yPosition = parseFloat(d3.select(this).attr("cy")) + correction - 60;
+                            var yPosition = parseFloat(d3.select(this).attr("cy")) - 60; //+correction
                             var map = d3.map(d.supportYears);
                             var data = {
                                 genre: d.genre,
@@ -197,10 +197,10 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
 
                         }).on("mouseout", function() {
 
-                            //Hide the tooltip
-                            closeTooltipTimeout = setTimeout(function() {
-                                $(self.selector + " .tooltip").addClass('hidden');
-                            }, 1000);
+                    //Hide the tooltip
+                    closeTooltipTimeout = setTimeout(function() {
+                        $(self.selector + " .tooltip").addClass('hidden');
+                    }, 1000);
 
                         });
 
