@@ -118,7 +118,7 @@
     </script>
 
     <script id="orgs-tooltip" type="text/x-handlebars-template">
-        <h2 class='grantee'>{{name}}</h2>
+        <h2 class='grantee'>{{#if link}}<a href="{{link}}">{{/if}}{{name}}{{#if link}}</a>{{/if}}</h2>
         <h3 class='genre'>{{genre}}</h3>
         <h3 class='years'>{{yearsOfSupport}} years</h3>
         <h3 class='years'>{{start}}&ndash;{{end}}</h3>

@@ -200,7 +200,7 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
                             //Hide the tooltip
                             closeTooltipTimeout = setTimeout(function() {
                                 $(self.selector + " .tooltip").addClass('hidden');
-                            }, 500);
+                            }, 1000);
 
                         });
 

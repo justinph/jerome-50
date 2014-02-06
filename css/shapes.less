@@ -1,58 +1,97 @@
 
 .areaApplications {
-  fill: #d9d9d9;
+  //fill: #d9d9d9;
+  fill: #a3a3a3;
 }
 .areaGranted {
-  fill: #638a5a;
+  //fill: #638a5a;
+  fill: #dfdfdf;
 }
 .areaApplications2, .layer-denied {
-  fill: #d9d9d9;
+  //fill: #d9d9d9;
+  fill: #a3a3a3
 }
 .areaGranted2, .layer-granted{
-  fill: #8a6e56;
+  //fill: #8a6e56;
+  fill: #dfdfdf;
 }
 
 
-
+.s2 circle{
+	stroke-width: 1;
+}
 
 .layer-visual-arts, .layer-documentary{
-	fill: #99ffff;
-	//blue
+	// //blue
+	fill: #efab60;
+}
+.s2 .layer-visual-arts{
+	stroke: darken( #efab60, 20%);
 }
 
 .layer-theater, .layer-animation{
 	//red
-	fill: #ff6666;
+	fill: #c1915d;
+}
+.s2 .layer-theater{
+	stroke: darken(#c1915d,20%);
 }
 
+
 .layer-dance, .layer-narrative{
-	fill: #ffff99;
 	//yellow
+	fill: #fde495;
+}
+.s2 .layer-dance{
+	stroke: darken(rgb(248,208,79), 20%);
 }
 
 .layer-media-artsfilm-and-video,
 .layer-film-and-video{
-	fill: #cc9966;
 	//measle_brown
+	fill: rgb(170,132,37);
+}
+.s2 .layer-film-and-video{
+	stroke: darken(rgb(170,132,37), 10%);
 }
 
 .layer-literature, .layer-experimental{
-	fill: #8a6e56;
+	fill: #e0917c;
+}
+.s2 .layer-literature{
+	stroke: darken(#e0917c, 10%);
 }
 
 .layer-music{
-	fill:#cccccc;
 	//measle_grey
+	fill:#d18282;
+}
+.s2 .layer-music{
+	stroke: darken(#d18282, 10%);
 }
 
 .layer-arts-criticism,
 .layer-criticism{
-	fill: #99ff99;
+	//fill: #99ff99;
 	//unknown
+	fill: rgb(247,204,153);
+}
+.s2 .layer-criticism{
+	//stroke-width: 1;
+	stroke: darken(rgb(247,204,153), 10%);
 }
 
-.layer-other-disciplines, .layer-multidisciplinary,
-.layer-miscellaneous{
-	fill: #9999ff;
+.layer-other-disciplines, .layer-multidisciplinary{
 	//small_purple
+	fill: #b7b1ab;
+}
+.s2 .layer-multidisciplinary{
+	stroke: darken(#b7b1ab,20%);
+}
+
+.layer-miscellaneous{
+	fill: rgb(222,212,181);
+}
+.s2 .layer-miscellaneous{
+	stroke: darken(rgb(222,212,181),20%);
 }
