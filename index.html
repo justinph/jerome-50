@@ -18,7 +18,15 @@
     <div id="wrap">
         <section class="s0"></section>
         <section class="s1"><h1>Overall</h1></section>
-        <section class="s2"><h1>Organizations</h1><div class='tooltip hidden'></div></section>
+        <section class="s2"><h1>Organizations</h1>
+            <div class='textDisplay'>
+                <div class="intro">
+                    <p>In its first 50 years, the Jerome Foundation made grants totaling $47,723,000 to Minnesota organizations and individuals and $38,945,000 to New York City organizations and individuals.  Funding outside of those two geographic areas, which took place early in the Foundation’s history totaled $1,868,000.</p>
+
+                </div>
+            </div>
+
+            <div class='tooltip hidden'></div></section>
         <section class="s3"><h1>Travel &amp; Study</h1>
             <div id="map-canvas"></div>
             <a href="#" id='year-down'></a>
@@ -27,14 +35,16 @@
         <section class="s4"><h1>Film &amp; Video</h1>
 
               <div class='textDisplay'>
-                <h2>FILM AND VIDEO PRODUCTION SUPPORT FOR INDIVIDUAL ARTISTS
-                856 GRANTS IN 50 YEARS</h2>
+                <div class="intro">
+                    <h2>Film and Video Production Support for Individual Artists</h2>
+                    <h3>856 Grants in 50 Years</h3>
 
-                <p>In its early years, the Foundation made grants to individual filmmakers and to film organizations that Jerome Hill wanted to support. In 1978, the Foundation structured its program of production grants for film and video directors in the form of the New York City Film and Video Program. In 1993, it did the same with the Minnesota Film and Video Program. From 1978 to 1993, grants to Minnesota film and video directors were made through a program operated by Film in the Cities.</p>
+                    <p>In its early years, the Foundation made grants to individual filmmakers and to film organizations that Jerome Hill wanted to support. In 1978, the Foundation structured its program of production grants for film and video directors in the form of the New York City Film and Video Program. In 1993, it did the same with the Minnesota Film and Video Program. From 1978 to 1993, grants to Minnesota film and video directors were made through a program operated by Film in the Cities.</p>
 
-                <p>Over 50 years, 347 grants totaling $2,9978,700 were made to film and video directors in Minnesota and the four surrounding states. In the same 50 years, 509 grants totaling $6,027,273 were made to film and video directors in New York City.</p>
+                    <p>Over 50 years, 347 grants totaling $2,9978,700 were made to film and video directors in Minnesota and the four surrounding states. In the same 50 years, 509 grants totaling $6,027,273 were made to film and video directors in New York City.</p>
 
-                <p>These productions speak to the value the Foundation places on the individual creative voice.</p>
+                    <p>These productions speak to the value the Foundation places on the individual creative voice.</p>
+                </div>
 
             </div>
             <div class='granteesDisplay'>
@@ -42,6 +52,13 @@
         </section>
         <section class="s5"><h1>General Program</h1>
             <div class='textDisplay'>
+                <div class="intro">
+                    <h2>Supporting Arts Institutions</h2>
+                    <h3>Lots of Grants in 50 Years</h3>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+                </div>
             </div>
             <div class='granteesDisplay'>
             </div>
@@ -55,6 +72,10 @@
 
     <script id="gpfv-template" type="text/x-handlebars-template">
         <div class='gpfv-info'>
+
+            {{#if intro}}
+                {{{intro}}}
+            {{/if}}
             <div class='finance'>
             {{#if [total dollars]}}
                 <h2>${{[total dollars]}}</h2>

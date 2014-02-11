@@ -16,6 +16,8 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
         this.doFVGrantees = doFVGrantees;
         this.doGPGrantees = doGPGrantees;
         this.grantees = null;
+        this.intro = $(this.selector).find('.textDisplay').html(); //select the parent of .intro
+
 
         var parseDate = d3.time.format("%Y").parse;
 
@@ -261,11 +263,15 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
         this.addWatchers = function() {
             var self = this;
             $(window).on('updateYear:' + self.idx, function() {
-                if (window.year > 1964) {
+                if (window.year >= 1964) {
                     if (typeof self.nested_data === 'object') {
                         var thisYearData = self.nested_data.get(window.year);
                         thisYearData[0].doFVGrantees = self.doFVGrantees;
                         thisYearData[0].doGPGrantees = self.doGPGrantees;
+
+                        if (window.year === 1964) {
+                            thisYearData[0].intro = self.intro;
+                        }
 
                         //console.log(thisYearData[0]);
                         var source = $('#gpfv-template').html();
