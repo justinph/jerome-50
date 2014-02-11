@@ -72,6 +72,40 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
 
         };
 
+
+
+        this.initData = function() {
+            var self = this;
+
+            d3.csv("/data/overall.csv")
+                .row(function(d) {
+                    //goes through all the properties on the object and converts them to ints
+                    for (var prop in d) {
+                        if (!isNaN(d[prop])) {
+                            d[prop] = +d[prop];
+                        }
+                    }
+
+
+                    return d;
+                })
+                .get(function(error, rows) {
+                    self.nested_data = d3.nest()
+                        .key(function(d) {
+                            return d.year;
+                        })
+                        .map(rows, d3.map);
+
+                    self.doApprovedDeniedClean();
+                    self.doAssetBreakdown();
+                    self.doAssets();
+
+                });
+
+            //load grantees from the combined csv and turn them into a nice nest
+
+        };
+
         /**
          * Takes the already generated nested_data and makes an array suitable for stacking out of it
          * Previously, this had been from a seperate file, but this is no longer necessary
@@ -124,39 +158,119 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
         };
 
 
-
-
-        this.initData = function() {
+        /**
+         * Generates and displays the centered assets area graph
+         */
+        this.doAssets = function() {
             var self = this;
 
-            d3.csv("/data/overall.csv")
-                .row(function(d) {
-                    //goes through all the properties on the object and converts them to ints
-                    for (var prop in d) {
-                        if (!isNaN(d[prop])) {
-                            d[prop] = +d[prop];
-                        }
-                    }
+            var assets = [];
 
-
-                    return d;
-                })
-                .get(function(error, rows) {
-                    self.nested_data = d3.nest()
-                        .key(function(d) {
-                            return d.year;
-                        })
-                        .map(rows, d3.map);
-
-
-                    self.doApprovedDeniedClean();
-                //self.doGenresClean();
-
+            self.nested_data.forEach(function(key, value) {
+                //console.log(key, value[0].approved);
+                var year = parseDate(key);
+                assets.push({
+                    'key': 'asset',
+                    'year': year,
+                    'number': value[0].dollars_total
                 });
+            });
 
-            //load grantees from the combined csv and turn them into a nice nest
+            //console.log(approvedDenied);
+
+            var layers = self.stack(nest.entries(assets));
+
+            this.x.domain(d3.extent(assets, function(d) {
+                return d.year;
+            }));
+            this.y.domain([0, d3.max(assets, function(d) {
+                return d.y0 + d.y;
+            })]);
+
+            self.svg.selectAll(".layer")
+                .data(layers)
+                .enter().append("path")
+                .attr("class", function(d) {
+                    var layerName = makeSafeForCSS(d.key); //give us cleaner css names
+                    return 'layer-' + layerName;
+                })
+                .attr("d", function(d) {
+                    //console.log(d.values);
+                    return self.area(d.values);
+                })
+                .attr("transform", "rotate(90), translate(0,-" + (this.maxHeight + (this.width / 2)) + "), scale(" + self.ratio + ",1)");
+            //totally repeating myself and this is crazy dirty... but its fast and works
+            self.svg.selectAll(".layer")
+                .data(layers)
+                .enter().append("path")
+                .attr("class", function(d) {
+                    var layerName = makeSafeForCSS(d.key); //give us cleaner css names
+                    return 'layer-' + layerName;
+                })
+                .attr("d", function(d) {
+                    //console.log(d.values);
+                    return self.area(d.values);
+                })
+                .attr("transform", "rotate(90), translate(0,-" + ((this.width / 2) - this.maxHeight) + "), scale(" + self.ratio + ",-1)");
+
+
 
         };
+
+
+        this.doAssetBreakdown = function() {
+            var self = this;
+
+            var assetBreakDown = [];
+
+
+            self.nested_data.forEach(function(key, value) {
+                //console.log(key, value[0].approved);
+                var year = parseDate(key);
+                assetBreakDown.push({
+                    'key': 'other',
+                    'year': year,
+                    'number': value[0].dollars_other
+                });
+                assetBreakDown.push({
+                    'key': 'mn',
+                    'year': year,
+                    'number': value[0].dollars_mn
+                });
+                assetBreakDown.push({
+                    'key': 'nyc',
+                    'year': year,
+                    'number': value[0].dollars_nyc
+                });
+
+            });
+
+            //console.log(approvedDenied);
+
+            var layers = self.stack(nest.entries(assetBreakDown));
+
+            this.x.domain(d3.extent(assetBreakDown, function(d) {
+                return d.year;
+            }));
+            this.y.domain([0, d3.max(assetBreakDown, function(d) {
+                return d.y0 + d.y;
+            })]);
+
+            self.svg.selectAll(".layer")
+                .data(layers)
+                .enter().append("path")
+                .attr("class", function(d) {
+                    var layerName = makeSafeForCSS(d.key); //give us cleaner css names
+                    return 'layer-' + layerName;
+                })
+                .attr("d", function(d) {
+                    //console.log(d.values);
+                    return self.area(d.values);
+                })
+                .attr("transform", "rotate(90), translate(0,-" + self.offset + "), scale(" + self.ratio + ",-1)");
+
+        };
+
 
         this.addWatchers = function() {
             var self = this;
