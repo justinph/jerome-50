@@ -131,7 +131,6 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
 
             d3.csv("/data/overall.csv")
                 .row(function(d) {
-                    console.log('row!');
                     //goes through all the properties on the object and converts them to ints
                     for (var prop in d) {
                         if (!isNaN(d[prop])) {
@@ -140,19 +139,9 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
                     }
 
 
-
-                    // //calculate total dollars
-                    // d['total dollars'] = commaSeparateNumber(d['dollars mn'] + d['dollars nyc'] + d['dollars other']);
-
-                    // d['dollars mn'] = makeK(d['dollars mn']);
-                    // d['dollars other'] = makeK(d['dollars other']);
-                    // d['dollars nyc'] = makeK(d['dollars nyc']);
-
-
                     return d;
                 })
                 .get(function(error, rows) {
-                    console.log('get!');
                     self.nested_data = d3.nest()
                         .key(function(d) {
                             return d.year;
@@ -161,7 +150,7 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
 
 
                     self.doApprovedDeniedClean();
-                    //self.doGenresClean();
+                //self.doGenresClean();
 
                 });
 
