@@ -34,9 +34,9 @@ requirejs(['app/yearsofsupport'], function(YearsOfSupport) {
 
 requirejs(["app/gpfv"], function(GpFv) {
 
-    var fv = new GpFv(4, 'fv', true);
+    var fv = new GpFv(4, 'fv', true, false);
 
-    var gp = new GpFv(5, 'gp', false);
+    var gp = new GpFv(5, 'gp', false, true);
 
     //console.log(fv, gp);
 

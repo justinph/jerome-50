@@ -43,6 +43,8 @@
         <section class="s5"><h1>General Program</h1>
             <div class='textDisplay'>
             </div>
+            <div class='granteesDisplay'>
+            </div>
         </section>       
     </div>
 
@@ -78,12 +80,20 @@
                 &nbsp; ${{[dollars other]}} Other
             {{/if}}
             
-            {{#if showGranteeLinks}}
+            {{#if doFVGrantees}}
                 {{#if approved}}
                     <br /><a href="#" class="view-grantees" data-location='Minnesota'>View MN grantees</a>
                     <br /><a href="#" class="view-grantees" data-location="New York City">View NYC grantees</a>
                 {{/if}}
             {{/if}}
+
+
+            {{#if doGPGrantees}}
+                <br /><a href="#" class="view-grantees" data-location='general'>View Grantees</a>
+                
+            {{/if}}
+
+
             </div>
             <div class="genres">
                 {{#each genres}}
@@ -96,8 +106,8 @@
 
     </script>
 
-    <script id="grantees-list" type="text/x-handlebars-template">
-        <div class="grantees-wrapper">
+    <script id="fv-grantees-list" type="text/x-handlebars-template">
+        <div class="grantees-wrapper fv">
         <ul>
             <h2>{{location}}</h2>
             <h3><a href="#" class='close-grantees'>Hide grantees</a></h3>
@@ -108,7 +118,7 @@
                     <br />{{[Co-applicant name]}}
                 {{/if}}
 
-                {{#if link}}<a href="{{link}}">{{/if}}
+                {{#if link}}<a href="http://{{link}}">{{/if}}
                     <br /><em>{{[Film title]}}</em>
                 {{#if link}}</a>{{/if}}
             </li>
@@ -116,6 +126,22 @@
         </ul>
         </div>
     </script>
+
+    <script id="gp-grantees-list" type="text/x-handlebars-template">
+        <div class="grantees-wrapper gp">
+        <ul>
+            <h3><a href="#" class='close-grantees'>Hide grantees</a></h3>
+            {{#each grantees}}
+            <li>
+                {{#if link}}<a href="http://{{link}}">{{/if}}
+                {{name}}
+                {{#if link}}</a>{{/if}}
+            </li>
+            {{/each}}
+        </ul>
+        </div>
+    </script>
+
 
     <script id="orgs-tooltip" type="text/x-handlebars-template">
         <h2 class='grantee'>{{#if link}}<a href="{{link}}">{{/if}}{{name}}{{#if link}}</a>{{/if}}</h2>

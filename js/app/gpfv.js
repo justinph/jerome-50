@@ -8,12 +8,13 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
 
 
 
-    return function GpFv(idx, path, showGranteeLinks) {
+    return function GpFv(idx, path, doFVGrantees, doGPGrantees) {
         this.idx = idx;
         this.selector = 'section.s' + idx;
         this.path = path;
         this.maxHeight = 300;
-        this.showGranteeLinks = showGranteeLinks;
+        this.doFVGrantees = doFVGrantees;
+        this.doGPGrantees = doGPGrantees;
         this.grantees = null;
 
         var parseDate = d3.time.format("%Y").parse;
@@ -219,7 +220,8 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
                 });
 
             //load grantees from the combined csv and turn them into a nice nest
-            if (this.showGranteeLinks) {
+            if (this.doFVGrantees) {
+                //this is for film/video
                 d3.csv("/data/" + this.path + "/combined.csv")
                     .row(function(d) {
                         d.year = +d.year;
@@ -238,6 +240,22 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
                     });
 
             }
+            if (this.doGPGrantees) {
+                //this is for general program
+                d3.csv("/data/" + this.path + "/combined.csv")
+                    .row(function(d) {
+                        d.year = +d.year;
+                        return d;
+                    })
+                    .get(function(error, rows) {
+                        self.grantees = d3.nest()
+                            .key(function(d) {
+                                return d.year;
+                            })
+                            .map(rows, d3.map);
+                    });
+
+            }
         };
 
         this.addWatchers = function() {
@@ -246,7 +264,9 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
                 if (window.year > 1964) {
                     if (typeof self.nested_data === 'object') {
                         var thisYearData = self.nested_data.get(window.year);
-                        thisYearData[0].showGranteeLinks = self.showGranteeLinks;
+                        thisYearData[0].doFVGrantees = self.doFVGrantees;
+                        thisYearData[0].doGPGrantees = self.doGPGrantees;
+
                         //console.log(thisYearData[0]);
                         var source = $('#gpfv-template').html();
                         var template = Handlebars.compile(source);
@@ -257,23 +277,45 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
                         //probably not the correct spot
                         $('.view-grantees').on('click', function(e) {
                             e.preventDefault();
-                            var location = $(this).data('location');
-                            var grantees = self.grantees.get(location).get(window.year);
-                            if (grantees) {
-                                console.log(grantees);
-                                var data = {
-                                    grantees: grantees,
-                                    location: location,
-                                };
-                                var source = $('#grantees-list').html();
-                                var template = Handlebars.compile(source);
-                                $(self.selector + " .textDisplay").addClass('blurred');
-                                $(self.selector + " .granteesDisplay").html(template(data));
-                                $('.granteesDisplay .close-grantees').click(function() {
-                                    $(self.selector + " .granteesDisplay").empty();
-                                    $(self.selector + " .textDisplay").removeClass('blurred');
-                                });
+
+                            if (self.doFVGrantees) {
+                                var location = $(this).data('location');
+                                var grantees = self.grantees.get(location).get(window.year);
+                                if (grantees) {
+                                    console.log(grantees);
+                                    var data = {
+                                        grantees: grantees,
+                                        location: location,
+                                    };
+                                    var source = $('#fv-grantees-list').html();
+                                    var template = Handlebars.compile(source);
+                                    $(self.selector + " .textDisplay").addClass('blurred');
+                                    $(self.selector + " .granteesDisplay").html(template(data));
+                                    $('.granteesDisplay .close-grantees').click(function() {
+                                        $(self.selector + " .granteesDisplay").empty();
+                                        $(self.selector + " .textDisplay").removeClass('blurred');
+                                    });
+                                }
+
+                            } else if (self.doGPGrantees) {
+                                console.log('i should do gp');
+                                var grantees = self.grantees.get(window.year);
+                                if (grantees) {
+                                    console.log(grantees);
+                                    var data = {
+                                        grantees: grantees,
+                                    };
+                                    var source = $('#gp-grantees-list').html();
+                                    var template = Handlebars.compile(source);
+                                    $(self.selector + " .textDisplay").addClass('blurred');
+                                    $(self.selector + " .granteesDisplay").html(template(data));
+                                    $('.granteesDisplay .close-grantees').click(function() {
+                                        $(self.selector + " .granteesDisplay").empty();
+                                        $(self.selector + " .textDisplay").removeClass('blurred');
+                                    });
+                                }
                             }
+
 
                         });
 
