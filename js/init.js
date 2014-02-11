@@ -27,6 +27,10 @@ requirejs(["app/fifty"], function(fifty) {
     fifty.init();
 });
 
+requirejs(["app/overall"], function(Overall) {
+    new Overall(1);
+});
+
 
 requirejs(['app/yearsofsupport'], function(YearsOfSupport) {
     new YearsOfSupport(2);
