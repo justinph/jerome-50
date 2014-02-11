@@ -15,6 +15,7 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
     return function yearsOfSupport(idx) {
         this.idx = idx;
         this.selector = 'section.s' + idx;
+        this.intro = $(this.selector).find('.textDisplay').html(); //select the parent of .intro
 
         var force, node;
 
@@ -197,10 +198,10 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
 
                         }).on("mouseout", function() {
 
-                    //Hide the tooltip
-                    closeTooltipTimeout = setTimeout(function() {
-                        $(self.selector + " .tooltip").addClass('hidden');
-                    }, 1000);
+                            //Hide the tooltip
+                            closeTooltipTimeout = setTimeout(function() {
+                                $(self.selector + " .tooltip").addClass('hidden');
+                            }, 1000);
 
                         });
 
@@ -238,6 +239,14 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
             $(window).on('updateYear:' + self.idx, function() {
                 self.kickTicks();
                 self.updateSVGPos();
+
+                //hide/show the intro text
+                if (window.year !== 1964) {
+                    $(self.selector).find('.textDisplay').hide();
+                } else {
+                    $(self.selector).find('.textDisplay').show();
+                }
+
             });
         };
 
@@ -291,7 +300,6 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
         this.setupSVG();
         this.initData();
         this.bindWatchers();
-
 
 
         function makeSafeForCSS(name) {
