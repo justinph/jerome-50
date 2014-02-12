@@ -77,10 +77,10 @@ define(["jquery"], function fifty($) {
 
 
             //to force a particular section to load...
-            this.step = 1;
-            this.updateSteps();
-            this.calcYears();
-            $('#wrap').removeClass().addClass('step-' + this.step);
+            // this.step = 1;
+            // this.updateSteps();
+            // this.calcYears();
+            // $('#wrap').removeClass().addClass('step-' + this.step);
 
 
         },
@@ -122,6 +122,9 @@ define(["jquery"], function fifty($) {
             $('#year').text(this.year);
             window.year = this.year;
             $(window).trigger('updateYear:' + this.step);
+
+            $('body').removeClass().addClass('year-' + this.year);
+
 
         }
 
