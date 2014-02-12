@@ -86,6 +86,11 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
                         }
                     }
 
+                    d.asset_size_display = makeK(d['asset size']);
+                    d.dollars_mn_display = makeK(d.dollars_mn);
+                    d.dollars_nyc_display = makeK(d.dollars_nyc);
+                    d.dollars_other_display = makeK(d.dollars_other);
+                    d.dollars_total_display = makeK(d.dollars_total);
 
                     return d;
                 })
@@ -279,6 +284,7 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
                     if (typeof self.nested_data === 'object') {
                         var thisYearData = self.nested_data.get(window.year);
 
+                        console.log(thisYearData);
 
                         if (window.year === 1964) {
                             thisYearData[0].intro = self.intro;
@@ -320,6 +326,10 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
         function makeK(val) {
             var num = Math.round(val / 1000);
             if (num > 0) {
+                if (num > 1000) {
+                    num = (Math.round(num / 100)) / 10;
+                    return num + "M";
+                }
                 return num + "k";
             }
             return false;
@@ -329,7 +339,7 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
         this.setupSVG();
         this.initData();
 
-        //this.addWatchers();
+        this.addWatchers();
 
 
     };

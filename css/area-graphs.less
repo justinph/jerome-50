@@ -1,4 +1,4 @@
-.gpfv-info{
+.area-info{
 	.genres, .finance{
 		width: 47%
 	}
@@ -11,6 +11,23 @@
 		float: right;
 		//background-color: green;
 	}
+    &.overall{
+        .approvedDenied, .assets, .finance{
+            width: 33%;
+        }
+        .approvedDenied{
+            float: left;
+            text-align: left;
+        }
+        .assets{
+            float: left;
+            text-align: center;
+        }
+        .finance{
+            float: right;
+            text-align: right;
+        }
+    }
 }
 //added to make the text blur or not
 .blurred .gpfv-info{
@@ -24,11 +41,11 @@
 	}
 }
 
-h3.grants{
+h2.grants, h3.grants{
 	color: #dfdfdf;
 }
-h3.applications{
-	color: #a3a3a3;
+h2.applications, h3.applications{
+	color: lighten(#a3a3a3, 10%);
 }
 
 

@@ -78,8 +78,59 @@
 
     <script data-main='/js/init' src="/vendor/requirejs/require.js"></script> 
 
+    <script id="overall-template" type="text/x-handlebars-template">
+        <div class='area-info overall'>
+
+            {{#if intro}}
+                {{{intro}}}
+            {{/if}}
+
+
+
+            <div class='approvedDenied'>
+
+            {{#if approved}}
+                <h2 class='grants'>{{approved}} grants approved</h2>
+            {{/if}}
+            
+            {{#if applications}}
+                <h2 class='applications'>{{applications}} applications</h2>
+            {{/if}}
+
+
+            </div>
+
+            <div class="assets">
+                
+                {{#if asset_size_display}}
+                <h2>${{asset_size_display}}<br />in assets</h2>
+                {{/if}}
+            </div>
+
+            <div class="finance">
+
+                {{#if dollars_total_display}}
+                   <h2>${{dollars_total_display}} in grants</h2>
+                {{/if}}
+
+                {{#if dollars_nyc_display}}
+                   &nbsp; <span class='layer-nyc'>${{dollars_nyc_display}} NYC</span> <br />
+                {{/if}}
+
+                {{#if dollars_mn_display}}
+                    <span class='layer-mn'>${{dollars_mn_display}} MN</span> <br />
+                {{/if}}
+
+                {{#if dollars_other_display}}
+                    &nbsp; <span class="layer-other">${{dollars_other_display}} Other</span>
+                {{/if}}
+            </div>
+        </div>
+
+    </script>
+
     <script id="gpfv-template" type="text/x-handlebars-template">
-        <div class='gpfv-info'>
+        <div class='area-info'>
 
             {{#if intro}}
                 {{{intro}}}
