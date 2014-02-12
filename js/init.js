@@ -8,7 +8,8 @@ requirejs.config({
         "hammer": "../vendor/dist/hammer",
         "async": "../vendor/requirejs-plugins/src/async",
         "goog": "../vendor/requirejs-plugins/src/async", //,
-        "handlebars": "../vendor/handlebars/handlebars"
+        "handlebars": "../vendor/handlebars/handlebars",
+        "stellar": "../vendor/jquery.stellar/jquery.stellar"
         //"handlebars": "../vendor/handlebars/handlebars.amd"
         //"propertyParser":  "../vendor/requirejs-plugins/src/propertyParser"
     },
@@ -25,6 +26,10 @@ requirejs.config({
 //handles what happens when someone clicks on the share icons in a story
 requirejs(["app/fifty"], function(fifty) {
     fifty.init();
+});
+
+requirejs(["app/intro"], function(intro) {
+    intro.init();
 });
 
 requirejs(["app/overall"], function(Overall) {
