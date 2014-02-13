@@ -123,7 +123,7 @@ define(["jquery"], function fifty($) {
             window.year = this.year;
             $(window).trigger('updateYear:' + this.step);
 
-            $('body').removeClass().addClass('year-' + this.year);
+            //$('body').removeClass().addClass('year-' + this.year);
 
 
         }
