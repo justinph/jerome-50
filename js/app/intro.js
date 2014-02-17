@@ -17,11 +17,11 @@ define(["jquery", 'stellar'], function intro($, stellar) {
                 if (window.step === 0) {
 
                     var toShow = $('.blurb[data-year-start="' + window.year + '"]');
-                    //var toHide = $('.blurb[data-year-end="' + window.year + '"]');
+                    var toHide = $('.blurb[data-year-end="' + window.year + '"]');
 
-                    $('.blurb').removeClass('shown');
+                    //$('.blurb').removeClass('shown');
                     toShow.addClass('shown');
-                    //toHide.removeClass('shown');
+                    toHide.removeClass('shown');
 
 
                     // $('#wrap').on('scroll', function() {

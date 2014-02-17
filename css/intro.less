@@ -1,12 +1,9 @@
 section.s0{
-	background-image: url(/img/intro/jh_suit.jpg);
-	background-size: 100%;
-	background-attachment: fixed;
-}
-	//background-image: url(/img/intro/jh_suit.jpg);
-	//background-image: url(/img/intro/1968.jpg);
-	// background-repeat: no-repeat;
+	// background-image: url(/img/intro/jh_suit.jpg);
 	// background-size: 100%;
+	// background-attachment: fixed;
+}
+
 
 .spot {
 	// background-attachment: fixed;
@@ -24,15 +21,22 @@ section.s0{
     box-shadow: 0 0px 15px rgba(0, 0, 0, 0.8);
     &.year-start{
     	//background-position: 50% -200px;
+    	height: 900px;
+    	.blurb:first-child{
+    		padding-top: 200px;
+    	}
     }
 	&.year-1968{
-		height: 8.5%;
+		height: 600px;
 		background-image: url(/img/intro/1968.jpg);
 		//box-shadow: 0 0px 15px rgba(0, 0, 0, 0.5);
+		.blurb{
+			padding-top: 50px;
+		}
 	}
 	&.year-1972{
 		background-image: url(/img/intro/editing.jpg);
-		height: 11%
+		height: 800px;
 	}
 	&.year-1976{
 		background-image: url(/img/intro/early-reading.jpg);
@@ -50,48 +54,31 @@ section.s0{
 
 
 .blurb{
-	with: 75%;
+	width: 75%;
 	max-width: 500px;
 	margin: 0 auto;
 	transition: opacity 750ms;
-	// display: none;
 	opacity: 0;
+	overflow: hidden;
+	h2{
+		color: lighten(@red,10%);
+		text-align: center;
+		max-width: 400px;
+		margin: 0 auto;
+		font-size: 2em;
+		text-shadow: 0 0px 15px rgba(0, 0, 0, 0.8);
+		
+
+	}
 	p{
 		text-shadow: 0 0px 15px rgba(0, 0, 0, 0.8);
-
 	}
 
 	&.shown{
+
 		//display: block;
 		opacity: 1;
 
 	}
 
 }
-
-// }
-// .year-1968{
-// 	.spot.stop-1{
-// 		margin-top: -16%;
-// 	}
-// }
-// .year-1969, .year-1970, .year-1971, .year-1972, .year-1973{
-// 	.spot.stop-1{
-// 		margin-top: -17%;
-// 	}
-// }
-// .year-1974,.year-1975,.year-1976,.year-1976,.year-1977{
-// 	.spot.stop-1{
-// 		margin-top: 20%;
-// 	}
-// }
-
-// section.s0 
-
-// body.year-1968{
-// 	section.s0{
-// 		.spot{
-// 			background-image: url(/img/intro/1968.jpg);
-// 		}
-// 	}
-// }
