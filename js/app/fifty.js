@@ -6,7 +6,7 @@ define(["jquery"], function fifty($) {
     return {
         step: 0,
         start: 1964,
-        end: 2013,
+        end: 2014,
         numyears: null,
         $sec: $('section'),
         yeartick: null,
@@ -75,6 +75,7 @@ define(["jquery"], function fifty($) {
                 return false;
             });
 
+            this.updateSteps();
 
             //to force a particular section to load...
             // this.step = 1;
@@ -96,6 +97,7 @@ define(["jquery"], function fifty($) {
             }
             window.step = this.step;
 
+            $('body').removeClass().addClass('step-' + this.step);
 
             //try dealing with being previously on the map...
             if (this.step === 2 || this.step === 4) {
