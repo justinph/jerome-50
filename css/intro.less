@@ -8,45 +8,66 @@ section.s0{
 	// background-repeat: no-repeat;
 	// background-size: 100%;
 
-	.spot {
-		// background-attachment: fixed;
-		background-position: 50% 0;
-		background-repeat: no-repeat;
-		//background-size: 100%;
-		height: 700px; //14%;
-		width: 100%;
-		background-size: 100%;
-		//position: absolute;
-		// background-color: green;
-		top: 0;
-		background-image: url(/img/intro/jh_suit.jpg);
-	    // transition: margin-top 750ms;
-	    box-shadow: 0 0px 15px rgba(0, 0, 0, 0.8);
-	    &.year-start{
-	    	//background-position: 50% -200px;
-	    }
-		&.year-1968{
-			height: 8.5%;
-			background-image: url(/img/intro/1968.jpg);
-			//box-shadow: 0 0px 15px rgba(0, 0, 0, 0.5);
-		}
-		&.year-1972{
-			background-image: url(/img/intro/editing.jpg);
-			height: 11%
-		}
-		&.year-1976{
-			background-image: url(/img/intro/early-reading.jpg);
-			height: 675px;
-			background-size: cover;
-		}
-		&.year-1981{
-			background-image: url(/img/intro/1981.jpg);
-			background-color: #fff;
-		}
-		&.year-2013{
-			background-image: url(/img/intro/reels.jpg);
-		}
+.spot {
+	// background-attachment: fixed;
+	background-position: 50% 0;
+	background-repeat: no-repeat;
+	//background-size: 100%;
+	height: 700px; //14%;
+	width: 100%;
+	background-size: 100%;
+	//position: absolute;
+	// background-color: green;
+	top: 0;
+	background-image: url(/img/intro/jh_suit.jpg);
+    // transition: margin-top 750ms;
+    box-shadow: 0 0px 15px rgba(0, 0, 0, 0.8);
+    &.year-start{
+    	//background-position: 50% -200px;
+    }
+	&.year-1968{
+		height: 8.5%;
+		background-image: url(/img/intro/1968.jpg);
+		//box-shadow: 0 0px 15px rgba(0, 0, 0, 0.5);
 	}
+	&.year-1972{
+		background-image: url(/img/intro/editing.jpg);
+		height: 11%
+	}
+	&.year-1976{
+		background-image: url(/img/intro/early-reading.jpg);
+		height: 675px;
+		background-size: cover;
+	}
+	&.year-1981{
+		background-image: url(/img/intro/1981.jpg);
+		background-color: #fff;
+	}
+	&.year-2013{
+		background-image: url(/img/intro/reels.jpg);
+	}
+}
+
+
+.blurb{
+	with: 75%;
+	max-width: 500px;
+	margin: 0 auto;
+	transition: opacity 750ms;
+	// display: none;
+	opacity: 0;
+	p{
+		text-shadow: 0 0px 15px rgba(0, 0, 0, 0.8);
+
+	}
+
+	&.shown{
+		//display: block;
+		opacity: 1;
+
+	}
+
+}
 
 // }
 // .year-1968{
