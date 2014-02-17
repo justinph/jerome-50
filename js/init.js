@@ -16,6 +16,9 @@ requirejs.config({
     'shim': {
         'handlebars': {
             exports: 'Handlebars'
+        },
+        'stellar': {
+            deps: ['jquery'],
         }
     }
 });
