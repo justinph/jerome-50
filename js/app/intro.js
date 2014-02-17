@@ -2,10 +2,13 @@ define(["jquery", 'stellar'], function intro($, stellar) {
     "use strict";
     return {
 
+        lastYearSeen: 0,
+
         init: function() {
             console.log('run init');
             var self = this;
 
+            this.lastYearSeen = window.year;
 
             $('#wrap').stellar({
                 horizontalScrolling: false,
@@ -13,15 +16,49 @@ define(["jquery", 'stellar'], function intro($, stellar) {
             });
 
 
+            $('.blurb').each(function() {
+                var b = $(this);
+                var start = b.data('year-start');
+                var end = b.data('year-end');
+                for (var i = start; i <= end; i++) {
+                    b.attr('data-visible-' + i, true);
+                }
+            });
+
+
             $('#wrap').on('scroll', function() {
                 if (window.step === 0) {
 
-                    var toShow = $('.blurb[data-year-start="' + window.year + '"]');
-                    var toHide = $('.blurb[data-year-end="' + window.year + '"]');
+                    // //for when we're scrolling down, years going up
+                    // var start = self.lastYearSeen;
+                    // var end = window.year;
 
-                    //$('.blurb').removeClass('shown');
-                    toShow.addClass('shown');
+                    // //opposite direction
+                    // if (window.year < self.lastYearSeen) {
+                    //     start = window.year;
+                    //     end = self.lastYearSeen;
+                    // }
+                    // console.log('');
+                    // for (var i = start; i <= end; i++) {
+                    //     console.log(i);
+                    //     var toShow = $('.blurb[data-year-start="' + i + '"]');
+                    //     var toHide = $('.blurb[data-year-end="' + i + '"].shown');
+
+                    //     console.log(toHide);
+                    //     toHide.removeClass('shown');
+                    //     toShow.addClass('shown');
+                    // }
+                    // self.lastYearSeen = window.year;
+
+                    var toHide = $('.blurb.shown');
+                    var toShow = $('.blurb[data-visible-' + window.year + ']');
+
+                    //console.log(toHide, toShow);
                     toHide.removeClass('shown');
+                    toShow.addClass('shown');
+
+
+                    //toHide.removeClass('shown');
 
 
                     // $('#wrap').on('scroll', function() {

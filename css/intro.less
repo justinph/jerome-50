@@ -5,14 +5,10 @@ section.s0{}
 	background-repeat: no-repeat;
 	width: 100%;
 	background-size: 100%;
-	//top: 0;
 	background-image: url(/img/intro/jh_suit.jpg);
     box-shadow: 0 0px 15px rgba(0, 0, 0, 0.8);
     &.year-start{
     	height: 800px;
-    	.blurb:first-child{
-    		padding-top: 200px;
-    	}
     }
 	&.year-1968{
 		height: 500px;
@@ -49,12 +45,17 @@ section.s0{}
 
 
 .blurb{
-	width: 75%;
-	max-width: 500px;
+	width: 50%;
+	//max-width: 500px;
+	left: 25%;
+	right: 25%;
 	margin: 0 auto;
 	transition: opacity 750ms;
 	opacity: 0;
 	overflow: hidden;
+	position: fixed;
+	top: 200px;
+
 	h2{
 		color: lighten(@red,10%);
 		text-align: center;
@@ -74,6 +75,9 @@ section.s0{}
 		//display: block;
 		opacity: 1;
 
+	}
+	&.idx-2{
+		margin-top: 25%;
 	}
 }
 
