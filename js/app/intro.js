@@ -20,8 +20,8 @@ define(["jquery", 'stellar'], function intro($, stellar) {
                 var b = $(this);
                 var start = b.data('year-start');
                 var end = b.data('year-end');
-                for (var i = start; i <= end; i++) {
-                    b.attr('data-visible-' + i, true);
+                for (var i = start; i < end; i++) {
+                    b.attr('data-v-' + i, true);
                 }
             });
 
@@ -51,7 +51,7 @@ define(["jquery", 'stellar'], function intro($, stellar) {
                     // self.lastYearSeen = window.year;
 
                     var toHide = $('.blurb.shown');
-                    var toShow = $('.blurb[data-visible-' + window.year + ']');
+                    var toShow = $('.blurb[data-v-' + window.year + ']');
 
                     //console.log(toHide, toShow);
                     toHide.removeClass('shown');
