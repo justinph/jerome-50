@@ -1,4 +1,103 @@
+
+
 section.s0{}
+
+#welcomeLogo{
+	width: 300px;
+	height: auto;
+	margin: 50px auto;
+	display: block;
+}
+
+
+#welcome{
+	width: 700px;
+	margin: 50px auto 100px;
+	img{
+		.photo-border();
+		width: 100%;
+		height: auto;
+	}
+	.l{
+		float: left;
+		width: 310px;
+	}
+	.r{
+		float: right;
+		width: 332px;
+	}
+	h1{
+		position: static;
+		text-align: left;
+		margin-top: 0;
+		font-size: 29px;
+	}
+	h2{
+		font-weight: 100;
+		line-height: 1.67;
+	}
+	.clearfix();
+}
+
+.timeline{
+	//.clearfix();
+	min-height: 1000px;
+	position: relative;
+	width: 80%;
+	margin: 0 auto;
+	// border: 1px solid red;
+	&:before{
+		content: '';
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 49.9%;
+		background: #fff;
+		width: 5px;
+	}
+	ul, li{ list-style-type: none;}
+	ul {
+		margin: 0;
+		padding: 0;
+		width: 45%;
+	}
+	li{
+		margin-bottom: 2em;
+		position: relative;
+		time{
+			background-color: #9a9a9a;
+			position: absolute;
+			padding: 5px 1em;
+			width: 71px;
+		}
+		div{
+			background-color: #9a9a9a;
+			padding: 1em;
+		}
+		&.offset{
+			margin-top: 3.5em;
+		}
+	}
+
+	ul.left{
+		float: left;
+		li time{
+			text-align: right;
+			right: -70px;
+		}
+	}
+	ul.right{
+		float: right;
+		li time{
+			left: -70px;
+		}
+	}
+	img{
+		max-width: 100%;
+		height: auto;
+		.photo-border();
+	}
+}
 
 
 .blurb{
@@ -39,7 +138,7 @@ section.s0{}
 #next span{ display: none;}
 .step-0{
 		#next{
-		text-shadow: 0 0px 15px rgba(0, 0, 0, 0.8);
+		text-shadow: 0 0px 15px rgba(0, 0, 0, 0.2);
 		span{
 			display: inline;
 			font-weight: 100;
@@ -49,11 +148,11 @@ section.s0{}
 			//background: -webkit-linear-gradient(#fff, #afafaf);
 			background: transparent;
 			background: -webkit-gradient(linear,left top,right top,
-		        color-stop(0, #afafaf),
-		        color-stop(0.4, #afafaf),
+		        color-stop(0, #dfdfdf),
+		        color-stop(0.4, #dfdfdf),
 		        color-stop(0.5, white),
-		        color-stop(0.6, #afafaf),
-		        color-stop(1, #afafaf)); 
+		        color-stop(0.6, #dfdfdf),
+		        color-stop(1, #dfdfdf)); 
 			-webkit-background-clip: text;
 	      	-webkit-text-fill-color: transparent;
 	  		-webkit-animation: explore 10s linear;

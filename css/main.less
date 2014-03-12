@@ -11,6 +11,34 @@
 
 @red: #970202;
 
+.photo-border(){
+    border: 5px solid #fff;
+    box-shadow: 0 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+// Clearfix
+//
+// Source: http://nicolasgallagher.com/micro-clearfix-hack/
+//
+// For modern browsers
+// 1. The space content is one way to avoid an Opera bug when the
+//    contenteditable attribute is included anywhere else in the document.
+//    Otherwise it causes space to appear at the top and bottom of elements
+//    that are clearfixed.
+// 2. The use of `table` rather than `block` is only necessary if using
+//    `:before` to contain the top-margins of child elements.
+.clearfix() {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}
+
 // make sure we're using border-box everywhere, which normalize doesn't seem to include
 *, *:before, *:after { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 
@@ -87,14 +115,15 @@ section h1{
 #logo{ 
     left: 50px;
     background-image: url(/img/jerome_logo.svg);
-
+    opacity: 0;
+    transition: opacity .35s ease;
 }
 #logo2{ 
     right: 50px; 
     background-image: url(/img/50_logo.svg);
     background-position: center right;
-
-
+    opacity: 0;
+    transition: opacity .35s ease;
 }
 #year{
     position:fixed;
@@ -109,7 +138,7 @@ section h1{
     transition: opacity .35s ease;
 }
 .step-1, .step-2, .step-3, .step-4, .step-5{
-    #year{ opacity: 1;}
+    #year, #logo, #logo2{ opacity: 1;}
 }
 #prev, #next, #year-down, #year-up{
     display: block;

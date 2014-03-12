@@ -9,17 +9,11 @@ requirejs.config({
         "async": "../vendor/requirejs-plugins/src/async",
         "goog": "../vendor/requirejs-plugins/src/async", //,
         "handlebars": "../vendor/handlebars/handlebars",
-        "stellar": "../vendor/jquery.stellar/jquery.stellar"
-        //"handlebars": "../vendor/handlebars/handlebars.amd"
-        //"propertyParser":  "../vendor/requirejs-plugins/src/propertyParser"
     },
     'shim': {
         'handlebars': {
             exports: 'Handlebars'
         },
-        'stellar': {
-            deps: ['jquery'],
-        }
     }
 });
 
