@@ -194,7 +194,7 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
                                 name: prop.substr(6, 1000),
                                 value: d[prop]
                             });
-                        //console.log(prop.substr(6, 1000));
+                            //console.log(prop.substr(6, 1000));
                         }
                     }
 
@@ -294,7 +294,7 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
                                 var location = $(this).data('location');
                                 var grantees = self.grantees.get(location).get(window.year);
                                 if (grantees) {
-                                    console.log(grantees);
+                                    //console.log(grantees);
                                     var data = {
                                         grantees: grantees,
                                         location: location,
@@ -310,10 +310,10 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
                                 }
 
                             } else if (self.doGPGrantees) {
-                                console.log('i should do gp');
+                                //console.log('i should do gp');
                                 var grantees = self.grantees.get(window.year);
                                 if (grantees) {
-                                    console.log(grantees);
+                                    //console.log(grantees);
                                     var data = {
                                         grantees: grantees,
                                     };

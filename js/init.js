@@ -26,9 +26,9 @@ requirejs(["app/fifty"], function(fifty) {
     fifty.init();
 });
 
-requirejs(["app/intro"], function(intro) {
-    intro.init();
-});
+// requirejs(["app/intro"], function(intro) {
+//     intro.init();
+// });
 
 requirejs(["app/overall"], function(Overall) {
     new Overall(1);

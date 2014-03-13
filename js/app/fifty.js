@@ -77,11 +77,13 @@ define(["jquery"], function fifty($) {
 
             this.updateSteps();
 
+            this.updateYear();
+
             //to force a particular section to load...
-            this.step = 3;
-            this.updateSteps();
-            this.calcYears();
-            $('#wrap').removeClass().addClass('step-' + this.step);
+            // this.step = 3;
+            // this.updateSteps();
+            // this.calcYears();
+            // $('#wrap').removeClass().addClass('step-' + this.step);
 
 
         },
@@ -99,14 +101,6 @@ define(["jquery"], function fifty($) {
 
             $('body').removeClass().addClass('step-' + this.step);
 
-            //try dealing with being previously on the map...
-            if (this.step === 2 || this.step === 4) {
-                //console.log('i may have been previously on the map');
-                /*
-                TODO: Recalculate new scroll position and scroll the new pane to where it should be here
-                use $.scrollTo?
-                 */
-            }
 
             //console.log(this.step);
             $(window).trigger('updateYear:' + this.step);
@@ -122,9 +116,8 @@ define(["jquery"], function fifty($) {
         },
         updateYear: function() {
             if (this.year === 1963) {
-                $('#year').addClass('faded');
                 $('#year-up').addClass('active');
-                $('#year').removeClass().text('Explore');
+                $('#year').removeClass().addClass('faded').text('Explore');
             } else {
                 $('#year').removeClass().text(this.year);
                 $('#year-up').removeClass();

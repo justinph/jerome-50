@@ -82,7 +82,7 @@ require(["jquery", "async!http://maps.google.com/maps/api/js?sensor=false!callba
             $('.s3 .textDisplay').show();
         } else {
             $('.s3 .textDisplay').hide();
-            $('#year-down').removeClass();
+            $('#year-down, #year-up').removeClass();
             $('#year').removeClass().text(window.year);
         }
 
@@ -98,27 +98,20 @@ require(["jquery", "async!http://maps.google.com/maps/api/js?sensor=false!callba
 
 
     $("body").mousewheel(function(event, delta) {
+        if (window.step === 3) {
+            var myDelta = parseInt((delta / 10) * -1, 10);
+            //console.log(myDelta);
 
-        var myDelta = parseInt((delta / 10) * -1, 10);
-        console.log(myDelta);
+            window.year = window.year + myDelta;
+            if (window.year < 1963) {
+                window.year = 1963;
+            }
+            if (window.year > 2014) {
+                window.year = 2014;
+            }
 
-        window.year = window.year + myDelta;
-        if (window.year < 1963) {
-            window.year = 1963;
+            updateYear();
         }
-        if (window.year > 2014) {
-            window.year = 2014;
-        }
-
-        // if (window.year === 1963) {
-        //     $('#year').addClass('faded');
-        //     $('#year-down').addClass('inactive');
-        // } else {
-        //     $('#year-down').removeClass();
-        //     $('#year').removeClass().text(window.year);
-        // }
-        updateYear();
-        //$(window).trigger('updateYear:' + window.step);
 
     });
 
