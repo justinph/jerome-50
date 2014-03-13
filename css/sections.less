@@ -26,13 +26,22 @@ section{
   margin-left: @trans;
 }
 
-.s0{ background-color: #a4a4a4; .sec-transform(0);}
-.s1{ background-color: #888784; .sec-transform(100%);}
-.s2{ background-color: #706f6e; .sec-transform(200%);}
-.s3{ background-color: #646361; .sec-transform(300%);}
-.s4{ background-color: #817a6c; .sec-transform(400%);}
-.s5{ background-color: #6d6452; .sec-transform(500%);}
-.s6{ background-color: #8c887f; .sec-transform(600%);}
+.s0, body.step-0{ background-color: #a4a4a4;}
+.s1, body.step-1{ background-color: #888784;}
+.s2, body.step-2{ background-color: #706f6e;}
+.s3, body.step-3{ background-color: #646361;}
+.s4, body.step-4{ background-color: #817a6c;}
+.s5, body.step-5{ background-color: #6d6452;}
+.s6, body.step-6{ background-color: #8c887f;}
+
+
+.s0{ .sec-transform(0);}
+.s1{ .sec-transform(100%);}
+.s2{ .sec-transform(200%);}
+.s3{ .sec-transform(300%);}
+.s4{ .sec-transform(400%);}
+.s5{ .sec-transform(500%);}
+.s6{ .sec-transform(600%);}
 
 .step-1 .s0{.sec-transform(-100%); }
 .step-1 .s1{.sec-transform(0);}
