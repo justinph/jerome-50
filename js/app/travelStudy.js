@@ -1,4 +1,4 @@
-require(["jquery", "async!http://maps.google.com/maps/api/js?sensor=false!callback"], function travelStudy($) {
+require(["jquery", "async!http://maps.google.com/maps/api/js?sensor=false!callback", "jquery-mousewheel"], function travelStudy($) {
     "use strict";
 
     var map, mapData;
@@ -36,7 +36,7 @@ require(["jquery", "async!http://maps.google.com/maps/api/js?sensor=false!callba
         // mapTypeControlOptions: {
         //   mapTypeIds: [google.maps.MapTypeId.ROADMAP, MY_MAPTYPE_ID]
         // },
-        //scrollwheel: false,
+        scrollwheel: false,
         disableDefaultUI: true,
         zoomControl: true,
         panControl: false,
@@ -91,5 +91,29 @@ require(["jquery", "async!http://maps.google.com/maps/api/js?sensor=false!callba
         });
         //console.log("attempting to update map to year", window.year);
     };
+
+
+    $("body").mousewheel(function(event, delta) {
+
+        var myDelta = parseInt((delta / 10) * -1, 10);
+        console.log(myDelta);
+
+        window.year = window.year + myDelta;
+        if (window.year < 1963) {
+            window.year = 1963;
+        }
+        if (window.year > 2014) {
+            window.year = 2014;
+        }
+
+        if (window.year === 1963) {
+            $('#year').addClass('faded');
+        } else {
+            $('#year').removeClass().text(window.year);
+        }
+
+        $(window).trigger('updateYear:' + window.step);
+
+    });
 
 });

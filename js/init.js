@@ -9,6 +9,7 @@ requirejs.config({
         "async": "../vendor/requirejs-plugins/src/async",
         "goog": "../vendor/requirejs-plugins/src/async", //,
         "handlebars": "../vendor/handlebars/handlebars",
+        'jquery-mousewheel': "../vendor/jquery-mousewheel/jquery.mousewheel",
     },
     'shim': {
         'handlebars': {
