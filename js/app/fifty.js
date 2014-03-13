@@ -123,8 +123,12 @@ define(["jquery"], function fifty($) {
         updateYear: function() {
             if (this.year === 1963) {
                 $('#year').addClass('faded');
+                $('#year-up').addClass('active');
+                $('#year').removeClass().text('Explore');
             } else {
                 $('#year').removeClass().text(this.year);
+                $('#year-up').removeClass();
+
             }
 
             window.year = this.year;

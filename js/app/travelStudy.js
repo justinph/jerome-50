@@ -69,19 +69,23 @@ require(["jquery", "async!http://maps.google.com/maps/api/js?sensor=false!callba
         templateId: 2
     });
 
-
-    // $(window).on('updateYear:3',function(){
-    // 	//if ($('#wrap').hasClass("step-3")){
-    // 		updateYear();
-    // 	//}
-    // });
-
     $(window).on("updateYear:3", function() {
         //console.log('receiving update 3');
         updateYear();
     });
 
     var updateYear = function updateYear() {
+
+        if (window.year === 1963) {
+            $('#year').addClass('faded');
+            $('#year-down').addClass('inactive');
+            $('.s3 .textDisplay').show();
+        } else {
+            $('.s3 .textDisplay').hide();
+            $('#year-down').removeClass();
+            $('#year').removeClass().text(window.year);
+        }
+
         mapData.setOptions({
             query: {
                 select: "Destination",
@@ -106,14 +110,18 @@ require(["jquery", "async!http://maps.google.com/maps/api/js?sensor=false!callba
             window.year = 2014;
         }
 
-        if (window.year === 1963) {
-            $('#year').addClass('faded');
-        } else {
-            $('#year').removeClass().text(window.year);
-        }
-
-        $(window).trigger('updateYear:' + window.step);
+        // if (window.year === 1963) {
+        //     $('#year').addClass('faded');
+        //     $('#year-down').addClass('inactive');
+        // } else {
+        //     $('#year-down').removeClass();
+        //     $('#year').removeClass().text(window.year);
+        // }
+        updateYear();
+        //$(window).trigger('updateYear:' + window.step);
 
     });
+
+    updateYear();
 
 });

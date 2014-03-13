@@ -140,7 +140,20 @@ section h1{
 .step-1, .step-2, .step-3, .step-4, .step-5{
     #year, #logo, #logo2{ opacity: 1;}
     #year.faded{
-        opacity: 0;
+        opacity: 0.5;
+        //font-weight: 100;
+        background: transparent;
+            background: -webkit-gradient(linear,left top,right top,
+                color-stop(0, #dfdfdf),
+                color-stop(0.4, #dfdfdf),
+                color-stop(0.5, white),
+                color-stop(0.6, #dfdfdf),
+                color-stop(1, #dfdfdf)); 
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -webkit-animation: explore 10s linear;
+            -webkit-animation-iteration-count: infinite;
+            background-position: -100px 0;
     }
 }
 #prev, #next, #year-down, #year-up{
@@ -152,8 +165,12 @@ section h1{
     color: white;
     border-bottom: 0;
     text-decoration: none;
+    transition: opacity .35s ease;
+    opacity: 1;
     &.inactive{
-        display: none;
+        opacity: 0;
+        //display: block;
+        // display: none;
     }
 }
 
@@ -183,12 +200,17 @@ section h1{
         .iconfont;
     }
 }
+#year-up.active{
+    opacity: 0.5;
+    display: block;
+}
 #year-down{
     bottom: 78px;
     &:before{
        content: "\e005";
     }
 }
+
 
 #year-up{
     bottom: -8px;
@@ -205,9 +227,15 @@ section h1{
 .step-3{
     #year-down, #year-up{
         display: block;
+        //&.inactive{}
     }
 }
 
+.step-0{
+     #year-down, #year-up{
+        opacity: 0;
+     }
+}
 
 /*
 Tooltips
