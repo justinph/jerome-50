@@ -241,7 +241,7 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
                 self.updateSVGPos();
 
                 //hide/show the intro text
-                if (window.year !== 1964) {
+                if (window.year !== 1963) {
                     $(self.selector).find('.textDisplay').hide();
                 } else {
                     $(self.selector).find('.textDisplay').show();

@@ -280,22 +280,26 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
         this.addWatchers = function() {
             var self = this;
             $(window).on('updateYear:' + self.idx, function() {
-                if (window.year >= 1964) {
+                if (window.year >= 1963) {
                     if (typeof self.nested_data === 'object') {
-                        var thisYearData = self.nested_data.get(window.year);
 
-                        console.log(thisYearData);
+                        var tplData = {};
 
-                        if (window.year === 1964) {
-                            thisYearData[0].intro = self.intro;
+                        if (window.year === 1963) {
+                            tplData.intro = self.intro;
+                        } else {
+                            tplData = self.nested_data.get(window.year);
+                            tplData = tplData[0];
                         }
+
+
 
                         //console.log(thisYearData[0]);
                         var source = $('#overall-template').html();
                         var template = Handlebars.compile(source);
                         //console.log(self.selector, template(thisYearData[0]));
                         //push rendered contents to dom
-                        $(self.selector + " .textDisplay").html(template(thisYearData[0]));
+                        $(self.selector + " .textDisplay").html(template(tplData));
 
 
 

@@ -37,7 +37,6 @@ requirejs(["app/overall"], function(Overall) {
 requirejs(['app/yearsofsupport'], function(YearsOfSupport) {
     new YearsOfSupport(2);
 });
-
 requirejs(["app/gpfv"], function(GpFv) {
 
     var fv = new GpFv(4, 'fv', true, false);

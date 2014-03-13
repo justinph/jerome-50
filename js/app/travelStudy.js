@@ -77,7 +77,7 @@ require(["jquery", "async!http://maps.google.com/maps/api/js?sensor=false!callba
     // });
 
     $(window).on("updateYear:3", function() {
-        console.log('receiving update 3');
+        //console.log('receiving update 3');
         updateYear();
     });
 
@@ -89,7 +89,7 @@ require(["jquery", "async!http://maps.google.com/maps/api/js?sensor=false!callba
                 where: "year <= " + window.year
             }
         });
-        console.log("attempting to update map to year", window.year);
-    }
+        //console.log("attempting to update map to year", window.year);
+    };
 
 });

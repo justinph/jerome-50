@@ -194,7 +194,7 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
                                 name: prop.substr(6, 1000),
                                 value: d[prop]
                             });
-                            //console.log(prop.substr(6, 1000));
+                        //console.log(prop.substr(6, 1000));
                         }
                     }
 
@@ -263,13 +263,19 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
         this.addWatchers = function() {
             var self = this;
             $(window).on('updateYear:' + self.idx, function() {
-                if (window.year >= 1964) {
+                if (window.year >= 1963) {
                     if (typeof self.nested_data === 'object') {
                         var thisYearData = self.nested_data.get(window.year);
-                        thisYearData[0].doFVGrantees = self.doFVGrantees;
-                        thisYearData[0].doGPGrantees = self.doGPGrantees;
+                        //console.log(thisYearData);
+                        if (typeof thisYearData !== 'undefined') {
+                            thisYearData[0].doFVGrantees = self.doFVGrantees;
+                            thisYearData[0].doGPGrantees = self.doGPGrantees;
+                        } else {
+                            thisYearData = [{}];
+                        }
 
-                        if (window.year === 1964) {
+
+                        if (window.year === 1963) {
                             thisYearData[0].intro = self.intro;
                         }
 

@@ -5,13 +5,13 @@ define(["jquery"], function fifty($) {
     "use strict";
     return {
         step: 0,
-        start: 1964,
+        start: 1963,
         end: 2014,
         numyears: null,
         $sec: $('section'),
         yeartick: null,
         $sec_offset: null,
-        year: 1964,
+        year: 1963,
         scrollTimer: null,
 
         init: function() {
@@ -121,7 +121,12 @@ define(["jquery"], function fifty($) {
             //console.log(this.step);
         },
         updateYear: function() {
-            $('#year').text(this.year);
+            if (this.year === 1963) {
+                $('#year').addClass('faded');
+            } else {
+                $('#year').removeClass().text(this.year);
+            }
+
             window.year = this.year;
             $(window).trigger('updateYear:' + this.step);
 

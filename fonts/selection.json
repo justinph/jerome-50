@@ -4,6 +4,27 @@
 		{
 			"icon": {
 				"paths": [
+					"M997.23 143.58l-108.836-108.838-385.208 385.244-385.206-385.244-108.838 108.838 385.574 385.572-385.574 385.572 108.838 108.874 385.17-385.244 385.28 385.244 108.8-108.8-385.646-385.61z"
+				],
+				"grid": 0,
+				"tags": [
+					"close"
+				]
+			},
+			"properties": {
+				"order": 1,
+				"id": 0,
+				"prevSize": 32,
+				"code": 58880,
+				"name": "close",
+				"ligatures": ""
+			},
+			"setIdx": 0,
+			"iconIdx": 0
+		},
+		{
+			"icon": {
+				"paths": [
 					"M511.996 2.478l112.136 112.132-397.022 397.028 397.028 397.026-112.138 112.142-509.164-509.168z"
 				],
 				"width": 624,
@@ -14,13 +35,15 @@
 				"grid": 0
 			},
 			"properties": {
-				"order": 1,
+				"order": 2,
 				"id": 3,
 				"prevSize": 32,
 				"code": 57345,
 				"name": "carat-left",
 				"ligatures": ""
-			}
+			},
+			"setIdx": 1,
+			"iconIdx": 0
 		},
 		{
 			"icon": {
@@ -35,13 +58,15 @@
 				"grid": 0
 			},
 			"properties": {
-				"order": 2,
+				"order": 3,
 				"id": 5,
 				"prevSize": 32,
 				"code": 57347,
 				"name": "carat-right",
 				"ligatures": ""
-			}
+			},
+			"setIdx": 1,
+			"iconIdx": 1
 		},
 		{
 			"icon": {
@@ -56,13 +81,15 @@
 				"grid": 0
 			},
 			"properties": {
-				"order": 3,
+				"order": 4,
 				"id": 5,
 				"prevSize": 32,
-				"name": "carat-right",
+				"name": "carat-right2",
 				"ligatures": "",
 				"code": 57349
-			}
+			},
+			"setIdx": 1,
+			"iconIdx": 2
 		},
 		{
 			"icon": {
@@ -77,21 +104,27 @@
 				"grid": 0
 			},
 			"properties": {
-				"order": 4,
+				"order": 5,
 				"id": 8,
 				"prevSize": 32,
 				"code": 57348,
 				"name": "carat-down",
 				"ligatures": ""
-			}
+			},
+			"setIdx": 1,
+			"iconIdx": 3
 		}
 	],
 	"height": 1024,
-	"metadata": {},
+	"metadata": {
+		"name": "icomoon"
+	},
 	"preferences": {
 		"fontPref": {
 			"prefix": "icon-",
-			"metadata": {},
+			"metadata": {
+				"fontFamily": "icomoon"
+			},
 			"showGlyphs": true,
 			"metrics": {
 				"emSize": 1024,

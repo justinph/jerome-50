@@ -55,6 +55,7 @@ h2.applications, h3.applications{
     	height: 100%;
     	padding: 5%;
     	background-color: rgba(20,20,20,0.75);
+        font-weight: 100;
 
     h2, h3{
     	text-align: center;
@@ -80,5 +81,16 @@ h2.applications, h3.applications{
     	li{
     		height: 28px;
     	}
+    }
+}
+.close-grantees{
+    border-bottom: none;
+    span{
+        border-bottom: 1px solid @red;
+    }
+    &:before{
+        .iconfont();
+        content: "\e600";
+        margin-right: 4px;
     }
 }

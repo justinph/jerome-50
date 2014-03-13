@@ -12,7 +12,7 @@
 
 	<div id='logo'></div>
 	<div id="logo2"></div>
-	<div id="year">1964</div>
+	<div id="year" class='faded'>1964</div>
 
 	<div id="wrap">
 		<section class="s0">   
@@ -398,7 +398,25 @@
 		<section class="s1"><h1>Overall</h1>
 			 <div class='textDisplay'>
 				<div class="intro">
+					
 					<p>In its first 50 years, the Jerome Foundation made grants totaling $88,536,000 to 645 organizations and 1,598 artists. In making 5,324 grants over 50 years, the Foundation reviewed 18,430 applications for support.</p>
+
+					<p>Total dollars committed to arts disciplines over that 50 years were:</p>
+					<ul>
+						<li>Criticism $1,232,000</li>
+						<li>Dance $9,272,000</li>
+						<li>Literature $8,589,000</li>
+						<li>Media Arts/Film and Video $16,065,000</li>
+						<li>Miscellaneous $2,034,000</li>
+						<li>Multidisciplinary $11,356,000</li>
+						<li>Music $10,934,000</li>
+						<li>Theater $14,575,000</li>
+						<li>Visual Arts $14,479,000</li>
+
+					</ul>
+
+
+					<p>The Jerome Foundation made grants totaling $47,723,000 to Minnesota organizations and individuals and $38,945,000 to New York City organizations and individuals. Funding outside of those two geographic areas, which took place early in the Foundation’s history totaled $1,868,000.</p>
 
 				</div>
 			</div>
@@ -407,7 +425,7 @@
 		<section class="s2"><h1>Organizations</h1>
 			<div class='textDisplay'>
 				<div class="intro">
-					<p>In its first 50 years, the Jerome Foundation made grants totaling $47,723,000 to Minnesota organizations and individuals and $38,945,000 to New York City organizations and individuals.  Funding outside of those two geographic areas, which took place early in the Foundation’s history totaled $1,868,000.</p>
+					<p>Jerome Foundation makes many different types of grants, some for projects that take place for a limited period of time, some for focus areas that the Foundation no longer supports, and some, for the same emerging artist, that have a duration of three to seven years.  All are relationships that the Foundation values.  In addition, there are arts organizations that offer ongoing programs that serve new emerging artists each year.  These grant relationships can be sustained over extended periods of time. Some date back to the Foundation's first decade of grantmaking.</p>
 
 				</div>
 			</div>
@@ -425,11 +443,13 @@
 					<h2>Film and Video Production Support for Individual Artists</h2>
 					<h3>856 Grants in 50 Years</h3>
 
-					<p>In its early years, the Foundation made grants to individual filmmakers and to film organizations that Jerome Hill wanted to support. In 1978, the Foundation structured its program of production grants for film and video directors in the form of the New York City Film and Video Program. In 1993, it did the same with the Minnesota Film and Video Program. From 1978 to 1993, grants to Minnesota film and video directors were made through a program operated by Film in the Cities.</p>
+					<p>In its early years, the Foundation made grants to individual filmmakers and to film organizations that Jerome Hill wanted to support. In 1978, the Foundation structured its program of production grants for film and video directors in the form of the New York City Film and Video Program. In 1993, it did the same with the Minnesota Film and Video Program. From 1978 to 1993, grants to Minnesota film and video directors were made through a program operated by Film in the Cities.
 
-					<p>Over 50 years, 347 grants totaling $2,9978,700 were made to film and video directors in Minnesota and the four surrounding states. In the same 50 years, 509 grants totaling $6,027,273 were made to film and video directors in New York City.</p>
+<p>Over 50 years, 347 grants totaling $2,9978,700 were made to film and video directors in Minnesota and the four surrounding states. In the same 50 years, 509 grants totaling $6,027,273 were made to film and video directors in New York City.
+</p>
 
-					<p>These productions speak to the value the Foundation places on the individual creative voice.</p>
+<p>These productions speak to the value the Foundation places on the individual creative voice.
+</p>
 				</div>
 
 			</div>
@@ -440,9 +460,8 @@
 			<div class='textDisplay'>
 				<div class="intro">
 					<h2>Supporting Arts Institutions</h2>
-					<h3>Lots of Grants in 50 Years</h3>
-
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+					
+					<p>In its General Program, the Jerome Foundation made 3,685 grants totaling $77,411,800.</p>
 
 				</div>
 			</div>
@@ -568,7 +587,7 @@
 		<div class="grantees-wrapper fv">
 		<ul>
 			<h2>{{location}}</h2>
-			<h3><a href="#" class='close-grantees'>Hide grantees</a></h3>
+			<h3><a href="#" class='close-grantees'> <span>Hide grantees</span></a></h3>
 			{{#each grantees}}
 			<li>
 				{{[Artist name]}}
@@ -588,7 +607,7 @@
 	<script id="gp-grantees-list" type="text/x-handlebars-template">
 		<div class="grantees-wrapper gp">
 		<ul>
-			<h3><a href="#" class='close-grantees'>Hide grantees</a></h3>
+			<h3><a href="#" class='close-grantees'> <span>Hide grantees</span></a></h3>
 			{{#each grantees}}
 			<li>
 				{{#if link}}<a href="http://{{link}}">{{/if}}
