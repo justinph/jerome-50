@@ -129,10 +129,17 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
                     'year': year,
                     'number': value[0].approved
                 });
+
+                //make sure no negative numbers
+                var deniedCount = value[0].applications - value[0].approved;
+                if (deniedCount < 0) {
+                    deniedCount = 0;
+                }
+
                 approvedDenied.push({
                     'key': 'denied',
                     'year': year,
-                    'number': value[0].applications - value[0].approved
+                    'number': deniedCount
                 });
             });
 
@@ -288,8 +295,11 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
                         if (window.year === 1963) {
                             tplData.intro = self.intro;
                         } else {
-                            tplData = self.nested_data.get(window.year);
-                            tplData = tplData[0];
+                            try {
+                                tplData = self.nested_data.get(window.year);
+                                tplData = tplData[0];
+                            } catch (e) {}
+
                         }
 
 
