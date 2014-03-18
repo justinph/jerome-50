@@ -176,14 +176,15 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
                             //Get this bar's x/y values, then augment for the tooltip
                             var xPosition = parseFloat(d3.select(this).attr("cx")) + 20;
                             var yPosition = parseFloat(d3.select(this).attr("cy")) - 60; //+correction
-                            var map = d3.map(d.supportYears);
+                            //var map = d3.map(d.supportYears);
                             var data = {
                                 genre: d.genre,
                                 name: d.name,
                                 link: d.link,
-                                yearsOfSupport: map.get(window.year),
+                                //yearsOfSupport: map.get(window.year), //not the number we actually want to display!
                                 start: d.start,
                                 end: d.end,
+                                yearsOfSupport: d.years,
                             };
 
                             var source = $('#orgs-tooltip').html();
