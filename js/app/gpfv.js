@@ -93,10 +93,19 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
                     'year': year,
                     'number': value[0].approved
                 });
+
+                //make sure no negative numbers
+                var deniedCount = value[0].applications - value[0].approved;
+                if (deniedCount < 0) {
+                    deniedCount = 0;
+                }
+
+                console.log(deniedCount);
+
                 approvedDenied.push({
                     'key': 'denied',
                     'year': year,
-                    'number': value[0].applications - value[0].approved
+                    'number': deniedCount
                 });
             });
 
