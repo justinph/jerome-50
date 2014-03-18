@@ -100,8 +100,6 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
                     deniedCount = 0;
                 }
 
-                console.log(deniedCount);
-
                 approvedDenied.push({
                     'key': 'denied',
                     'year': year,

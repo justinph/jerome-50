@@ -6,7 +6,7 @@ define(["jquery"], function fifty($) {
     return {
         step: 0,
         start: 1963,
-        end: 2014,
+        end: 2013,
         numyears: null,
         $sec: $('section'),
         yeartick: null,
