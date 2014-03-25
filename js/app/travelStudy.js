@@ -1,4 +1,4 @@
-require(["jquery", "async!http://maps.google.com/maps/api/js?sensor=false!callback", "jquery-mousewheel"], function travelStudy($) {
+require(["jquery", "async!http://maps.google.com/maps/api/js?key=AIzaSyAHHC2slaWMzd-bp3TbzYl-QTf_Fq-5-yE&sensor=false!callback", "jquery-mousewheel"], function travelStudy($) {
     "use strict";
 
     var map, mapData;
