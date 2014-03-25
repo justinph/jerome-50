@@ -4,8 +4,25 @@ RewriteBase /
 # prevent access to git
 RewriteRule ^(.*/)?\.git+ - [F,L]
 RewriteRule /?\deployhq.log$ - [F,L]
+RewriteRule (^\.|/\.) - [F]
 
 RewriteCond %{HTTP_HOST} ^fifty.jeromefdn.org$
 RewriteRule (.*)$ http://50.jeromefdn.org/$1 [R=301,L]
 
 AddType text/csv .csv
+
+
+<Files "Gruntfile.js">
+Order Allow,Deny
+Deny from all
+</Files>
+
+<Files "bower.json">
+Order Allow,Deny
+Deny from all
+</Files>
+
+<Files "package.json">
+Order Allow,Deny
+Deny from all
+</Files>
