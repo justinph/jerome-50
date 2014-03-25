@@ -1,24 +1,41 @@
 require(["jquery", "async!http://maps.google.com/maps/api/js?key=AIzaSyAHHC2slaWMzd-bp3TbzYl-QTf_Fq-5-yE&sensor=false!callback", "jquery-mousewheel"], function travelStudy($) {
     "use strict";
 
-    $('#map-canvas').css({
-        height: $(window).height(),
-        top:  ($(window).height() )
-    });
 
-    var mapPosition = $(window).height(); //$("#map-canvas").offset().top;
+    // function detectMobile() { 
+    //  if( navigator.userAgent.match(/Android/i)
+    //  || navigator.userAgent.match(/webOS/i)
+    //  || navigator.userAgent.match(/iPhone/i)
+    //  || navigator.userAgent.match(/iPad/i)
+    //  || navigator.userAgent.match(/iPod/i)
+    //  || navigator.userAgent.match(/BlackBerry/i)
+    //  || navigator.userAgent.match(/Windows Phone/i)
+    //  ){
+    //     return true;
+    //   }
+    //  else {
+    //     return false;
+    //   }
+    // }
+    
+    // $('#map-canvas').css({
+    //     height: $(window).height(),
+    //     top:  ($(window).height() )
+    // });
+
+    // var mapPosition = $(window).height(); //$("#map-canvas").offset().top;
 
 
-    $('#wrap').scroll(function(){
-        var topOffset = $('.s3').offset().top * -1;
+    // $('#wrap').scroll(function(){
+    //     var topOffset = $('.s3').offset().top * -1;
         
-        //console.log(topOffset, mapPosition);
+    //     //console.log(topOffset, mapPosition);
 
-        if (topOffset >= mapPosition ){
-            $("#map-canvas").addClass("fixed_map");
-        }
+    //     if (topOffset >= mapPosition ){
+    //         $("#map-canvas").addClass("fixed_map");
+    //     }
 
-    }).scroll();
+    // }).scroll();
 
 
     var map, mapData;
@@ -131,17 +148,17 @@ require(["jquery", "async!http://maps.google.com/maps/api/js?key=AIzaSyAHHC2slaW
             }
 
 
-            //when we hit 1970, scroll up
-            if (window.year < 1968 && $("#map-canvas").hasClass('fixed_map') ){
-                $("#map-canvas").removeClass("fixed_map");
-                $('#wrap').scrollTop(100);
-                //console.log(parseInt((delta * 5), 10));
+            // //when we hit 1970, scroll up
+            // if (window.year < 1968 && $("#map-canvas").hasClass('fixed_map') ){
+            //     $("#map-canvas").removeClass("fixed_map");
+            //     $('#wrap').scrollTop(100);
+            //     //console.log(parseInt((delta * 5), 10));
                 
-                $('#wrap').animate({
-                    scrollTop: ($(window).height()-100)
-                }, 0);
+            //     $('#wrap').animate({
+            //         scrollTop: ($(window).height()-100)
+            //     }, 0);
 
-            }
+            // }
 
             updateYear();
         }
