@@ -209,6 +209,12 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
 
 
                 });
+                
+                //close info window when clicking anywhere
+                $('.s2').on('click',function(){
+                    window.clearTimeout(closeTooltipTimeout);
+                    $(self.selector + " .tooltip").addClass('hidden');
+                });
 
         };
 
@@ -286,7 +292,10 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
 
                 var r = map.get(window.year);
                 if (!isNaN(r)) {
-                    r = r * 1.2;
+                    r = (r * 1.1);
+                    if (r > 0){ //make a minimum size
+                        r = r + 10;
+                    }
                     o.radius = r;
                     self.svg.selectAll(".node-" + i)
                         .attr('r', r);
