@@ -287,6 +287,53 @@ Tooltips
     }
 }
 
+ul.overview-list{
+    list-style-type: none;
+    padding: 0;
+    li{
+        list-style-type: none;
+        display: block;
+        margin-bottom: 5px;
+        .clearfix();
+        div{                 border-bottom: 2px solid red; }
+        &.criticism{
+            div{ width: 8%; border-bottom-color: rgb(247,204,153);}
+        }
+        &.miscellaneous{
+             div{ width: 12.5%; border-bottom-color: rgb(222,212,181); }
+        }
+        &.dance{
+            div{ width: 57%; border-bottom-color: #fde495; }
+        }
+        &.literature{
+            div{ width: 53%; border-bottom-color: #e0917c; }
+        }
+        &.music{
+            div{ width: 68%; border-bottom-color: #d18282; }
+        }
+        &.theater{
+            div{ width: 90%; border-bottom-color: #c1915d; }
+        }
+        &.visual-arts{
+            div{ width: 90%; border-bottom-color: #efab60; }
+        }
+        &.multidisciplinary{
+            div{ width: 70%; border-bottom-color: #b7b1ab; }
+        }
+        &.media-arts{
+            div{ width: 100%; border-bottom-color: rgb(170,132,37); }
+        }
+    }
+    span{ display: inline-block; }
+    span.dollars{
+        padding-left: 5px;
+        font-weight: 100;
+    }
+
+
+
+}
+
 
 /* ---------------------------
  * SVG rules
