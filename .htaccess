@@ -5,5 +5,7 @@ RewriteBase /
 RewriteRule ^(.*/)?\.git+ - [F,L]
 RewriteRule /?\deployhq.log$ - [F,L]
 
+RewriteCond %{HTTP_HOST} ^fifty.jeromefdn.org$
+RewriteRule (.*)$ http://50.jeromefdn.org/$1 [R=301,L]
 
 AddType text/csv .csv
