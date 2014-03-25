@@ -1,6 +1,28 @@
 require(["jquery", "async!http://maps.google.com/maps/api/js?key=AIzaSyAHHC2slaWMzd-bp3TbzYl-QTf_Fq-5-yE&sensor=false!callback", "jquery-mousewheel"], function travelStudy($) {
     "use strict";
 
+    $('#map-canvas').css({
+        height: $(window).height(),
+        top:  ($(window).height() - 50)
+    });
+
+    var mapPosition = $(window).height() - 50; //$("#map-canvas").offset().top;
+
+
+    $('#wrap').scroll(function(){
+        var topOffset = $('.s3').offset().top * -1;
+        
+        console.log(topOffset, mapPosition);
+
+        if (topOffset >= mapPosition ){
+            $("#map-canvas").addClass("fixed_map");
+        } else {
+            $("map-canvas").removeClass("fixed_map");
+        }
+
+    }).scroll();
+
+
     var map, mapData;
     var mn = new google.maps.LatLng(46.4, -93.790039);
     var MY_MAPTYPE_ID = 'custom_style';
