@@ -101,9 +101,10 @@ define(["jquery"], function fifty($) {
 
             $('body').removeClass().addClass('step-' + this.step);
 
+            this.updateYear();
 
             //console.log(this.step);
-            $(window).trigger('updateYear:' + this.step);
+            //$(window).trigger('updateYear:' + this.step);
         },
 
         calcYears: function(el) {

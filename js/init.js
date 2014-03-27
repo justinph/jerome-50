@@ -36,13 +36,13 @@ requirejs(["app/overall"], function(Overall) {
 
 
 requirejs(['app/yearsofsupport'], function(YearsOfSupport) {
-    new YearsOfSupport(2);
+    new YearsOfSupport(3);
 });
 requirejs(["app/gpfv"], function(GpFv) {
 
-    var fv = new GpFv(4, 'fv', true, false);
+    var gp = new GpFv(2, 'gp', false, true);
 
-    var gp = new GpFv(5, 'gp', false, true);
+    var fv = new GpFv(5, 'fv', true, false);
 
     //console.log(fv, gp);
 

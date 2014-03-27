@@ -1,6 +1,7 @@
 require(["jquery", "async!http://maps.google.com/maps/api/js?key=AIzaSyAHHC2slaWMzd-bp3TbzYl-QTf_Fq-5-yE&sensor=false!callback", "jquery-mousewheel"], function travelStudy($) {
     "use strict";
 
+    var mySelector = '.s4';
 
     var map, mapData;
     var mn = new google.maps.LatLng(46.4, -93.790039);
@@ -70,28 +71,44 @@ require(["jquery", "async!http://maps.google.com/maps/api/js?key=AIzaSyAHHC2slaW
         templateId: 2
     });
 
-    $(window).on("updateYear:3", function() {
-        //console.log('receiving update 3');
+    $(window).on("updateYear:4", function() {
+        //console.log('receiving update 4');
         updateYear();
     });
 
     var updateYear = function updateYear() {
-
+        //console.log('update year called', window.year);
         if (window.year >= 1965) {
+            //we want to show the map and arrows!
+
+            $('#year').removeClass('faded');
+            $('#year-down, #year-up').removeClass();
+
+            //this is the opposite of what it seems like, because we want to have it overlay
+            $(mySelector+' .textDisplay').addClass('show');
+
+
+            
+        } else {
+
+            //not show map and arrows, show intro
             $('#year').addClass('faded');
             $('#year-down').addClass('inactive');
-            $('.s3 .textDisplay').addClass('show');
-        } else {
-            $('.s3 .textDisplay').removeClass('show');
-            $('#year-down, #year-up').removeClass();
-            $('#year').removeClass().text(window.year);
+
+            //this is the opposite of what it seems like, because we want to have it overlay
+            $(mySelector+' .textDisplay').removeClass('show');
+
+
+
+
+            //$('#year').removeClass().text(window.year);
         }
 
         //hide show the element (not just transition) so we can click
         if (window.year >= 1975){
-            $('.s3 .textDisplay').hide();
+            $(mySelector+' .textDisplay').hide();
         } else  {
-            $('.s3 .textDisplay').show();
+            $(mySelector+' .textDisplay').show();
         }
 
 
@@ -107,7 +124,7 @@ require(["jquery", "async!http://maps.google.com/maps/api/js?key=AIzaSyAHHC2slaW
 
 
     $("body").mousewheel(function(event, delta) {
-        if (window.step === 3) {
+        if (window.step === 4) {
             var myDelta = parseInt((delta / 10) * -1, 10);
             //console.log(myDelta);
 

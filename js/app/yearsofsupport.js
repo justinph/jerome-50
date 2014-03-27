@@ -211,7 +211,7 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
                 });
                 
                 //close info window when clicking anywhere
-                $('.s2').on('click',function(){
+                $(self.selector).on('click',function(){
                     window.clearTimeout(closeTooltipTimeout);
                     $(self.selector + " .tooltip").addClass('hidden');
                 });
