@@ -1,3 +1,5 @@
+IndexOptions +Charset=UTF-8
+
 RewriteEngine On
 RewriteBase /
 
