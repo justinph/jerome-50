@@ -666,9 +666,10 @@
 
 	<script id="fv-grantees-list" type="text/x-handlebars-template">
 		<div class="grantees-wrapper fv">
+		<h3><a href="#" class='close-grantees'> <span>Hide grantees</span></a></h3>
+
 		<ul>
 			<h2>{{location}}</h2>
-			<h3><a href="#" class='close-grantees'> <span>Hide grantees</span></a></h3>
 			{{#each grantees}}
 			<li>
 				{{[Artist name]}}
@@ -687,8 +688,9 @@
 
 	<script id="gp-grantees-list" type="text/x-handlebars-template">
 		<div class="grantees-wrapper gp">
+		<h3><a href="#" class='close-grantees'> <span>Hide grantees</span></a></h3>
+
 		<ul>
-			<h3><a href="#" class='close-grantees'> <span>Hide grantees</span></a></h3>
 			{{#each grantees}}
 			<li>
 				{{#if link}}<a href="http://{{link}}">{{/if}}

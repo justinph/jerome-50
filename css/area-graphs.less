@@ -56,32 +56,45 @@ h2.applications, h3.applications{
     	padding: 5%;
     	background-color: rgba(20,20,20,0.75);
         font-weight: 100;
+        // padding-bottom: 20%;
+
+    h3{ margin-top: 3em;}
 
     h2, h3{
     	text-align: center;
     }
     ul{
-    	margin-top: 6%;
+    	margin-top: 2%;
     	padding:0; 
+        overflow: scroll;
+        position: fixed;
+        height: 55%;
+        width: 89%;
     }
     li{
-        font-size: .9em;
+        font-size: 1em;
     	list-style-type: none;
-    	width: 24.5%;
+    	width: 32.333%;
     	margin-right: .5%;
     	display: block;
-    	padding: 0 1em 1em 0;
+    	padding: 0 1em 1.5em 0;
     	//background-color: red;
     	float: left;
     	height: 75px;
     	white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
+        margin-bottom: 1em;
     }
     &.gp{
     	li{
     		height: 22px;
     	}
+    }
+    &.fv{
+        li{
+            //width:
+        }
     }
 }
 .close-grantees{
