@@ -132,8 +132,8 @@ require(["jquery", "async!http://maps.google.com/maps/api/js?key=AIzaSyAHHC2slaW
             if (window.year < 1963) {
                 window.year = 1963;
             }
-            if (window.year > 2013) {
-                window.year = 2013;
+            if (window.year > 2014) {
+                window.year = 2014;
             }
 
             updateYear();
