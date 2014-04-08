@@ -111,7 +111,9 @@ define(["jquery"], function fifty($) {
             var pos_in_window = $(el).scrollTop() - this.$sec_offset;
             var year_supplement = Math.round(pos_in_window / this.yeartick);
             this.year = this.start + year_supplement;
-            //console.log(year);
+            if (this.year > this.end) {
+                this.year = this.end; //make sure we don't go past the built-in end
+            }
             this.updateYear();
             //console.log(this.step);
         },
