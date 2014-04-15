@@ -33,6 +33,11 @@ define(["jquery"], function fifty($) {
                 $('#wrap').removeClass().addClass('step-' + self.step);
                 self.updateSteps();
                 //$.scrollTo( $('.s5'), 800 );
+                //
+                try{
+                    ga('send', 'event', 'button', 'click', 'previous');
+                }catch(e){}
+
                 return false;
             });
             $('#next').on('click', function() {
@@ -44,6 +49,10 @@ define(["jquery"], function fifty($) {
                 $('#wrap').removeClass().addClass('step-' + self.step);
                 self.updateSteps();
                 //$.scrollTo( $('.s1'), 800 );
+                try{
+                    ga('send', 'event', 'button', 'click', 'next');
+                }catch(e){}
+                
                 return false;
             });
 
