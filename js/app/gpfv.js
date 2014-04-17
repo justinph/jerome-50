@@ -277,6 +277,17 @@ define(["jquery", 'd3', 'handlebars'], function($, d3, Handlebars) {
                         if (typeof thisYearData !== 'undefined') {
                             thisYearData[0].doFVGrantees = self.doFVGrantees;
                             thisYearData[0].doGPGrantees = self.doGPGrantees;
+                            //helps us get the pluralization right on display
+                            if (thisYearData[0].approved > 1){
+                                thisYearData[0].approvedPlural = true;
+                            } else {
+                                thisYearData[0].approvedPlural = false;
+                            }
+                            if (thisYearData[0].applications > 1){
+                                thisYearData[0].applicationsPlural = true;
+                            } else {
+                                thisYearData[0].applicationsPlural = false;
+                            }
                         } else {
                             thisYearData = [{}];
                         }

@@ -629,11 +629,11 @@
 			{{/if}}
 
 			{{#if approved}}
-				<h3 class='grants'>{{approved}} grants</h3>
+				<h3 class='grants'>{{approved}} grant{{#if approvedPlural}}s{{/if}}</h3>
 			{{/if}}
 			
 			{{#if applications}}
-				<h3 class='applications'>{{applications}} applications</h3>
+				<h3 class='applications'>{{applications}} application{{#if applicationsPlural}}s{{/if}}</h3>
 			{{/if}}
 			
 			{{#if [dollars mn]}}
