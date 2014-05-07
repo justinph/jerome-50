@@ -1,0 +1,14 @@
+/* TEAM */
+
+	Design, Development: Justin Heideman
+	Contact: justin@fiddlyio.com
+	Twitter: @justinph
+
+	Data wrangling, project management, typo killing: Eleanor Savage
+	
+/* SITE */
+
+	Doctype: HTML5
+	Software: Sublime Text 2, Photoshop, Microsoft Excel, python
+	Components: d3.js, require.js, jquery, lesscss, grunt
+	
